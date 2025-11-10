@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.10)  10 NOV 2025 19:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.10)  10 NOV 2025 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1666,22 +1666,14 @@ has been already used, duplicate ignored
 l.101     \item E
                  n el caso MIN: cuando obtenemos un sucesor con valor \(v\),...
  <./img/Minimax_tres_en_raya.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
-
- []
-
+LaTeX Info: Redefining \. on input line 108.
+LaTeX Info: Redefining \% on input line 108.
+ [30]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 113.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 151.
-LaTeX Info: Redefining \% on input line 151.
- [30]
 LaTeX Info: Redefining \. on input line 158.
 LaTeX Info: Redefining \% on input line 158.
-
-[31]
+ [31]
 <img/Alfa-Beta_tres_en_ralla.PNG, id=677, 576.35326pt x 322.806pt>
 File: img/Alfa-Beta_tres_en_ralla.PNG Graphic file (type png)
 <use img/Alfa-Beta_tres_en_ralla.PNG>
@@ -2309,7 +2301,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  31977 strings out of 474485
  609068 string characters out of 5743733
- 1952542 words of memory out of 5000000
+ 1951542 words of memory out of 5000000
  53050 multiletter control sequences out of 15000+600000
  757893 words of font info for 261 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2340,7 +2332,7 @@ ts/type1/urw/palatino/uplbi8a.pfb><C:/Users/loren/AppData/Local/Programs/MiKTeX
 /fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/loren/AppData/Local/Programs/MiK
 TeX/fonts/type1/urw/palatino/uplri8a.pfb><C:/Users/loren/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on tfg.pdf (108 pages, 11892473 bytes).
+Output written on tfg.pdf (108 pages, 11892442 bytes).
 PDF statistics:
  1886 PDF objects out of 2073 (max. 8388607)
  488 named destinations out of 1000 (max. 500000)
