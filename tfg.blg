@@ -5,13 +5,15 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: abbrv.bst
 Reallocating 'name_of_file' (item size: 1) to 12 items.
 Database file #1: library.bib
+Warning--I didn't find a database entry for "notion"
+Warning--I didn't find a database entry for "git"
 Warning--to sort, need author or key in mtg
 Warning--to sort, need author or key in bbg_richard
 Warning--to sort, need author or key in mtg_legal_cards
 Warning--empty journal in costikyan2002
 You've used 58 entries,
             2118 wiz_defined-function locations,
-            822 strings with 12049 characters,
+            824 strings with 12058 characters,
 and the built_in function-call counts, 13353 in all, are:
 = -- 1284
 > -- 481
@@ -50,4 +52,4 @@ warning$ -- 4
 while$ -- 117
 width$ -- 60
 write$ -- 656
-(There were 4 warnings)
+(There were 6 warnings)
