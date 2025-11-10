@@ -1,0 +1,142 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Evaluación y pruebas}
+\label{chap:evaluacion-pruebas}
+
+Este capítulo describe el enfoque de verificación seguido durante el desarrollo del prototipo de \textit{Bardtastic}, los resultados obtenidos y un plan estructurado para formalizar las pruebas de cara a la futura \textit{Vertical Slice}. Dado el carácter prototípico del software, la validación se ha centrado en \textbf{pruebas exploratorias y sesiones de juego supervisadas}, apoyadas por un uso intensivo de \textit{logging} y trazas en tiempo real. A continuación se sistematiza lo realizado y se proponen medidas concretas para elevar el nivel de aseguramiento de calidad.
+
+\section{Objetivos de la evaluación}
+\begin{itemize}
+  \item Verificar la \textbf{viabilidad jugable} del \textit{core loop} (robar, validar rimas, aplicar efectos, alternar turnos, determinar ganador).
+  \item Asegurar la \textbf{consistencia de estado} (mazo, mano, mesa, descarte, audiencia, emociones).
+  \item Detectar \textbf{errores críticos} que impidan terminar una partida.
+  \item Recoger \textbf{feedback de usabilidad} durante sesiones de \textit{playtest}.
+\end{itemize}
+
+\section{Estrategia empleada (prototipo)}
+Durante esta fase no se han implementado tests unitarios automatizados. La validación se ha realizado mediante:
+
+\subsection{Pruebas exploratorias}
+
+La validación se ha centrado en un enfoque de pruebas exploratorias, en el que la propia desarrolladora interactúa con el sistema sin un guion rígido, observando el comportamiento del juego y buscando posibles fallos en sus mecánicas principales. Dentro de este enfoque se han aplicado tres técnicas complementarias:
+
+\begin{itemize}
+  \item \textbf{Pruebas sistemáticas de juego}: sesiones completas y repetidas de enfrentamientos cubriendo tanto flujos habituales como situaciones límite (mazo agotado, rima inválida, empate en audiencia, etc.).
+  
+  \item \textbf{\textit{Smoke tests}}: se ejecutan de manera frecuente al inicio de cada iteración de desarrollo para comprobar que las funcionalidades esenciales no han dejado de funcionar tras introducir cambios. En el contexto del prototipo, estos tests consisten en:
+  \begin{itemize}
+      \item cargar el menú principal,
+      \item iniciar un combate,
+      \item jugar varias rondas con alternancia de turnos,
+      \item determinar un ganador y volver al flujo del juego.
+  \end{itemize}
+  El objetivo es detectar fallos críticos de manera temprana y garantizar que el juego sigue siendo ejecutable en todo momento.
+  
+  \item \textbf{\textit{Error guessing}}: técnica basada en la experiencia de la desarrolladora para anticipar dónde es más probable que aparezcan errores. Se busca “romper” el sistema forzando situaciones anómalas, como:
+  \begin{itemize}
+      \item descartar todas las cartas de la mano en un punto no previsto,
+      \item generar cadenas largas de efectos consecutivos,
+      \item aplicar atención que supere los límites \([-3,3]\),
+      \item provocar que la IA no disponga de una secuencia válida.
+  \end{itemize}
+  Esta técnica resulta especialmente útil en fases tempranas, cuando aún no se cuenta con una batería completa de casos de prueba formales.
+\end{itemize}
+
+
+\subsection{\textit{Playtesting} supervisado}
+
+Se realizaron pruebas informales con usuarios (principalmente compañeros) con el objetivo de observar la comprensibilidad de la interfaz, la claridad del \textit{feedback} y el ritmo de juego. Durante estas sesiones se registraron observaciones cualitativas relacionadas con posibles confusiones, tiempos de decisión, errores de lectura de rimas y la claridad del resultado final.
+
+\subsection{Trazas y depuración}
+
+Se hizo un uso intensivo de \textbf{logs} y \textbf{prints} para seguir el flujo de turnos, la validación de rimas y la ejecución secuencial de efectos. Además, se emplearon marcadores visuales (\textit{debug draws} o \textit{widgets} temporales) para confirmar los cambios de atención y de emociones durante la ejecución.
+
+
+\section{Cobertura funcional alcanzada}
+A nivel práctico se han verificado los siguientes bloques:
+\begin{itemize}
+  \item \textbf{Flujo de turnos}: alternancia Jugador/IA, inicio y fin de turno, conteo de 7 turnos por bando.
+  \item \textbf{Cartas}: carga desde \textit{DataTables}, creación en tiempo de ejecución, validación de rimas, aplicación de efectos.
+  \item \textbf{Audiencia}: actualización de atención con saturación \([-3,3]\) y transición de emociones básica.
+  \item \textbf{Resultado}: cálculo de ganador por mayoría de audiencia; desempate por historia completa.
+  \item \textbf{Eventos}: menú intermedio para modificar el mazo (eliminar/añadir según evento actual).
+  \item \textbf{Guardado}: persistencia básica de la \textit{run} (\texttt{SavedRun} con \texttt{Deck}).
+\end{itemize}
+
+\section{Casos de prueba manuales (muestra)}
+A continuación se documentan casos representativos usados de forma manual durante el prototipado. Sirven como base para su futura automatización.
+
+\begin{longtable}{@{}p{2.2cm}p{3.2cm}p{6.6cm}p{2.5cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Área} & \textbf{Descripción} & \textbf{Resultado} \\
+\midrule
+TC-01 & Turnos & Iniciar partida y completar 14 turnos (7 por bando) sin errores. & OK \\
+TC-02 & Rimas & Intentar jugar una carta con \emph{rima anterior} distinta de la \emph{rima posterior} de la carta previa. & Rechazo/OK \\
+TC-03 & Efectos & Jugar carta que suma atención a varios espectadores y verificar saturación en \([-3,3]\). & OK \\
+TC-04 & Historia & Completar historia (inicio, nudo, desenlace + 1 personaje + 1 pensamiento) y forzar empate de audiencia. & Desempate/OK \\
+TC-05 & Mazo & Agotar mazo y reconstruir desde descarte; continuar turno actual. & OK \\
+TC-06 & IA & Forzar mano de IA con varias secuencias válidas; comprobar selección coherente. & OK (heur.) \\
+TC-07 & Evento & Tras combate, abrir evento, aplicar modificación de mazo y volver a combate. & OK \\
+TC-08 & Guardado & Guardar tras evento y cargar; verificar integridad del mazo. & OK \\
+\bottomrule
+\end{longtable}
+
+
+\section{Limitaciones del enfoque actual}
+\begin{itemize}
+  \item \textbf{Sin pruebas unitarias/funcionales automatizadas}: dependencia total de tests manuales.
+  \item \textbf{Sin medición sistemática de rendimiento}: percepción subjetiva de fluidez.
+  \item \textbf{Playtesting no estructurado}: muestras pequeñas y sin métricas cuantitativas.
+\end{itemize}
+
+\section{Plan de formalización de pruebas (\textit{Vertical Slice})}
+Para la siguiente fase se propone un plan incremental, compatible con Unreal:
+
+\subsection{Niveles y tipos de prueba}
+\begin{itemize}
+  \item \textbf{Unitarias} (C++): validación de utilidades puras (comparación de rimas, cálculo de atención, saturación, orden de efectos).
+  \item \textbf{Funcionales/UI} (Blueprint \& Functional Testing): flujo \emph{end-to-end} en mapas de test (cargar carta, jugar, actualizar audiencia, fin de turno).
+  \item \textbf{Integración} (sistemas): \texttt{UCard} + \texttt{EffectLoader} + \texttt{GameContext} + \texttt{Deck}.
+  \item \textbf{Experiencia de usuario}: \textit{playtests} con protocolo, métricas y cuestionario SUS/attrakDiff.
+\end{itemize}
+
+\subsection{Herramientas de Unreal recomendadas}
+\begin{itemize}
+  \item \textbf{Automation System (C++)}: pruebas unitarias con \texttt{IMPLEMENT\_SIMPLE\_AUTOMATION\_TEST}.
+  \item \textbf{Functional Testing / Automation Spec}: mapas de prueba con \textit{steps} de juego.
+  \item \textbf{Gauntlet} (si aplica): ejecución automatizada en \textit{builds}.
+  \item \textbf{Commandlets} simples: generación/carga de mazos de prueba.
+\end{itemize}
+
+\subsection{Matriz mínima de pruebas (RF $\rightarrow$ TC)}
+\begin{tabularx}{\linewidth}{@{}lYYYYYYYY@{}}
+\toprule
+\textbf{RF} & \textbf{TC-01} & \textbf{TC-02} & \textbf{TC-03} & \textbf{TC-04} & \textbf{TC-05} & \textbf{TC-06} & \textbf{TC-07} & \textbf{TC-08}\\
+\midrule
+RF-1 Turnos     & X &   &   &   &   &   &   &   \\
+RF-2 Robo       &   &   &   &   & X &   &   &   \\
+RF-3 Rimas      &   & X &   &   &   & X &   &   \\
+RF-4 Efectos    &   &   & X &   &   &   &   &   \\
+RF-5 Tipos      &   &   & X &   &   &   &   &   \\
+RF-6 Atención   &   &   & X &   &   &   &   &   \\
+RF-7 Emociones  &   &   & X &   &   &   &   &   \\
+RF-8 IA         &   &   &   &   &   & X &   &   \\
+RF-9 Fin        & X &   &   &   &   &   &   &   \\
+RF-10 Ganador   &   &   &   & X &   &   &   &   \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Criterios de aceptación y métricas}
+\begin{itemize}
+  \item \textbf{Funcional}: 0 \textit{blockers} y 0 \textit{críticos} tras batería de TC-01..08.
+  \item \textbf{Rendimiento}: acción típica (validar rima + aplicar efectos) $<$ 100\,ms en PC objetivo.
+  \item \textbf{Playtest}: $\geq$ 80\% de jugadores comprende reglas de rima sin explicación adicional; tasa de finalización de partida $\geq$ 90\%.
+\end{itemize}
+
+\subsection{Procedimiento de \textit{playtest} estructurado}
+\begin{itemize}
+  \item \textbf{Protocolo}: briefing (1 min) $\rightarrow$ partida (10--15 min) $\rightarrow$ encuesta corta (SUS) + entrevista (3 min).
+  \item \textbf{Instrumentación}: contadores de turnos, tiempo por decisión, errores de rima, impulsos de atención por carta.
+  \item \textbf{Registro}: hoja de incidencias (reproducible/pasos/esperado/obtenido).
+\end{itemize}

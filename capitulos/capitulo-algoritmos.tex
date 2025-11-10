@@ -1,0 +1,251 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Algoritmos para IA en juegos} \label{algoritmos}
+Una vez expuestos los distintos tipos de juegos y sus características fundamentales, el siguiente paso consiste en analizar los mecanismos mediante los cuales pueden ser jugados o resueltos. Si bien algunos juegos permiten identificar soluciones de equilibrio de forma analítica, en otros casos resulta necesario recurrir a agentes capaces de determinar y ejecutar estrategias de manera autónoma.
+El estudio de estos agentes permite aproximarse a la resolución de juegos complejos, incluso cuando no es posible obtener una solución exacta. En tales situaciones, el objetivo pasa a ser el diseño de agentes que actúen de forma racional dentro del entorno del juego, optimizando su comportamiento.
+
+\section{Agentes}
+En inteligencia artificial, un \textbf{agente} es una entidad que percibe su entorno mediante sensores y actúa sobre él a través de actuadores \cite{RussellNorvig2021}. El comportamiento del agente está determinado por una función agente que asigna una acción a cada secuencia posible de percepciones.
+Un \textbf{agente racional} elige las acciones que maximicen su medida de rendimiento esperada, en función de las percepciones y el conocimiento disponible.
+
+
+Según su complejidad, pueden distinguirse agentes reactivos simples, basados en modelos, basados en objetivos y basados en utilidad. Cada tipo amplía la capacidad del agente para razonar sobre el entorno, planificar y adaptarse, acercándose a un comportamiento racional en contextos dinámicos e inciertos.
+
+\section{Algoritmos para juegos con información completa} 
+Esta sección se basa en los contenidos de \textit{Inteligencia Artificial: Un enfoque moderno} (Russell, Stuart J. and Norvig, Peter, 2022) \cite{RussellNorvig2021}.
+
+Los algoritmos que se presentan a continuación suponen un entorno competitivo de juego de suma cero, tal como se definió en la sección anterior y se analizó en el \textit{Teorema de equilibrio y estrategias minimax} (Teorema \ref{T_minimax_equilibrio}). En este tipo de juegos, las ganancias de un jugador equivalen exactamente a las pérdidas del otro, por lo que el análisis puede realizarse desde la perspectiva de un único jugador: maximizar su utilidad implica simultáneamente minimizar la de su oponente.
+
+
+\subsection{Minimax} \label{minimax}
+El algoritmo \textbf{minimax} constituye la base de la toma de decisiones óptima en juegos secuenciales de información completa con suma cero. Su objetivo es determinar la estrategia que maximiza la ganancia mínima posible del jugador, asumiendo que el oponente juega de forma perfecta.
+
+Sea un juego representado de forma extensiva por un árbol de decisión en el que los nodos representan estados $n$ y los arcos representan acciones posibles. Los nodos terminales están asociados a valores de utilidad \( u(s) \), que cuantifican el resultado final para el jugador maximizador. En cada nivel del árbol, los jugadores alternan su turno:
+\begin{itemize}
+    \item El jugador \textbf{MAX} elige la acción que \textbf{maximiza} el valor esperado.
+    \item El jugador \textbf{MIN} elige la acción que \textbf{minimiza} dicho valor, buscando reducir la ganancia del rival.
+\end{itemize}
+
+Formalmente, el valor de un estado \( n \) se define recursivamente como:
+\[
+V(n) =
+\begin{cases}
+u(n) & \text{si $n$ es terminal},\\
+\max\limits_{s \in \text{Sucesores}(n)} V(s) & \text{si $n$ es un estado de MAX},\\
+\min\limits_{s \in \text{Sucesores}(n)} V(s) & \text{si $n$ es un estado de MIN}.
+\end{cases}
+\]
+
+Llamamos a \( V(n) \) el \textbf{valor minimax} del nodo \( n \).  
+Si \( n \) es un nodo terminal, \( u(n) \) representa la utilidad asociada al resultado alcanzado siguiendo la secuencia de decisiones que conduce hasta \( n \).
+
+De esta forma, el algoritmo explora el árbol de juego hasta las hojas y propaga hacia arriba los valores de utilidad, seleccionando en la raíz la acción con el valor máximo.
+
+\hfill \break
+El agente que aplica el algoritmo minimax puede interpretarse como un agente basado en modelos, ya que mantiene una representación explícita del entorno del juego (el árbol de estados) y razona sobre él para seleccionar la acción óptima.
+Este agente asume que el oponente también actúa racionalmente, maximizando su propia utilidad, lo que lo convierte en un agente racional en el sentido definido al inicio del capítulo.
+
+\subsubsection{Minimax en el tres en raya.}
+
+Se desarrolla ahora el caso del tres en raya, definido anteriormente.
+
+Un agente minimax para este juego actúa de la siguiente forma:
+\begin{enumerate}
+    \item Genera todos los movimientos posibles desde el estado actual.
+    \item Evalúa los estados terminales según la función de utilidad definida.
+    \item Propaga los valores hacia atrás aplicando las reglas de maximización y minimización.
+    \item Selecciona el movimiento con el valor \( V(s) \) máximo.
+\end{enumerate}
+
+La representación en forma extensiva permite visualizar las decisiones secuenciales y el carácter de información perfecta del juego. En la Figura~\ref{fig:tres_en_raya_minimax} se muestra un fragmento del árbol de decisión correspondiente a una partida que termina en empate. Cada nodo alterna entre decisiones de MAX (X) y MIN (O), y las utilidades en las hojas determinan la estrategia óptima.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/Minimax_tres_en_raya.png}
+\caption{Un árbol (parcial) de búsqueda minimax para el juego de tres en raya. Creación propia.}
+\label{fig:tres_en_raya_minimax}
+\end{figure}
+
+
+%induccion hacia atras
+%induccion hacia atras generalizada
+%\subsection{Negamax}
+\subsection{Poda \(\alpha\)-\(\beta\)} %revisar
+
+La poda \(\alpha\)-\(\beta\) es una optimización del algoritmo minimax que reduce el número de nodos evaluados sin alterar el resultado final óptimo. Se basa en el hecho de que, en muchos casos, es posible detectar que cierta rama del árbol no puede cambiar la decisión definitiva y descartarla anticipadamente.  
+
+La poda $\alpha-\beta$ debe su nombre de los dos parámetros que describen los umbrales sobre los valores hacia atrás que aparecen durante la exploración:
+\begin{itemize}
+    \item \(\alpha\): el valor (máximo) garantizado hasta ahora para el jugador MAX.
+    \item \(\beta\): el valor (mínimo) garantizado hasta ahora para el jugador MIN.
+\end{itemize}
+
+La poda $\alpha-\beta$ actualiza el valor de $\alpha$ y $\beta$ según se va explorando el árbol y poda (es decir, deja de recorrer), las ramas restantes en un nodo en el momento en el valor del nodo actual es peor que el actual valor $\alpha$ o $\beta$ para MAX o MIN, respectivamente.
+
+Formalmente, la función recursiva se puede escribir como:
+
+\[
+\text{AlphaBeta}(n, \alpha, \beta) =
+\begin{cases}
+u(n), & \text{si } n \text{ es terminal}, \\
+\max\limits_{s \in \text{Sucesores}(n)} \text{AlphaBeta}(s, \alpha, \beta), & \text{si turno = MAX}, \\
+\min\limits_{s \in \text{Sucesores}(n)} \text{AlphaBeta}(s, \alpha, \beta), & \text{si turno = MIN},
+\end{cases}
+\]
+
+pero con las condiciones de poda:
+
+\begin{itemize}
+    \item En el caso MAX: cuando calculamos un sucesor \(s\) y obtenemos un valor \(v = \text{AlphaBeta}(s, \alpha, \beta)\), si \(v > \alpha\) actualizamos \(\alpha = v\). Si en algún momento \(\alpha \ge \beta\), rompemos el bucle de sucesores (corte).
+    \item En el caso MIN: cuando obtenemos un sucesor con valor \(v\), si \(v < \beta\) actualizamos \(\beta = v\). Si \(\beta \le \alpha\), hacemos corte (podar).
+\end{itemize}
+
+El agente que utiliza poda $\alpha-\beta$ mantiene el mismo tipo de racionalidad que el agente minimax, pero optimiza su proceso de decisión reduciendo la cantidad de estados explorados. Se trata, por tanto, de un agente basado en modelos que emplea un mecanismo de búsqueda más eficiente para alcanzar decisiones racionales en tiempo finito.
+
+Es por esto que se utiliza ampliamente para juegos complejos bipersonales de suma cero, como el ajedrez o el tres en raya.
+
+
+\subsubsection{El algoritmo de búsqueda $\alpha-\beta$}
+
+\begin{algorithm}[H]
+\caption{Búsqueda Alfa–Beta (adaptado de \cite{RussellNorvig2021}).}
+\label{alg:alphabeta}
+\begin{algorithmic}[1]
+\Function{BÚSQUEDA-ALFA-BETA}{estado}
+    \State \textbf{entrada:} estado, estado actual del juego
+    \State $v \gets$ \Call{MAX-VALOR}{estado, $-\infty$, $+\infty$}
+    \State \Return la acción de \textsc{Sucesores}$(estado)$ con valor $v$
+\EndFunction
+\vspace{0.5em}
+\Function{MAX-VALOR}{estado, $\alpha$, $\beta$}
+    \State \textbf{entrada:} estado, $\alpha$ valor de la mejor alternativa para MAX, $\beta$ para MIN
+    \If{\Call{TEST-TERMINAL}{estado}}
+        \State \Return \Call{UTILIDAD}{estado}
+    \EndIf
+    \State $v \gets -\infty$
+    \ForAll{$s$ en \textsc{Sucesores}$(estado)$}
+        \State $v \gets \max(v, \Call{MIN-VALOR}{s, \alpha, \beta})$
+        \If{$v \geq \beta$} \Return $v$ \EndIf
+        \State $\alpha \gets \max(\alpha, v)$
+    \EndFor
+    \State \Return $v$
+\EndFunction
+\vspace{0.5em}
+\Function{MIN-VALOR}{estado, $\alpha$, $\beta$}
+    \State \textbf{entrada:} estado, $\alpha$ valor de la mejor alternativa para MAX, $\beta$ para MIN
+    \If{\Call{TEST-TERMINAL}{estado}}
+        \State \Return \Call{UTILIDAD}{estado}
+    \EndIf
+    \State $v \gets +\infty$
+    \ForAll{$s$ en \textsc{Sucesores}$(estado)$}
+        \State $v \gets \min(v, \Call{MAX-VALOR}{s, \alpha, \beta})$
+        \If{$v \leq \alpha$} \Return $v$ \EndIf
+        \State $\beta \gets \min(\beta, v)$
+    \EndFor
+    \State \Return $v$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsubsection{$\alpha$-$\beta$ en el tres en raya}
+
+A diferencia del ejemplo de minimax, donde mostramos únicamente un fragmento del árbol debido a su tamaño, la poda $\alpha$-$\beta$ nos permite representar la exploración completa del juego de manera eficiente. En la Figura~\ref{fig:tres_en_raya_alphabeta} se muestra un árbol de decisión completo para una partida de tres en raya, donde se indica en cada nodo el valor actual de $\alpha$ y $\beta$ durante la búsqueda.
+
+Este ejemplo ilustra cómo la poda evita explorar ramas innecesarias, reduciendo el número de nodos evaluados sin afectar el resultado final. Todos los caminos analizados conducen a un empate, lo que confirma que el tres en raya es un juego con equilibrio: si ambos jugadores actúan de manera racional, el resultado óptimo es siempre el empate. La figura permite visualizar de forma clara la dinámica de actualización de los valores $\alpha$ y $\beta$ en cada nivel del árbol, y cómo se producen las podas en las ramas que no pueden mejorar la decisión del jugador MAX o MIN.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/Alfa-Beta_tres_en_ralla.PNG}
+\caption{Árbol completo de búsqueda $\alpha$-$\beta$ para el juego de tres en raya. Cada nodo muestra los valores $\alpha$ y $\beta$ en el momento de la evaluación, y las ramas podadas se omiten para indicar la eficiencia de la búsqueda. Creación propia.}
+\label{fig:tres_en_raya_alphabeta}
+\end{figure}
+
+
+\subsection{Heurísticas}
+
+La búsqueda informada usa conocimiento específico del problema para guiar la búsqueda hacia el objetivo más eficientemente que con estrategias sin información adicional. Se denomina también búsqueda primero el mejor (\textit{best-first search}). 
+
+Una \textbf{función heurística} \(h(n)\) estima el costo más bajo desde un estado \(n\) hasta un estado meta. Debe cumplir al menos:
+
+\begin{itemize}
+  \item \(h(n) \ge 0\) para todo \(n\).
+  \item Si \(n\) es meta, \(h(n) = 0\).
+\end{itemize}
+
+Dos propiedades importantes:
+
+\begin{itemize}
+  \item \textbf{Admisibilidad}: nunca sobreestima el costo real mínimo hasta la meta.  
+  \item \textbf{Consistencia} (o monótona): para cada transición de \(n\) a \(n'\) con costo \(c(n,n')\),
+  \[
+    h(n) \le c(n,n') + h(n').
+  \]
+\end{itemize}
+
+\subsubsection{Algoritmos heurísticos destacados}
+
+\begin{itemize}
+  \item \textbf{Búsqueda local voraz}: selecciona el nodo con heurística \(h(n)\) mínima en cada paso. Se enfoca fuertemente en acercarse al objetivo pero puede no encontrar un camino óptimo o quedarse atascado en ciclos.  
+  \item \textbf{Búsqueda $A^*$}: combina el costo hasta el nodo \(g(n)\) con la heurística \(h(n)\). Usa la función de evaluación
+  \[
+    f(n) = g(n) + h(n).
+  \]
+  Si la heurística es admisible (y consistente), $A^*$ garantiza encontrar un camino óptimo. 
+\end{itemize}
+
+Los algoritmos voraces pueden ser muy rápidos en algunos casos, pero ni óptimos ni completos en general.  
+
+$A^*$ es más costoso en espacio y tiempo que los voraces, pero ofrece garantía de optimalidad si la heurística lo permite.  
+En comparación con búsqueda sin información, las heurísticas bien diseñadas reducen dramáticamente el número de nodos explorados.  
+
+La calidad de la heurística (qué tan cerca está de la estimación real) determina cuánta mejora se logra. En muchos casos, estas heurísticas se obtienen al analizar las reglas del juego combinado con ensayo y error.
+
+Los agentes que emplean heurísticas pueden considerarse agentes basados en objetivos o en utilidad, ya que no sólo razonan sobre estados posibles, sino que evalúan su conveniencia mediante una función de utilidad o de costo estimado. Esto les permite actuar de forma racional incluso sin explorar exhaustivamente todos los estados posibles
+
+\section{Algoritmos para juegos con información incompleta}
+En los juegos de información completa, como el ajedrez o el tres en raya, los algoritmos basados en minimax y las técnicas de poda $\alpha$–$\beta$ permiten explorar el árbol de decisiones de forma más o menos exhaustiva para determinar secuencias óptimas de jugadas. Sin embargo, cuando el juego presenta información incompleta (que contienen, por ejemplo, cartas ocultas, información asimétrica o elementos aleatorios), el árbol de juego tradicional se transforma en una estructura con nodos de información y nodos de azar, haciendo inviable su exploración completa debido al crecimiento combinatorio y a la incertidumbre inherente al entorno.
+
+Por ello, en los juegos con información incompleta se desarrollan alternativas basadas en agentes de aprendizaje, que pueden ser de dos tipos principales: basados en modelos probabilísticos o de aprendizaje adaptativo.
+Estos agentes emplean simulaciones y muestreo estadístico para estimar el valor esperado de cada decisión sin necesidad de recorrer exhaustivamente todas las ramas posibles del juego.
+Dentro de este enfoque destacan los métodos de búsqueda por árboles Monte Carlo y los algoritmos evolutivos, ampliamente utilizados en juegos de tablero, estrategia y cartas.
+
+\subsection{Monte Carlo}
+
+Los métodos \textit{Monte Carlo} se basan en la idea de estimar el valor de una acción mediante simulaciones aleatorias repetidas. En lugar de explorar de manera exhaustiva todas las posibles jugadas, el algoritmo ejecuta múltiples partidas simuladas (\textit{rollouts}) hasta alcanzar estados terminales y promedia los resultados para aproximar el valor esperado de cada decisión. Esto permite que los agentes actúen de forma razonable incluso cuando el espacio de estados es muy amplio o incierto. 
+
+En juegos con información oculta, como el \textit{Texas Hold'em}, los enfoques basados en \textit{Monte Carlo Tree Search} (MCTS)\footnote{A partir de ahora usaremos MCTS para referirnos a \textit{Monte Carlo Tree Search}} se han consolidado como herramientas eficaces para aproximar estrategias de equilibrio. Heinrich y Silver \cite{heinrich2014selfplay} evaluaron MCTS en variantes de póker como \textit{Kuhn Poker} y \textit{Limit Texas Hold'em}, introduciendo una versión modificada denominada \textit{Smooth UCT}. Esta variante combina los principios de MCTS con técnicas de \textit{fictitious play}, un método clásico de Teoría de Juegos en el que cada jugador asume que los demás mantendrán estrategias promedio basadas en su comportamiento pasado, suavizando la selección de acciones para mejorar la estabilidad del aprendizaje en entornos parcialmente observables.
+
+En \textit{Limit Texas Hold’em}, los autores entrenaron agentes mediante auto–juego (\textit{self-play}) durante miles de millones de episodios. Dada la enorme complejidad del juego completo, aplicaron abstracciones del espacio de información, agrupando manos con valores estratégicamente similares en categorías o \textit{buckets}. Esta reducción permitió que MCTS centrara su búsqueda en las regiones más relevantes del espacio estratégico, evitando el crecimiento exponencial del árbol.
+
+El entrenamiento mediante \textit{self-play} permitió que los agentes actualizaran sus políticas tras cada simulación. Los resultados mostraron que tanto el UCT estándar como \textit{Smooth UCT} alcanzaron políticas competitivas frente a bots de referencia, aproximando comportamientos cercanos al equilibrio de Nash. Aunque no se demostró formalmente la convergencia teórica en juegos con información imperfecta, los resultados empíricos evidencian que MCTS es capaz de generar estrategias robustas mediante aprendizaje autónomo y simulación masiva.
+
+Estos avances consolidan el uso de MCTS en juegos con información incompleta, donde la complejidad combinatoria y la incertidumbre hacen inviable el uso de métodos deterministas. El caso del \textit{Texas Hold’em} ejemplifica cómo el muestreo Monte Carlo permite equilibrar exploración y explotación para crear estrategias efectivas en entornos parcialmente observables.
+
+
+\subsection{Algoritmos Evolutivos y Genéticos}
+
+Los algoritmos evolutivos (AE)\footnote{A partir de ahora usaremos AE para referirnos a los algoritmos evolutivos} constituyen una familia de métodos de optimización inspirados en los procesos biológicos de la evolución natural. Su objetivo es encontrar soluciones óptimas o cuasi–óptimas a problemas complejos mediante la iteración de una población de posibles soluciones que se modifican a lo largo del tiempo según principios de selección, mutación, recombinación y supervivencia del más apto. Entre sus variantes más destacadas se encuentran los algoritmos genéticos (AG)\footnote{A partir de ahora usaremos AG para referirnos a los algoritmos genéticos}, introducidos por John Holland en la década de 1970, los cuales utilizan representaciones cromosómicas (normalmente cadenas de bits, enteros o estructuras más complejas) para modelar el espacio de búsqueda \cite{holland1975adaptation}.
+\hfill \break
+
+El funcionamiento general de un algoritmo genético se basa en la generación inicial de una población de soluciones candidatas que se evalúan mediante una función de aptitud o \textit{fitness function}. A partir de dicha evaluación, las soluciones con mejor desempeño se seleccionan para reproducirse, combinando sus características (cruce o \textit{crossover}) y generando descendientes que pueden experimentar pequeñas alteraciones aleatorias (mutaciones). Este ciclo de selección y variación se repite durante múltiples generaciones, lo que permite explorar el espacio de búsqueda de manera estocástica y adaptativa hasta converger en soluciones de alta calidad.
+
+\subsubsection{Algoritmos Evolutivos en MTG}
+
+En el ámbito de los juegos, los algoritmos evolutivos han demostrado ser especialmente útiles para abordar problemas en los que el espacio de decisiones es amplio, no lineal y dependiente del contexto. Según Ganivet et al. \cite{ganivet2024}, \textit{Magic: The Gathering} (MTG) constituye un caso paradigmático en este sentido: la combinación de información incompleta (mazo y mano oculta), secuencias de decisiones interdependientes y un número astronómico de configuraciones posibles hacen inviable la aplicación de métodos de búsqueda exhaustivos.
+Por ponerlo en perspectiva, en una partida del formato \textit{standard} suelen existir alrededor de 2000 cartas legales \cite{mtg_legal_cards}. Si consideramos modalidades más amplias como \textit{legacy}, en las que se permite utilizar prácticamente todas las cartas impresas a lo largo de la historia del juego, la cifra se incrementa de forma considerable.
+
+\hfill \break
+
+En este contexto, los algoritmos genéticos permiten simular la evolución de estrategias a partir de un conjunto inicial de agentes que aprenden mediante iteraciones sucesivas, evaluando su desempeño frente a diferentes oponentes y adaptándose progresivamente a entornos cambiantes.
+
+El uso de algoritmos evolutivos en MTG, y en general en juegos con alto grado de complejidad estratégica, se justifica por su capacidad para aproximarse a equilibrios dinámicos sin requerir un conocimiento total del sistema. A diferencia de enfoques deterministas, estos algoritmos pueden descubrir patrones emergentes y comportamientos eficaces a partir de datos incompletos, imitando en cierto modo la adaptación de los propios jugadores humanos. 
+
+En conclusión, los algoritmos evolutivos y genéticos resultan herramientas especialmente adecuadas para juegos con información oculta, donde la optimización directa resulta inviable. Además, su eficacia aumenta en dominios donde existe acceso a un gran volumen de datos de partidas reales, ya que estos pueden emplearse para entrenar o calibrar las funciones de evaluación, mejorando la capacidad del algoritmo para generalizar estrategias en contextos diversos.
+
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO. 
+%--------------------------------------------------------------------

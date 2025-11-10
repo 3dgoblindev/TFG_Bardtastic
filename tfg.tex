@@ -1,0 +1,169 @@
+% !TEX program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% Plantilla, basada en la clase `scrbook` del paquete KOMA-script,  para la elaboración de un TFG siguiendo las directrices del la comisión del Grado en Matemáticas de la Universidad de Granada.
+
+% Francisco Torralbo Torralbo
+
+\documentclass[print, color]{ugrTFG}
+\KOMAoptions{open=any}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{pifont}
+\usepackage{wasysym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\usepackage{booktabs,tabularx,longtable}
+\usepackage{enumitem}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newcommand{\spade}{\ding{171}}       % ♠
+\newcommand{\heart}{\textcolor{red}{\ding{170}}}  % ♥
+\newcommand{\club}{\ding{168}}        % ♣
+\newcommand{\diamondcard}{\textcolor{red}{\ding{169}}} % ♦
+
+% --- Formato de títulos con KOMA-Script (compatible con ugrTFG) ---
+
+% Encabezado de capítulo (solo si está numerado)
+\renewcommand*\chapterformat{%
+  \Ifnumbered{chapter}{\chapapp~\thechapter:\enskip}{}%
+}
+
+
+% 2) Espaciado antes/después del capítulo (ajusta a tu gusto)
+\RedeclareSectionCommand[
+  beforeskip=0pt,
+  afterskip=2.3ex plus .2ex minus .2ex
+]{chapter}
+
+% 3) Estilo tipográfico de cada nivel
+\setkomafont{chapter}{\normalfont\huge\bfseries}
+\setkomafont{section}{\normalfont\Large\bfseries}
+\setkomafont{subsection}{\normalfont\large\bfseries}
+\setkomafont{subsubsection}{\normalfont\normalsize\bfseries}
+\setkomafont{paragraph}{\normalfont\normalsize\bfseries}
+
+
+% 5) Opcional: numeración y aparición en índice hasta \paragraph
+%    (si NO quieres numerar \paragraph ni que salga en el índice, comenta estas dos líneas)
+\setcounter{secnumdepth}{4} % chapter=0, section=1, subsection=2, subsubsection=3, paragraph=4
+\setcounter{tocdepth}{3}    % hasta subsubsection en el índice; pon 4 si quieres paragraph
+
+% 6) Espaciado de \paragraph (título en línea)
+%    KOMA permite ajustar los skips del nivel "paragraph" así:
+\RedeclareSectionCommand[
+  beforeskip=0.75ex plus 0.25ex,
+  afterskip=0.75ex
+]{paragraph}
+
+
+
+% VERSIÓN ELECTRÓNICA PARA TABLETA
+% Cambiando la opción "print" por "tablet" generaremos un pdf adaptado para leerlo en tabletas de 9 pulgadas.
+
+% -------------------------------------------------------------------
+% INFORMACIÓN DEL TFG Y EL AUTOR
+% -------------------------------------------------------------------
+
+
+\newcommand{\miTitulo}{ Bardtastic: Diseño e implementación de un \textit{deckbuilder} narrativo con IA basada en exploración de árboles\xspace} 
+
+\newcommand{\miNombre}{Arturo Cáceres Arias\xspace} 
+
+\newcommand{\miGrado}{Doble Grado en Informática y Matemáticas} 
+
+\newcommand{\miFacultad}{E.T.S de Ingenierías Informática y de Telecomunicación, Facultad de Ciencias}
+
+\newcommand{\miUniversidad}{UGR}
+
+
+% Añadir tantos tutores como sea necesario separando cada uno de ellos mediante el comando `\medskip` y una línea en blanco
+\newcommand{\miTutor}{
+  Antonio Miguel Mora García \\ \emph{Departamento de Teoría de la Señal, Telemática y Comunicaciones}
+
+  % Añadir tantos tutores como sea necesario.
+
+  \medskip
+  Lidia Fernández Rodríguez \\ \emph{Departamento de Matemática Aplicada}
+}
+\newcommand{\miCurso}{2024-2025\xspace}
+
+\hypersetup{
+  pdftitle={\miTitulo},
+  pdfauthor={\textcopyright\ \miNombre, \miFacultad, \miUniversidad}
+}
+
+\begin{document}
+
+\maketitle
+
+% -------------------------------------------------------------------
+% FRONTMATTER
+% -------------------------------------------------------------------
+\frontmatter % Desactiva la numeración de capítulos y usa numeración romana para las páginas
+
+\input{preliminares/declaracion-originalidad}
+\input{preliminares/dedicatoria}                % Opcional
+\input{preliminares/agradecimientos}            % Opcional
+
+\input{preliminares/summary}
+
+\input{preliminares/tablacontenidos}
+\input{preliminares/introduccion}
+
+% -------------------------------------------------------------------
+% MAINMATTER
+% -------------------------------------------------------------------
+\mainmatter % activa la numeración de capítulos, resetea la numeración de las páginas y usa números arábigos
+
+\input{capitulos/capitulo-definiciones}
+\input{capitulos/capitulo-equilibrio}
+\input{capitulos/capitulo-ejemplos}
+\input{capitulos/capitulo-algoritmos}
+\input{capitulos/capitulo-nuestro_caso}
+\input{capitulos/capitulo-estado_del_arte}
+\input{capitulos/capitulo-planificacion}
+\input{capitulos/capitulo-herramientas}
+\input{capitulos/capitulo-software}
+\input{capitulos/capitulo-evaluacion}
+\input{capitulos/capitulo-conclusiones}
+
+
+
+
+% -------------------------------------------------------------------
+% APPENDIX: Opcional
+% -------------------------------------------------------------------
+
+\appendix % Reinicia la numeración de los capítulos y usa letras para numerarlos
+\pdfbookmark[-1]{Apéndices}{appendix} % Alternativamente podemos agrupar los apéndices con un nuevo \part{Apéndices}
+
+
+% Añadir tantos apéndices como sea necesario
+
+% -------------------------------------------------------------------
+% GLOSARIO: Opcional
+% -------------------------------------------------------------------
+
+%\input{glosario}
+
+% -------------------------------------------------------------------
+% BACKMATTER
+% -------------------------------------------------------------------
+
+\backmatter % Desactiva la numeración de los capítulos
+\pdfbookmark[-1]{Referencias}{BM-Referencias}
+
+% BIBLIOGRAFÍA
+%-------------------------------------------------------------------
+
+\bibliographystyle{abbrv}
+% Otros estilos bibliográficos: alpha-es, amsalpha, plain
+\begin{small}
+  \bibliography{library.bib}
+\end{small}
+
+\end{document}

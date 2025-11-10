@@ -1,0 +1,80 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Introducción
+%*******************************************************
+
+\chapter{Introducción}
+
+Los videojuegos constituyen hoy un espacio privilegiado para la experimentación en diseño interactivo y en la aplicación práctica de algoritmos de decisión. Como medios computacionales complejos, permiten estudiar cómo reglas formales, recursos limitados y elecciones encadenadas dan lugar a comportamientos estratégicos. Dentro de este amplio panorama, los juegos basados en cartas y en estructuras combinatorias ofrecen un entorno especialmente adecuado para analizar procesos de razonamiento y para introducir agentes capaces de actuar bajo incertidumbre.
+
+
+\section{Motivación y contexto}
+
+En la última década, el auge del género \textit{deckbuilder roguelike} ha transformado la escena del videojuego independiente, combinando construcción de mazos, progresión procedural y toma de decisiones estratégicas. Títulos como \textit{Slay the Spire} o \textit{Balatro} han demostrado la viabilidad de sistemas basados en probabilidad y optimización. Sin embargo, en la mayoría de estos títulos, la inteligencia artificial cumple un papel puramente reactivo o estadístico.
+
+En este marco surge la motivación de crear un prototipo de \textit{deckbuilder} narrativo con mecánicas originales que sirva como base para un desarrollo futuro. Paralelamente, se explora cómo un agente deliberativo, inspirado en los modelos de decisión racional de la Teoría de Juegos, puede integrarse en este tipo de experiencias para generar comportamientos adaptativos, coherentes y competitivos frente al jugador humano.
+
+
+\section{Objetivos del trabajo}
+
+El presente Trabajo de Fin de Grado se articula en torno a dos objetivos generales, coherentes con la doble formación en Matemáticas e Ingeniería Informática. A partir de ellos se derivan una serie de subobjetivos específicos que guían el desarrollo teórico y práctico del proyecto.
+
+\paragraph{Objetivo general 1: Fundamentación matemática y teórica}
+
+Estudiar y presentar los conceptos esenciales de la teoría de juegos que permiten describir formalmente un juego, sus estrategias y sus equilibrios, y utilizar este marco para clasificar el enfrentamiento que plantea \textit{Bardtastic}. Esta fundamentación proporciona una justificación teórica al diseño del agente de inteligencia artificial y a la elección de los modelos de decisión empleados.
+
+\textbf{Subobjetivos asociados:}
+\begin{itemize}
+  \item Introducir las definiciones de juego, utilidad, estrategias puras y mixtas.
+  \item Exponer los conceptos de equilibrio de Nash, estrategias dominadas y resultados relevantes como el teorema del minimax.
+  \item Clasificar formalmente distintos tipos de juegos (estáticos, dinámicos, de información completa o incompleta, de suma cero o no suma cero).
+  \item Enmarcar \textit{Bardtastic} dentro de esta clasificación y analizar las implicaciones para el diseño del agente rival.
+\end{itemize}
+
+\paragraph{Objetivo general 2: Diseño e implementación del prototipo y del agente}
+
+Desarrollar un prototipo funcional del videojuego \textit{Bardtastic}, integrando narrativa, mecánicas de cartas y progresión \textit{roguelike}, así como un agente de inteligencia artificial que utilice exploración de árboles y heurísticas inspiradas en la Teoría de Juegos para tomar decisiones racionales bajo información parcial.
+
+\textbf{Subobjetivos asociados:}
+\begin{itemize}
+  \item Diseñar las reglas del juego, los tipos de carta y las mecánicas centrales (rimas, atención, emociones, historia).
+  \item Construir una arquitectura modular en Unreal Engine que separe lógica de juego, interfaz y comportamiento del agente.
+  \item Implementar un agente deliberativo basado en \emph{Depth-First Search} y en una función de utilidad que evalúa atención, progreso narrativo y ciclo.
+  \item Realizar pruebas funcionales y sesiones de \textit{playtesting} que permitan ajustar tanto el juego como el comportamiento del agente.
+\end{itemize}
+
+En conjunto, estos objetivos combinan la modelización matemática de la decisión estratégica con los principios de la ingeniería del software y el diseño de videojuegos, dando lugar a un prototipo jugable fundamentado teóricamente y técnicamente sólido.
+
+
+
+\section{Estructura del documento}
+
+El documento se organiza de forma progresiva, comenzando por los fundamentos teóricos y avanzando hacia el diseño, la implementación y la validación del prototipo. 
+
+El \textbf{Capítulo~1} introduce las nociones básicas de la Teoría de Juegos necesarias para el desarrollo del trabajo. En él se presentan las definiciones formales de juego, estrategias, utilidades y resultados preliminares que permiten describir interacciones estratégicas de manera rigurosa.
+
+El \textbf{Capítulo~2} profundiza en los conceptos de equilibrio, especialmente el equilibrio de Nash, así como en criterios de optimalidad como las estrategias dominadas y el teorema del minimax. Este marco sirve de base matemática para el análisis del agente rival utilizado en el videojuego.
+
+El \textbf{Capítulo~3} recopila distintos ejemplos de juegos estáticos y dinámicos que ilustran la teoría expuesta. Su propósito es mostrar cómo los conceptos anteriores se aplican en situaciones concretas y cómo pueden modelarse problemas reales de decisión.
+
+El \textbf{Capítulo~4} presenta varios algoritmos clásicos empleados en la resolución de juegos y en la toma de decisiones computacional, incluyendo métodos basados en exploración de árboles y heurísticas. Estas técnicas inspiran directamente el diseño del agente implementado posteriormente.
+
+El \textbf{Capítulo~5} introduce en detalle el proyecto \textit{Bardtastic}. Se describen sus reglas, el funcionamiento de sus mecánicas principales y su clasificación formal desde la Teoría de Juegos, estableciendo el puente entre los conceptos teóricos y el caso de estudio.
+
+El \textbf{Capítulo~6} presenta el estado del arte tanto en diseño de videojuegos como en enfoques de inteligencia artificial aplicados a juegos. Se revisan los géneros que inspiran el proyecto, los referentes mecánicos y narrativos, así como los principales modelos de agentes deliberativos empleados en entornos interactivos.
+
+El \textbf{Capítulo~7} describe la planificación del desarrollo y la metodología empleada. Se detallan las fases de trabajo, la organización del proyecto, las herramientas utilizadas y el uso de enfoques ágiles adaptados a un proceso de producción individual.
+
+El \textbf{Capítulo~8} expone las decisiones de diseño que dan forma al prototipo: los pilares conceptuales, las mecánicas centrales, la identidad narrativa y la transición desde el prototipo en papel hasta su implementación digital. Este capítulo establece el marco conceptual que guía las elecciones técnicas posteriores.
+
+
+El \textbf{Capítulo~9} describe la implementación técnica del prototipo en Unreal Engine, con especial atención a la arquitectura del software, el sistema de cartas y el comportamiento del agente rival. 
+
+El \textbf{Capítulo~10} presenta la evaluación del prototipo mediante pruebas funcionales y sesiones de \textit{playtesting}, analizando tanto el rendimiento del agente como la adecuación de las mecánicas.
+
+Finalmente, el \textbf{Capítulo~11} recoge las conclusiones generales del trabajo y propone varias líneas de continuación, incluyendo la extensión del prototipo hacia una \textit{Vertical Slice}, la ampliación del contenido jugable y el diseño de agentes más sofisticados.
+
+
+\endinput

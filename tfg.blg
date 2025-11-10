@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: tfg.aux
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: abbrv.bst
+Reallocating 'name_of_file' (item size: 1) to 12 items.
+Database file #1: library.bib
+Warning--to sort, need author or key in mtg
+Warning--to sort, need author or key in bbg_richard
+Warning--to sort, need author or key in mtg_legal_cards
+Warning--empty journal in costikyan2002
+You've used 58 entries,
+            2118 wiz_defined-function locations,
+            822 strings with 12049 characters,
+and the built_in function-call counts, 13353 in all, are:
+= -- 1284
+> -- 481
+< -- 1
++ -- 208
+- -- 142
+* -- 534
+:= -- 2281
+add.period$ -- 201
+call.type$ -- 58
+change.case$ -- 226
+chr.to.int$ -- 0
+cite$ -- 62
+duplicate$ -- 552
+empty$ -- 1296
+format.name$ -- 142
+if$ -- 2889
+int.to.chr$ -- 0
+int.to.str$ -- 58
+missing$ -- 49
+newline$ -- 319
+num.names$ -- 110
+pop$ -- 438
+preamble$ -- 1
+purify$ -- 187
+quote$ -- 0
+skip$ -- 378
+stack$ -- 0
+substring$ -- 364
+swap$ -- 64
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 190
+warning$ -- 4
+while$ -- 117
+width$ -- 60
+write$ -- 656
+(There were 4 warnings)

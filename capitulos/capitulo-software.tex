@@ -1,0 +1,387 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+% https://github.com/3dgoblindev/SDBardos
+ \chapter{\textit{Software} desarrollado} \label{cap_software}
+En este capítulo se describe el \textit{software} desarrollado como resultado del proyecto, detallando las características del prototipo implementado, su arquitectura interna y los componentes fundamentales que permiten el funcionamiento del juego. El objetivo es exponer una visión estructurada del sistema: cómo se organizan las mecánicas, cómo interactúan sus módulos y qué decisiones técnicas han permitido transformar el diseño conceptual en un producto jugable. No se incluye código fuente completo, salvo fragmentos o referencias cuando es necesario aclarar aspectos concretos del desarrollo.
+
+\section{Descripción general}
+
+El resultado del presente Trabajo de Fin de Grado es un prototipo funcional de \textit{Bardtastic}, un videojuego \textit{roguelike deckbuilder} centrado en el uso estratégico de cartas dentro de enfrentamientos narrativos.
+
+El prototipo implementa el \textit{core loop} del juego: el jugador disputa una sucesión de combates, modifica progresivamente su mazo y se enfrenta a un oponente controlado por inteligencia artificial. Las cartas jugadas producen efectos que alteran la atención del público y modifican el estado de la partida. Tras cada victoria, el sistema presenta un evento que permite mejorar el mazo antes del siguiente combate.
+
+En cuanto al apartado visual, el prototipo incluye ya las bases estéticas de la versión final: personajes animados, público reactivo, cartas ilustradas y un entorno tridimensional que reproduce una taberna teatralizada. La interfaz de usuario es funcional aunque provisional, actuando como guía para la futura \textit{Vertical Slice}.
+
+Este prototipo demuestra que las mecánicas y dinámicas diseñadas son viables, jugables y compatibles con la arquitectura \textit{software} propuesta.
+
+\section{Enfrentamientos}
+
+Los enfrentamientos se ejecutan dentro de un nivel de Unreal Engine que agrupa los \textit{Actors} responsables de la lógica del combate:
+
+\begin{itemize}
+    \item \textbf{Jugador}: gestiona el mazo, la mano, la mesa de juego y comunica los cambios al interfaz.
+    \item \textbf{Rival (IA)}: controla su propio mazo, genera decisiones y ejecuta jugadas de manera autónoma.
+    \item \textbf{Gestor de turnos}: alterna el flujo, controla el final de partida y notifica el resultado.
+    \item \textbf{Audiencia}: mantiene las puntuaciones de atención y emociones.
+\end{itemize}
+
+El \texttt{GameMode} crea e inicializa el \texttt{GameContext} que actúa como fuente accesible y centralizada de información global. Este patrón se justifica porque el \textit{Game Mode} es un \textit{Singleton} natural del motor y su acceso está garantizado durante toda la partida.
+
+\subsection{Interfaz de usuario}
+La interfaz en \textit{Bardtastic} se compone de varios \textit{Widgets} de Unreal (UMG) que presentan, de forma clara, el estado de la partida: la mano del jugador, las cartas permanentes en mesa de ambos bandos y la información de turnos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/UI general.jpg}
+    \caption{Interfaz de los enfrentamientos en \textit{\textbf{Bardtastic}}.}
+    \label{fig:UI_general}
+\end{figure}
+
+En la Figura~\ref{fig:UI_general} se aprecian los elementos principales de la pantalla:
+\begin{itemize}
+    \item \textbf{Mesa del jugador}: zona donde permanecen las cartas de tipo Historia, Personaje y Pensamiento del jugador.
+    \item \textbf{Mesa del rival}: zona equivalente para las cartas permanentes del oponente controlado por la IA.
+    \item \textbf{Mano del jugador}: conjunto de cartas disponibles para jugar durante el turno actual.
+    \item \textbf{Indicador de turnos}: muestra cuántos turnos se han jugado y cuántos restan hasta el final del enfrentamiento.
+\end{itemize}
+
+Al concluir el combate, la interfaz despliega un \textit{Widget} de fin de partida con el resultado y un botón para continuar con el flujo del juego.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/has ganado.jpg}
+    \caption{Interfaz al finalizar el enfrentamiento (pantalla de resultado).}
+    \label{fig:UI_fin}
+\end{figure}
+
+Durante la partida, el jugador puede consultar en cualquier momento la pila de descartes y las cartas restantes en el mazo mediante sendos menús emergentes, accesibles desde los botones correspondientes de la interfaz.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/descartes.jpg}
+    \caption{Visualización de la pila de descartes.}
+    \label{fig:UI_descartes}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/mazo.jpg}
+    \caption{Visualización del mazo restante.}
+    \label{fig:UI_mazo}
+\end{figure}
+
+\subsection{Cartas}
+
+Las cartas constituyen el núcleo del diseño del software de \textit{Bardtastic}. Cada carta es una instancia de la clase \texttt{UCard}, derivada de \texttt{UObject}, lo que permite gestionar su ciclo de vida en el motor de forma flexible e independiente de los \textit{Actors} del nivel. La clase encapsula tanto los atributos estáticos de la carta (nombre, tipo, rimas, emociones, texto, imagen) como los elementos de lógica necesarios para su funcionamiento en partida.
+
+\subsubsection{Representación de los datos y propiedades}
+Cada carta almacena sus datos básicos como propiedades editables en Unreal, lo que facilita su configuración desde el editor y su exposición a \textit{Blueprints}. Estos atributos describen su funcionalidad y su papel en el enfrentamiento: tipo de carta, atención que aporta, rimas que condicionan la jugada, emociones que pueden provocar en la audiencia y recursos visuales asociados. Gracias a esta estructura, el diseño narrativo y visual puede evolucionar sin necesidad de modificar código nativo.
+
+\subsubsection{Lógica de juego y efectos}
+Además de los datos descriptivos, las cartas incluyen un arreglo de efectos, implementados a través de instancias de clases derivadas de \texttt{UEffect\_Object}. Cada efecto sigue el patrón de interfaz común e implementa un método de ejecución asociado al contexto de partida:
+
+\begin{center}
+\texttt{AplicarEfecto(UGameContext* Context, bool FromP1)}
+\end{center}
+
+La carta actúa como un gestor secuencial de esos efectos, procesándolos uno a uno mediante la función interna \texttt{ContinuarConSiguienteEfecto()}. Para ello utiliza referencias al \texttt{GameContext}, donde reside toda la información global del enfrentamiento: la audiencia, la mesa del jugador y del rival, los contadores de turno, etc. De este modo, los efectos conocen únicamente el contexto y no necesitan acceder directamente a otros componentes del juego, lo que reduce el acoplamiento y mejora la mantenibilidad.
+
+Este enfoque permite incorporar nuevos tipos de efectos sin modificar la clase de carta, únicamente añadiendo nuevas clases que implementen la interfaz definida.
+
+\subsubsection{Creación dinámica y carga desde \textit{DataTables}}
+Las cartas no están definidas de manera rígida en código, sino que se cargan en tiempo de ejecución a partir de un {\textit{DataTable}. Cada entrada del \textit{DataTable} corresponde a la descripción de una carta en formato de datos (\texttt{FCardData}), lo que proporciona tres ventajas principales:
+
+\begin{itemize}
+    \item \textbf{Escalabilidad}: permite añadir nuevas cartas sin recompilar el proyecto.
+    \item \textbf{Localización}: utiliza el sistema nativo de traducción de Unreal para los textos.
+    \item \textbf{Optimización de memoria}: los mazos almacenan únicamente referencias al nombre de la carta.
+\end{itemize}
+
+La función \texttt{CargarDesdeDatos()} inicializa la carta a partir de la fila seleccionada del \textit{DataTable}, y la clase \texttt{EffectLoader} se encarga de instanciar los efectos correspondientes definidos en esa entrada.
+
+\subsubsection{Interacción con la interfaz y el flujo de partida}
+La carta incorpora dos \textit{delegates} (\texttt{RequestVisualUpdate} y \texttt{OnVisualUpdateFinished}) que actúan como eventos para coordinar la actualización visual en el cliente y asegurar la sincronización con la lógica de juego. Esto permite, por ejemplo:
+
+\begin{itemize}
+    \item Mostrar animaciones antes de aplicar el siguiente efecto.
+    \item Sincronizar resoluciones entre las cartas del jugador y del rival.
+    \item Notificar al gestor de turnos cuando todos los efectos han terminado.
+\end{itemize}
+
+\subsubsection{Desacoplamiento y escalabilidad del sistema}
+El diseño se basa en un patrón de paso de mensajes: las cartas solicitan al jugador o a la IA las decisiones necesarias, pero sólo el \texttt{GameContext} conoce el estado global. Este enfoque facilita:
+
+\begin{itemize}
+    \item La extensión futura del sistema (nuevos efectos, nuevos tipos de carta).
+    \item La integración de UI reactiva sin mezclar responsabilidades.
+    \item La evolución independiente de la IA sin modificar la clase \texttt{UCard}.
+\end{itemize}
+
+En conjunto, la arquitectura de las cartas maximiza la modularidad del sistema y proporciona una base sólida para ampliar el contenido jugable del proyecto sin comprometer su estabilidad.
+
+
+\subsection{Jugadores}
+
+En el prototipo ambos participantes del enfrentamiento (el jugador controlado por el usuario y el rival controlado por la inteligencia artificial) comparten una arquitectura común. El comportamiento base se implementa en C++ en la clase \texttt{AA\_Rival}, que actúa como controlador lógico de un jugador dentro del nivel y gestiona su mazo, mano, mesa de cartas permanentes, descartar, robar y finalizar turno.
+
+A partir de esta clase se ha construido una jerarquía en Blueprint que permite separar la lógica del juego de la presentación visual y de la interacción específica de cada tipo de jugador:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{img/jugadores_clases.PNG}
+    \caption{Arquitectura general de los jugadores en \textit{Bardtastic}.}
+    \label{fig:arquitectura_jugadores}
+\end{figure}
+
+Este enfoque híbrido sigue un patrón común en Unreal Engine: la lógica del sistema permanece en C++ para garantizar robustez y rendimiento, mientras que la capa visual y de interacción se desarrolla en Blueprints, facilitando la edición en el editor sin necesidad de recompilar.
+
+\subsubsection{Jugador}
+
+El jugador controlado por el usuario se representa mediante \texttt{ThePJ\_BP}. Esta clase hereda todas las funciones jugables desde C++, pero redirige las decisiones al usuario a través de la interfaz (\textit{Widgets}) y gestiona las animaciones asociadas al avatar en el escenario. De esta forma, el usuario puede realizar acciones como seleccionar cartas o confirmar la finalización del turno sin modificar la arquitectura interna.
+
+\subsubsection{Rival e Inteligencia Artificial}
+
+El oponente se representa mediante \texttt{AIRival\_Pawn\_BP}, que también deriva de \texttt{Player\_Pawn\_Base\_BP}. La interfaz de decisiones de C++ (funciones como \texttt{RequestCardChoice()} o \texttt{StartTurn()}) se implementa aquí conectándose con un componente de IA capaz de decidir qué cartas jugar.
+
+La inteligencia artificial no está integrada en el \textit{Pawn} de manera rígida, sino que se delega en una clase independiente (\texttt{URivalAIBase}), que expone el método:
+
+\begin{center}
+\texttt{TArray<UCard*> DecidePlay(UGameContext* Context, bool FromP1)}
+\end{center}
+
+permitiendo así sustituir o ampliar la estrategia del rival sin afectar al resto del sistema. La primera implementación del prototipo, \texttt{UFirstRivalAI}, utiliza una lógica básica para seleccionar una secuencia válida de cartas teniendo en cuenta el estado de la partida.
+
+\subsubsection{Ventajas de esta organización}
+
+Esta arquitectura por capas proporciona varios beneficios:
+
+\begin{itemize}
+    \item \textbf{Desacoplamiento de responsabilidades}: C++ gestiona reglas y estado; Blueprint gestiona visualización y control específico.
+    \item \textbf{Escalabilidad}: es posible añadir nuevos tipos de jugador sin duplicar lógica.
+    \item \textbf{Modularidad de IA}: la estrategia puede evolucionar sin tocar el controlador del jugador.
+    \item \textbf{Iteración rápida}: cambios en animaciones y UI sin recompilar.
+\end{itemize}
+
+En conjunto, este diseño permite mantener la integridad del sistema de juego mientras se ofrece flexibilidad para continuar expandiendo contenido y mejorar el comportamiento de la IA durante futuros desarrollos del proyecto.
+
+\section{Agente Rival}
+\label{sec:agente-rival}
+
+El diseño conceptual del agente se ha introducido en la sección~\ref{agente_rival}. 
+Aquí se describe su implementación \textit{software}: arquitectura, componentes implicados y flujo de decisión que materializa la heurística de la ecuación~\eqref{eq:utility}.
+
+
+\subsection{Arquitectura y desacoplamiento}
+
+%aqui puedo hacer una figura
+La implementación separa estrictamente la lógica de jugador del razonamiento de IA:
+\begin{itemize}
+  \item \texttt{AA\_Rival} (C\texttt{++}): clase base de jugador. Gestiona mazo (\texttt{UDeck}), mano, mesa, descartes y ciclo de turno (\texttt{StartTurn()}, \texttt{AddCardToPlay()}, \texttt{CanAddCardToPlay()}, \texttt{EndTurn()}, \ldots).
+  \item \texttt{Player\_Pawn\_Base\_BP} (BP): envoltorio común en Blueprint para presentar/animar acciones de \texttt{AA\_Rival}.
+  \item \texttt{AIRival\_Pawn\_BP} (BP): rival IA (hereda de \texttt{Player\_Pawn\_Base\_BP}); delega la decisión en la estrategia.
+  \item \texttt{URivalAIBase} (C\texttt{++}, \texttt{UObject}): interfaz de estrategia, expone \texttt{DecidePlay(UGameContext*, bool)}.
+  \item \texttt{UFirstRivalAI} (C\texttt{++}): estrategia actual; construye la jugada mediante DFS guiada por \eqref{eq:utility}.
+  \item \texttt{AIScoringUtils} (C\texttt{++}): utilidades de simulación/puntuación para calcular términos de \eqref{eq:utility} sin mutar el estado real.
+\end{itemize}
+Este diseño permite sustituir \texttt{UFirstRivalAI} por variantes (voraz, \emph{beam search}, MCTS parcial) sin tocar ni \texttt{AA\_Rival} ni los \emph{Pawns}. De esta forma, permite modificar la inteligencia del rival sin alterar la estructura general del juego, fomentando la reutilización y la experimentación con distintos modelos de decisión.
+
+
+
+
+\subsection{Flujo de decisión en turno}
+\begin{enumerate}
+  \item \textbf{Inicio de turno} (\texttt{StartTurn()} en \texttt{AA\_Rival}): estado consistente (mano, mesa, audiencia).
+  \item \textbf{Cálculo de jugada} (\texttt{AIRival\_Pawn\_BP} $\rightarrow$ \texttt{UFirstRivalAI}):
+  \begin{itemize}
+    \item Generación: DFS sobre secuencias legales (rimas, tipos, unicidad/orden de Historia).
+    \item Simulación: cada extensión se valora con \texttt{AIScoringUtils} para obtener \(\text{Atención}\), \(\text{ProgresoHistoria}\) y \(\text{Ciclo}\); \(\text{Longitud}\) se deriva de la propia secuencia.
+    \item Selección: se conserva la mejor secuencia según \eqref{eq:utility}.
+  \end{itemize}
+  \item \textbf{Ejecución}: \texttt{AIRival\_Pawn\_BP} reproduce la secuencia en orden llamando a \texttt{AddCardToPlay()}, coordinada con los \emph{delegates} visuales de las cartas.
+  \item \textbf{Objetivos de atención}: Cuando un efecto requiere escoger espectador, el agente simula cada posible selección y elige la que maximiza la ganancia de atención total, considerando bonificaciones emocionales y equilibrio entre bandos (cruce de bando $\rightarrow$ ganancia neta $\rightarrow$ cercanía a $+3$).
+  \item \textbf{Acciones auxiliares}: en robos/descartes, cada carta se puntúa individualmente (prioridad a completar historia $\rightarrow$ atención estimada $\rightarrow$ ciclado).
+  \item \textbf{Fin de turno} (\texttt{EndTurn()}).
+\end{enumerate}
+
+La gestión del turno la hace el \texttt{GestorTurnos}, dando paso al agente y el agente le notifica el final.
+
+\subsection{Notas de complejidad y rendimiento}
+La mano está acotada a 5 cartas, lo que permite una DFS exhaustiva práctica. El orden “mejor-primero” por \eqref{eq:utility} actúa como poda implícita; además, se penaliza la redundancia (p.\,ej., repetir una pieza de Historia ya presente) para contener la rama efectiva. La simulación se realiza sobre copias ligeras del estado (no sobre \texttt{UObject} vivos), evitando costes y efectos colaterales.
+
+En la práctica, la exploración completa del árbol de jugadas tiene una complejidad controlada gracias a las restricciones narrativas del juego y al tamaño acotado de la mano, lo que permite mantener una respuesta inmediata sin comprometer la calidad de la decisión.
+
+
+\subsection{Puntos de extensión}
+\begin{itemize}
+  \item \textbf{Heurística}: ajuste de $w_i$ y rasgos situacionales (último turno, taberna con reglas globales, etc.).
+  \item \textbf{Estrategia}: nuevas subclases de \texttt{URivalAIBase}.
+  \item \textbf{Efectos}: ampliar \texttt{AIScoringUtils} para simular efectos futuros sin acoplar la IA a las cartas.
+\end{itemize}
+
+En suma, la implementación traslada el modelo de la sección~\ref{agente_rival} a un sistema modular y extensible que decide en tiempo interactivo, manteniendo la legibilidad del comportamiento y la coherencia con el diseño del juego.
+
+
+
+\section{Eventos}
+
+Además de los enfrentamientos, el prototipo incluye un sistema de eventos que permite modificar el mazo del jugador entre partidas. Estos eventos se ejecutan en un nivel independiente del combate y actúan como nodos narrativos donde el jugador toma decisiones que afectan a su progresión.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/evento.jpg}
+    \caption{Evento donde se nos pide elegir una de entre tres cartas.}
+    \label{fig:evetno}
+\end{figure}
+
+\subsection{Arquitectura general}
+
+El sistema se organiza en torno a dos elementos principales:
+
+\begin{itemize}
+    \item Un \textbf{\textit{Pawn}} específico del nivel de eventos (\texttt{\textit{EventPJ\_BP}}), que posee una cámara fija y se encarga de inicializar el evento activo.
+    \item Un \textbf{Widget} asociado, responsable de mostrar las opciones disponibles al jugador y de trasladar sus decisiones a la lógica del evento.
+\end{itemize}
+
+\texttt{EventPJ\_BP} crea dinámicamente una instancia de evento al comienzo del nivel y establece la referencia correspondiente dentro del widget. Esta separación asegura que la interfaz nunca conozca directamente la lógica del mazo ni del enfrentamiento, manteniendo así un bajo acoplamiento entre subsistemas.
+
+\subsection{Lógica del evento}
+
+La base del sistema está implementada en C++ mediante la clase \texttt{UEvent\_Base}, que define los atributos principales de un evento y la interfaz necesaria para su comunicación con la interfaz de usuario:
+
+\begin{itemize}
+    \item \textbf{Título y descripción}: información que se muestra en pantalla.
+    \item \textbf{\texttt{GetEventCards()}}: función que devuelve un conjunto de cartas u opciones disponibles para el jugador.
+\end{itemize}
+
+Actualmente, la elección de la opción del evento se gestiona directamente desde Blueprint, pero la arquitectura está pensada para ampliarse con nuevos métodos que gestionen resultados, costes o consecuencias. En concreto, se prevé incorporar un delegado o función como:
+
+\begin{center}
+\texttt{OnOptionSelected(UCard* SelectedCard)}
+\end{center}
+
+lo que permitirá que cada evento defina cómo actúa sobre el mazo del jugador u otros sistemas del juego.
+
+\subsection{Extensibilidad del sistema}
+
+Un aspecto clave del diseño es que \textbf{los eventos son completamente modularizables}. Cada uno podrá definirse como una subclase de \texttt{UEvent\_Base} (ya sea en Blueprint o en C++) y proporcionar su propia implementación de:
+
+\begin{itemize}
+    \item selección de opciones,
+    \item condiciones para mostrar cartas,
+    \item efectos sobre el mazo o sobre elementos persistentes del juego.
+\end{itemize}
+
+Desde la perspectiva de ingeniería del software, esta solución facilita:
+
+\begin{itemize}
+    \item la creación rápida de contenido nuevo mediante diseño visual,
+    \item la incorporación progresiva de mecánicas avanzadas según crezca el proyecto,
+    \item la escalabilidad de la estructura de campaña o de las rutas posibles del jugador.
+\end{itemize}
+
+\subsection{Integración con la progresión del juego}
+
+Tras finalizar un combate, se carga este nivel de evento que permite:
+
+\begin{itemize}
+    \item eliminar cartas poco útiles,
+    \item obtener nuevas cartas del catálogo,
+    \item realizar mejoras simples (en futuras iteraciones),
+    \item tomar decisiones estratégicas antes del siguiente enfrentamiento.
+\end{itemize}
+
+Una vez tomada una decisión, el widget invoca la función correspondiente en \texttt{UEvent\_Base}, se modifica el mazo del jugador a través del sistema de guardado y se regresa al nivel de combate para continuar la progresión.
+
+En resumen, el sistema de eventos introduce variabilidad entre partidas y refuerza la dimensión estratégica del juego, permitiendo que el jugador adapte su mazo y desarrolle una estrategia progresiva a lo largo de la aventura.
+
+\section{Sistema de guardado}
+\label{sec:sistema-guardado}
+
+El prototipo utiliza el sistema \textit{SaveGame} de Unreal Engine para persistir el estado entre sesiones. Este mecanismo se basa en clases de datos serializables derivadas de \texttt{USaveGame}, que se crean, leen y escriben mediante funciones utilitarias del motor (\texttt{CreateSaveGameObject}, \texttt{SaveGameToSlot}, \texttt{LoadGameFromSlot}, etc.). El flujo general consiste en: (i) instanciar un objeto \textit{SaveGame}, (ii) poblar sus campos con el estado del juego que se desea conservar, (iii) serializarlo a disco bajo un \textit{slot} con nombre, y (iv) cargarlo en el arranque o cuando sea necesario restablecer la partida.
+
+\subsection{Modelo general en Unreal}
+En Unreal, un guardado se representa como una clase de datos (\texttt{UCLASS} derivada de \texttt{USaveGame}) que contiene únicamente la información que debe persistir. La E/S se gestiona desde el código de juego o \textit{Blueprints}, invocando a:
+\begin{itemize}
+  \item \texttt{UGameplayStatics::CreateSaveGameObject(ClaseSave)} para crear el contenedor.
+  \item \texttt{UGameplayStatics::SaveGameToSlot(Obj, SlotName, UserIndex)} para escribir.
+  \item \texttt{UGameplayStatics::LoadGameFromSlot(SlotName, UserIndex)} para leer.
+\end{itemize}
+Cada \textit{slot} define un archivo independiente, lo que permite manejar múltiples guardados lógicos (p.\,ej., \textit{Run} actual, progreso global, ajustes del usuario). Por buenas prácticas, el objeto \texttt{USaveGame} almacena tipos \textit{POD} o identificadores estables (nombres de filas de \textit{DataTables}, \texttt{FString}, \texttt{int32}, etc.), evitando referencias directas a \texttt{UObject}/\texttt{AActor} vivos. La reconstrucción en memoria se realiza posteriormente, resolviendo esos ID contra catálogos o \textit{DataTables}.
+
+\subsection{Guardado actual: \texttt{SavedRun}}
+El proyecto implementa un guardado básico centrado en la \textit{run} en curso, llamado \texttt{SavedRun}. Su responsabilidad es persistir el estado del mazo del jugador entre combates. Para ello, el mazo se almacena como una lista de identificadores de carta (p.\,ej., nombres de fila en el \textit{DataTable} de cartas), junto con la información mínima necesaria para reconstruir el estado jugable al cargar:
+\begin{itemize}
+  \item \textbf{Deck}: secuencia de IDs de carta (referencias a filas del \textit{DataTable}).
+  \item (Opcional futuro) \textbf{Semilla RNG}: para reproducibilidad entre cargas.
+  \item (Opcional futuro) \textbf{Pista de progreso}: taberna/encuentro actual, turnos restantes.
+\end{itemize}
+
+Esta elección (IDs en lugar de punteros) garantiza independencia entre la persistencia y los objetos en memoria. Al cargar, el cada jugador crea su mazo y resuelve cada ID contra el \textit{DataTable} de cartas, instancia \texttt{UCard} y repuebla las estructuras (\texttt{UDeck}, mano, etc.) según corresponda.
+
+\subsection{Múltiples guardados lógicos}
+El sistema está preparado para crecer mediante múltiples \textit{slots} especializados. Además del guardado de \textit{run} actual (\texttt{SavedRun}), es habitual en \textit{roguelike deckbuilders} disponer de:
+\begin{itemize}
+  \item \textbf{Progreso global} (\texttt{SavedProfile}): cartas desbloqueadas, estadísticas del jugador, configuraciones de accesibilidad, opciones.
+  \item \textbf{Opciones del usuario} (\texttt{SavedSettings}): audio, gráficos, controles.
+\end{itemize}
+
+Separar estos guardados permite borrar o reiniciar la \textit{run} sin perder el progreso global, y viceversa. Cada clase \texttt{USaveGame} se guarda en su \textit{slot} (p.\,ej., \texttt{RunSlot}, \texttt{ProfileSlot}, \texttt{SettingsSlot}), con su propio ciclo de carga/guardado.
+
+\subsection{Ciclo de vida de guardado y carga}
+Para evitar E/S redundante, el ciclo recomendado es:
+\begin{enumerate}
+  \item \textbf{Carga temprana}: al iniciar el juego o al entrar en la \textit{run}, intentar \texttt{LoadGameFromSlot}. Si no existe, inicializar valores por defecto y crear un guardado nuevo.
+  \item \textbf{Uso en memoria}: mantener el estado en memoria durante la sesión.
+  \item \textbf{Guardado explícito y atómico}: escribir en momentos concretos (fin de combate, tras un evento, al volver al menú). Evitar guardados continuos.
+\end{enumerate}
+Este patrón reduce accesos a disco y minimiza riesgos de corrupción por interrupciones durante la escritura.
+
+\subsection{Rendimiento y restricciones de plataforma}
+De cara a una futura exportación a Nintendo Switch, es crucial limitar el número y la duración de las operaciones de E/S:
+\begin{itemize}
+  \item \textbf{Agrupar escrituras}: guardar al principio/final de la transición de nivel (menú $\leftrightarrow$ combate $\leftrightarrow$ evento) y no tras cada acción.
+  \item \textbf{Tamaño de guardado}: mantener objetos \texttt{USaveGame} pequeños (IDs y datos primitivos). Evitar volcar estados completos de \texttt{UObject}.
+\end{itemize}
+En plataformas con E/S restringida, este enfoque reduce latencias visibles y evita bloqueos por tiempo de acceso a disco limitado.
+
+
+
+\subsection{Estado actual y ampliaciones previstas}
+En la versión actual se persiste \texttt{SavedRun} con el \texttt{Deck} del jugador. La arquitectura está preparada para añadir en el futuro:
+\begin{itemize}
+  \item \textbf{Progreso global}: catálogo de cartas desbloqueadas, estadísticas de partidas.
+  \item \textbf{Metajuego}: mejoras permanentes, \textit{traits} o bonificadores.
+  \item \textbf{Opciones de accesibilidad y gráficos}: perfiles por usuario.
+\end{itemize}
+Todas estas extensiones reaprovechan el mismo patrón de \textit{slots} y la resolución por IDs, manteniendo el impacto en rendimiento bajo y el sistema de guardado cohesionado.
+
+\medskip
+En conclusión, el \textit{SaveGame} de Unreal ofrece una solución directa y eficiente para la persistencia. El diseño adoptado en \textit{Bardtastic} favorece la estabilidad (IDs y \textit{DataTables}), la escalabilidad (múltiples \textit{slots} lógicos) y el rendimiento (guardados oportunos y compactos), con especial atención a las restricciones de E/S en plataformas como Nintendo Switch.
+
+
+\section{Menú principal}
+
+El acceso al juego se realiza a través del nivel \texttt{MainMenu}, que actúa como punto de entrada al prototipo. En este nivel se utiliza un \texttt{Pawn} específico, denominado \texttt{MenuPJ\_BP}, que incluye una cámara estática y es responsable de inicializar la interfaz del menú.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/menu.jpg}
+    \caption{Menú principal.}
+    \label{fig:menu}
+\end{figure}
+
+El \texttt{MenuPJ\_BP} crea el \texttt{Widget} asociado al menú principal, el cual contiene un botón que permite comenzar la partida y cargar el nivel de enfrentamiento correspondiente. Además, con el objetivo de facilitar las pruebas durante el desarrollo, el menú permite visualizar el mazo actual del jugador, representando las cartas que se usarán en la siguiente partida.
+
+Dado que el proyecto se encuentra todavía en fase de prototipado, el diseño visual del menú es provisional y cumple principalmente una función de validación de flujo y accesibilidad a las mecánicas principales. La interfaz final (incluyendo una presentación más trabajada, animaciones, navegación ampliada y una organización más completa del contenido) está prevista para su desarrollo durante la construcción de la \textit{Vertical Slice}.
+
+
+
+
+
+
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO. 
+%--------------------------------------------------------------------

@@ -1,0 +1,445 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Planificación y diseño} \label{cap_diseño}
+\begin{flushright}
+\itshape
+``To remember to only work on what is important, ask yourself this question: \\
+Is making this game worth my time?''\\[1ex]
+\hrulefill\\[-0.5ex]
+\small Jesse Schell, \textit{The Art of Game Design: A Book of Lenses} (Lens \#99 -- The Lens of the Raven)
+\end{flushright}
+
+\vspace{2em}
+
+El desarrollo de \textit{Bardtastic} se ha planificado siguiendo un enfoque estructurado de ingeniería del software, con el objetivo de garantizar una organización eficiente del trabajo, una adecuada gestión del tiempo y una distribución coherente de los recursos. A lo largo del proceso se ha definido un calendario de producción y un presupuesto estimado que reflejan tanto la carga de trabajo del estudiante como las necesidades de desarrollo del proyecto.
+
+Antes de poder empezar a desarrollar, en la fase de pre-producción, se han definido el género, la temática y las principales referencias artísticas y mecánicas del proyecto, así como su identidad visual y tono narrativo. También se ha desarrollado y \textit{testeado} un prototipo en papel que permitió explorar las dinámicas de juego y validar las ideas iniciales, aunque este prototipo se abordará con mayor detalle en apartados posteriores.
+
+\section{Diagrama de \textit{Gantt}}
+
+La planificación del desarrollo se ha realizado en colaboración con una mentora del programa \textit{Power Up Plus} \cite{powerupplus}, que ha acompañado el proceso de producción desde el mes de julio. El plan se ha estructurado en fases orientadas a la creación de un primer prototipo, con especial atención a la organización iterativa del trabajo y a la combinación equilibrada de tareas de diseño, implementación, pruebas y documentación. 
+
+Aunque el diagrama de planificación solo abarca hasta el prototipo previsto para noviembre, el objetivo final de las mentorías es finalizar diciembre con una \textit{Vertical Slice} que permita presentar el juego ante posibles \textit{publishers} y despertar el interés del público. Si bien el desarrollo de este Trabajo Fin de Grado se centra únicamente en la producción del primer prototipo, algunos elementos de planificación, como el presupuesto, hacen referencia a la \textit{Vertical Slice}, considerada la próxima gran \textit{milestone} del proyecto.
+
+Una \textit{Vertical Slice} se define como una versión reducida y completamente funcional del videojuego que incluye todas las mecánicas, sistemas y elementos visuales esenciales, aunque en una escala limitada. Su propósito es demostrar la viabilidad técnica y artística del proyecto, así como establecer una base sólida para su desarrollo completo posterior.
+
+El diagrama de \textit{Gantt} de la Figura~\ref{fig:gantt} muestra la distribución temporal de las principales tareas del proyecto, abarcando el periodo comprendido entre julio y noviembre. Cada bloque temporal corresponde a un conjunto de hitos o entregables parciales, definidos para facilitar la supervisión del progreso y la evaluación de resultados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/gantt.PNG}
+    \caption{Diagrama de \textit{Gantt} con el plan de producción desde julio a noviembre.}
+    \label{fig:gantt}
+\end{figure}
+
+\section{Presupuesto}
+
+Se presenta un presupuesto para el prototipo que abarca desde inicios de julio a noviembre. 
+
+El cálculo se basa en una estimación razonable de horas dedicadas a tareas de diseño, programación, arte y producción, junto con los gastos asociados a marketing, sonido y otros servicios necesarios para completar el prototipo vertical. La Figura~\ref{fig:presupuesto} muestra el desglose presentado en la solicitud de financiación.
+
+\begin{table}[H]
+    \centering
+    \caption{Desglose del presupuesto estimado para el prototipo.}
+    \label{tab:presupuesto}
+    \small
+    \begin{tabularx}{\linewidth}{@{} l >{\raggedleft\arraybackslash}p{2.4cm} Y @{}}
+        \toprule
+        \textbf{Concepto} & \textbf{Coste} & \textbf{Notas} \\
+        \midrule
+        Sueldo desarrollador (5 meses) & 7.500\,€ & 5 meses de programación, diseño y producción (1.500 €/mes netos aprox.) \\
+        Sueldo analistas (5 meses)     & 10.000\,€ & 5 meses de análisis y consultas (2.000 €/mes netos aprox.) \\
+        Banda sonora                   & 1.400\,€  & Encargo de 6$\sim$ temas completos (menú, enfrentamientos, etc.) \\
+        Efectos de sonido (SFX)        & 600\,€    & Encargo de diseño de SFX \\
+        Portada                        & 200\,€    & Diseño de portada, \textit{key art} y material promocional \\
+        Logo                           & 100\,€    & Diseño vectorial, variantes y guía de estilo \\
+        \midrule
+        \textbf{Total}                 & \textbf{19.800\,€} & \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+
+
+\section{Metodología de diseño y desarrollo}
+
+Para la planificación y organización del trabajo se ha seguido una metodología de carácter ágil, adaptada a las particularidades del desarrollo en solitario. Este enfoque permite mantener la flexibilidad necesaria para iterar sobre ideas de diseño, ajustar prioridades y validar mecánicas a partir de prototipos jugables. Siguiendo la filosofía del modelo \textit{iterativo–incremental} \cite{larman2004agile}, el desarrollo se ha estructurado en ciclos cortos en los que cada versión del juego amplía y refina la anterior, reduciendo riesgos y permitiendo detectar problemas de diseño de forma temprana.
+
+La gestión del trabajo diario se ha apoyado en principios de \textit{Kanban} \cite{anderson2010kanban}, utilizando un tablero visual que facilita el seguimiento del estado de cada tarea y ayuda a limitar el número de actividades en curso. Este método resulta especialmente adecuado en un proyecto individual, ya que proporciona claridad sobre el flujo de trabajo y permite reorganizar prioridades de manera dinámica.
+
+Aunque no se aplica el marco de \textit{Scrum} en su forma completa, sí se han integrado algunos de sus elementos más eficaces, como el mantenimiento de un \textit{product backlog} priorizado, la planificación mediante iteraciones breves y la revisión periódica del progreso, en línea con las recomendaciones de la guía oficial \cite{scrumguide2020}. Estas prácticas se han adaptado a un entorno sin equipo ni reuniones formales, pero permiten conservar la filosofía de mejora continua y entrega frecuente de resultados funcionales.
+
+En conjunto, esta combinación ligera de enfoques ágiles ha permitido un proceso de desarrollo flexible, compatible con la naturaleza experimental del diseño de videojuegos y adecuado para la construcción progresiva de prototipos evaluables.
+
+
+\section{Análisis de requisitos}
+
+El presente apartado identifica y define los requisitos del sistema asociados a \textit{Bardtastic}, considerando tanto su naturaleza como producto software jugable como el componente de inteligencia artificial encargado de controlar a los oponentes. El objetivo es especificar de forma clara las funcionalidades necesarias para garantizar una experiencia de juego coherente con la propuesta conceptual y plenamente operativa para la evaluación del agente inteligente.
+
+Los requisitos se han clasificado en dos categorías principales:
+\begin{itemize}
+    \item \textbf{Requisitos funcionales (RF)}: describen los comportamientos observables del sistema, condicionados por las reglas de juego y las interacciones del usuario y de la IA.
+    \item \textbf{Requisitos no funcionales (RNF)}: definen atributos de calidad, restricciones tecnológicas y métricas asociadas al rendimiento, facilidad de uso o mantenimiento.
+\end{itemize}
+
+
+
+\subsection{Requisitos funcionales (RF)}
+\label{sec:rf}
+\begin{enumerate}[label=\textbf{RF-\arabic*}, leftmargin=2.2em]
+  \item \label{rf:turnos} El sistema debe permitir partidas con rondas y \textbf{turnos alternos} entre Jugador e IA.
+  \item \label{rf:robo} Al inicio de cada turno del jugador, el sistema debe \textbf{robar cartas} hasta tener 5 en mano (si es posible).
+  \item \label{rf:rimas} El sistema debe \textbf{validar la secuencia} de cartas jugadas según la regla de rima (la rima posterior de la carta previa coincide con la rima anterior de la siguiente).
+  \item \label{rf:efectos} El sistema debe \textbf{resolver los efectos} de las cartas jugadas sobre audiencia, mano, mazo y mesa.
+  \item \label{rf:tipos} El sistema debe \textbf{gestionar los tipos de carta}: permanentes (Historia, Personaje, Pensamiento) e instantáneas (Melodía, Dicción, Espectáculo).
+  \item \label{rf:atencion} El sistema debe \textbf{actualizar la atención} de cada espectador en el rango $[-3,3]$ de forma inmediata tras cada efecto.
+  \item \label{rf:emociones} El sistema debe \textbf{gestionar emociones} por espectador y aplicar las \textbf{transiciones} indicadas por las cartas.
+  \item \label{rf:ia} El sistema debe permitir que la \textbf{IA} seleccione y juegue \textbf{secuencias válidas} de cartas siguiendo su estrategia.
+  \item \label{rf:fin} El sistema debe \textbf{detectar el fin de partida} al completar 7 turnos por jugador o al cumplirse reglas globales de taberna.
+  \item \label{rf:ganador} El sistema debe \textbf{calcular el ganador} por mayoría de audiencia; en caso de empate, prevalece quien tenga \textbf{historia completa} (inicio, nudo, desenlace + $ge$ 1 personaje + $ge$ 1 pensamiento).
+\end{enumerate}
+
+\subsection{Requisitos no funcionales (RNF)}
+\label{sec:rnf}
+\begin{enumerate}[label=\textbf{RNF-\arabic*}, leftmargin=2.2em]
+  \item \label{rnf:usabilidad} \textbf{Usabilidad}: interfaz clara que muestre mano, audiencia y estado narrativo (cartas permanentes en mesa).
+  \item \label{rnf:rendimiento} \textbf{Rendimiento}: respuesta interactiva sin latencias perceptibles al jugar/validar/actualizar (p.\,ej., $<100$ ms por acción típica).
+  \item \label{rnf:portabilidad} \textbf{Portabilidad}: ejecutable en PC (Windows/Linux) con dependencias controladas.
+  \item \label{rnf:mantenibilidad} \textbf{Mantenibilidad}: arquitectura modular (lógica de juego, IU, IA) para facilitar extensiones (nuevos rivales/cartas/reglas).
+  \item \label{rnf:rejugabilidad} \textbf{Rejugabilidad}: variación entre \textit{runs} (mazos, rutas, oponentes).
+  \item \label{rnf:ext-ia} \textbf{Extensibilidad del agente}: parámetros y estrategias de IA configurables.
+\end{enumerate}
+
+\subsection{Modelo de casos de uso}
+El modelado de casos de uso se usa para \textbf{delimitar el sistema}, \textbf{describir el punto de vista del usuario} y \textbf{trazar requisitos a funcionalidades}. A continuación se describen los casos de uso principales (plantilla básica y extendida según Tema 2) 
+
+% ====== UC-01
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-01 — Iniciar turno del jugador}}\\
+\midrule
+\textbf{Actores} & Jugador (iniciador) \\
+\textbf{Precond.} & Es el turno del jugador; la partida está en curso. \\
+\textbf{Postcond.} & Mano actualizada hasta 5 cartas; estado listo para selección de jugada. \\
+\textbf{Propósito} & Preparar al jugador con cartas suficientes para decidir su jugada. \\
+\textbf{Flujo básico} &
+1) El sistema roba cartas del mazo del jugador hasta 5 (\ref{rf:robo}).\\
+& 2) Actualiza la interfaz con la nueva mano (\ref{rnf:usabilidad}).\\
+\textbf{Excepciones} &
+E1) Mazo agotado: no se alcanza 5; el sistema continúa con la mano disponible.\\
+\textbf{Requisitos} & \ref{rf:robo}, \ref{rnf:usabilidad}, \ref{rnf:rendimiento}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-02
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-02 — Seleccionar y jugar secuencia de cartas}}\\
+\midrule
+\textbf{Actores} & Jugador (iniciador) \\
+\textbf{Precond.} & UC-01 completado; hay cartas en mano. \\
+\textbf{Postcond.} & Secuencia válida colocada; efectos aplicados; mano/mesa/mazo/audiencia actualizados. \\
+\textbf{Propósito} & Permitir al jugador ejecutar una jugada conforme a las reglas de rima y efectos. \\
+\textbf{Flujo básico} &
+1) El jugador selecciona una secuencia en la mano.\\
+& 2) El sistema valida rimas entre cartas adyacentes (\ref{rf:rimas}).\\
+& 3) El sistema resuelve efectos de cada carta (\ref{rf:efectos}).\\
+& 4) Actualiza atención y emociones por espectador (\ref{rf:atencion}, \ref{rf:emociones}).\\
+& 5) Actualiza tipos permanentes en mesa e instantáneas al descarte (\ref{rf:tipos}).\\
+\textbf{Cursos alternativos} &
+A1) Validación de rima falla: se informa y se impide la jugada (\ref{rf:rimas}, \ref{rnf:usabilidad}).\\
+A2) Efecto apunta a espectador inexistente: se cancela ese sub-efecto.\\
+\textbf{Requisitos} & \ref{rf:rimas}, \ref{rf:efectos}, \ref{rf:tipos}, \ref{rf:atencion}, \ref{rf:emociones}, \ref{rnf:usabilidad}, \ref{rnf:rendimiento}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-03
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-03 — Jugar turno de la IA}}\\
+\midrule
+\textbf{Actores} & IA (iniciador implícito) \\
+\textbf{Precond.} & Turno de la IA; estado consistente tras el turno del jugador. \\
+\textbf{Postcond.} & Secuencia válida jugada por IA; estado actualizado. \\
+\textbf{Propósito} & Permitir a la IA tomar decisiones y ejecutar una jugada válida. \\
+\textbf{Flujo básico} &
+1) La IA evalúa su mano y el estado de audiencia/mesa.\\
+& 2) Selecciona una secuencia válida (\ref{rf:ia}, \ref{rf:rimas}).\\
+& 3) El sistema resuelve efectos y actualiza atención/emociones (\ref{rf:efectos}, \ref{rf:atencion}, \ref{rf:emociones}).\\
+\textbf{Excepciones} &
+E1) No hay secuencia válida: la IA pasa.\\
+\textbf{Requisitos} & \ref{rf:ia}, \ref{rf:rimas}, \ref{rf:efectos}, \ref{rf:atencion}, \ref{rf:emociones}, \ref{rnf:rendimiento}, \ref{rnf:ext-ia}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-04
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-04 — Actualizar atención de la audiencia}}\\
+\midrule
+\textbf{Actores} & Sistema \\
+\textbf{Precond.} & Se ha jugado una carta con efectos de atención. \\
+\textbf{Postcond.} & Cada espectador refleja su nueva atención en $[-3,3]$ y posible cambio de bando. \\
+\textbf{Propósito} & Mantener la métrica central de éxito del enfrentamiento. \\
+\textbf{Flujo básico} &
+1) Calcular contribuciones de atención según efecto y emoción antigua (\ref{rf:efectos}, \ref{rf:emociones}).\\
+& 2) Saturar a $[-3,3]$ y registrar el resultado (\ref{rf:atencion}).\\
+\textbf{Requisitos} & \ref{rf:efectos}, \ref{rf:atencion}, \ref{rf:emociones}, \ref{rnf:rendimiento}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-05
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-05 — Gestionar emociones del espectador}}\\
+\midrule
+\textbf{Actores} & Sistema \\
+\textbf{Precond.} & Se ha aplicado atención que pueda provocar transición emocional. \\
+\textbf{Postcond.} & Emociones actualizadas (antigua $\rightarrow$ nueva) cuando proceda. \\
+\textbf{Propósito} & Aplicar reglas de transición emocional ligadas a cartas. \\
+\textbf{Flujo básico} &
+1) Detectar si el espectador queda del lado del jugador tras el cambio (\ref{rf:emociones}).\\
+& 2) Si procede, establecer emoción nueva indicada por la carta (\ref{rf:efectos}).\\
+\textbf{Requisitos} & \ref{rf:emociones}, \ref{rf:efectos}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-06
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-06 — Gestionar tipos de carta}}\\
+\midrule
+\textbf{Actores} & Sistema \\
+\textbf{Precond.} & Se ha jugado una carta. \\
+\textbf{Postcond.} & Permanentes permanecen en mesa; instantáneas al descarte. \\
+\textbf{Propósito} & Mantener la consistencia del tablero según tipo de carta. \\
+\textbf{Flujo básico} &
+1) Si la carta es Historia/Personaje/Pensamiento, ubicarla en mesa (\ref{rf:tipos}).\\
+& 2) Si es Melodía/Dicción/Espectáculo, enviar a descarte (\ref{rf:tipos}).\\
+\textbf{Requisitos} & \ref{rf:tipos}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-07
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-07 — Detectar fin de partida}}\\
+\midrule
+\textbf{Actores} & Sistema \\
+\textbf{Precond.} & Cada jugador ha jugado su turno en la ronda actual. \\
+\textbf{Postcond.} & Si se cumplen condiciones de fin, se bloquea nueva ronda y se pasa a UC-08. \\
+\textbf{Propósito} & Concluir el enfrentamiento cuando corresponda. \\
+\textbf{Flujo básico} &
+1) Comprobar turnos acumulados por jugador (\ref{rf:fin}).\\
+& 2) Comprobar reglas globales de taberna (si aplican) (\ref{rf:fin}).\\
+\textbf{Requisitos} & \ref{rf:fin}.\\
+\bottomrule
+\end{longtable}
+
+% ====== UC-08
+\begin{longtable}{@{}p{2.5cm}p{11.5cm}@{}}
+\toprule
+\multicolumn{2}{@{}l@{}}{\textbf{UC-08 — Calcular y anunciar ganador}}\\
+\midrule
+\textbf{Actores} & Sistema \\
+\textbf{Precond.} & UC-07 ha determinado fin de partida. \\
+\textbf{Postcond.} & Se determina ganador por mayoría de audiencia y completitud de historia. \\
+\textbf{Propósito} & Determinar el resultado de la partida según las reglas. \\
+\textbf{Flujo básico} &
+1) Contar espectadores a favor de cada bando (\ref{rf:atencion}).\\
+& 2) Si hay empate, comprobar historia completa (\ref{rf:ganador}).\\
+& 3) Mostrar resultado en interfaz (\ref{rnf:usabilidad}).\\
+\textbf{Requisitos} & \ref{rf:ganador}, \ref{rf:atencion}, \ref{rnf:usabilidad}.\\
+\bottomrule
+\end{longtable}
+
+\subsection{Matriz de trazabilidad UC $\leftrightarrow$ RF}
+\label{sec:trazabilidad}
+\begin{tabularx}{\linewidth}{@{}l*{8}{c}@{}}
+\toprule
+\textbf{RF} & \textbf{UC-01} & \textbf{UC-02} & \textbf{UC-03} & \textbf{UC-04} & \textbf{UC-05} & \textbf{UC-06} & \textbf{UC-07} & \textbf{UC-08}\\
+\midrule
+\ref{rf:turnos}     & X &  & X &  &  &  &  &  \\
+\ref{rf:robo}       & X &  &  &  &  &  &  &  \\
+\ref{rf:rimas}      &  & X & X &  &  &  &  &  \\
+\ref{rf:efectos}    &  & X & X & X & X &  &  &  \\
+\ref{rf:tipos}      &  & X &  &  &  & X &  &  \\
+\ref{rf:atencion}   &  & X & X & X &  &  &  & X \\
+\ref{rf:emociones}  &  & X & X &  & X &  &  &  \\
+\ref{rf:ia}         &  &  & X &  &  &  &  &  \\
+\ref{rf:fin}        &  &  &  &  &  &  & X &  \\
+\ref{rf:ganador}    &  &  &  &  &  &  &  & X \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Criterios de verificación}
+Cada RF/RNF es verificable mediante pruebas funcionales (para RF) y métricas/inspecciones (para RNF), alineado con las propiedades de especificación (completa, consistente, verificable, trazable).
+
+
+\section{Diseño del juego}
+
+El diseño de \textit{Bardtastic} se ha desarrollado siguiendo una fase de preproducción centrada en validar las ideas principales antes de acometer su implementación en Unreal Engine. Durante esta etapa se elaboró un prototipo en papel que permitió explorar y depurar las dinámicas narrativas y competitivas del sistema de cartas. La transición de este prototipo analógico al prototipo digital descrito en el Capítulo~\ref{cap_software} ha supuesto una primera materialización del \textit{loop} jugable, con el alcance necesario para evaluar la viabilidad de las mecánicas básicas y del comportamiento del agente inteligente.
+
+La propuesta de diseño se articula en torno a tres pilares de diseño que sirven como guía conceptual y criterio de validación durante el desarrollo. Estos pilares garantizan que las decisiones relacionadas con mecánicas, arte e interfaz mantienen una coherencia temática y una identidad clara del proyecto.
+
+\subsection{Pilares de diseño}
+
+Los tres pilares de diseño definidos para \textit{Bardtastic} se inspiran en el marco conceptual planteado por Taylor \cite{Taylor2023DesignPillars}, adaptado aquí al contexto específico de un \textit{deckbuilder} con énfasis narrativo. Este enfoque invita a los diseñadores a concretar qué tipo de experiencia se desea provocar en el jugador, más allá de la noción genérica de “diversión”.
+
+En este sentido, se ha considerado también la clasificación de las catorce formas de diversión propuesta por Garneau \cite{Garnaeu2001FourteenFormsOfFun}, que facilita un análisis más granular del tipo de satisfacción que el juego puede ofrecer. Ambas referencias han servido de guía para identificar los elementos que resultan más relevantes en la experiencia que \textit{Bardtastic} busca construir: creatividad en la construcción del mazo, toma de decisiones con impacto estratégico y un tono humorístico que acompañe a la fantasía de actuar como un bardo en un entorno teatral.
+
+
+
+\subsubsection{Creación}
+El núcleo de un \textit{deckbuilder} reside en permitir que el jugador construya su propio enfoque estratégico. Cada decisión sobre qué cartas incluir, mejorar o descartar contribuye a la creación de su “voz” como bardo. Este proceso de construcción mecánica se complementa con la fantasía de “contar una historia”, reforzando la sensación de autoría y de creatividad emergente a lo largo de una partida.
+
+\subsubsection{Resolución de problemas}
+Los enfrentamientos plantean un reto táctico constante: la gestión de recursos (cartas, rimas válidas, emociones del público) obliga al jugador a analizar el estado de la partida y tomar decisiones que maximizan su impacto narrativo frente al rival. La inteligencia artificial contribuye además a evitar patrones triviales, incentivando la adaptación y la planificación del jugador.
+
+\subsubsection{Comedia}
+La ambientación ligera y humorística, la exageración teatral y la interacción con una audiencia caricaturesca buscan generar una experiencia divertida, accesible y expresiva. La comedia actúa como estabilizador del tono, incluso en situaciones competitivas, alineándose con la naturaleza desenfadada del proyecto y su aspiración a poder ser disfrutado por un público amplio.
+
+Estos tres pilares actúan como referencia constante: cualquier mecánica o decisión visual debe servir al menos a uno de ellos para ser considerada coherente con el diseño global del juego.
+
+\subsection{Referencias de diseño}
+
+El diseño de \textit{Bardtastic} se apoya en una combinación de referentes mecánicos, estilísticos y estructurales dentro del ámbito de los juegos de cartas y de los \textit{roguelites}. A nivel mecánico, se toma como base la construcción de mazos inspirada en \textit{Slay the Spire} \cite{SlayTheSpire2019}, especialmente en lo relativo a la toma de decisiones tácticas y al acceso progresivo a cartas que modifican el estilo de juego. La creatividad sobre la composición de la historia en cada partida bebe de propuestas como \textit{Storyteller} \cite{Storyteller2023}, que explora la recombinación narrativa a través de piezas modulares.
+
+Asimismo, el juego incorpora elementos clásicos del género \textit{deckbuilder} consolidados en \textit{Ascension} \cite{Ascension2010} y \textit{Magic: The Gathering} \cite{mtg}, aunque adaptándolos a un contexto competitivo asimétrico basado en la atención del público en lugar del daño directo. La progresión entre partidas se inspira en la estructura de \textit{Slay the Spire} y en la tradición \textit{roguelite} representada por \textit{The Binding of Isaac} \cite{BindingOfIsaac2011}, particularmente en cómo la narrativa avanza mediante la aparición de nuevos jefes y contenidos desbloqueables.
+
+Finalmente, se reconoce también la influencia de juegos humorísticos como \textit{Munchkin} \cite{Munchkin2001}, que combina interacción directa entre jugadores con un tono desenfadado y paródico, reforzando así uno de los pilares del diseño de \textit{Bardtastic}: la comedia.
+
+
+\subsection{Prototipo en papel}
+
+Antes de iniciar la implementación digital, se desarrolló un prototipo en papel con el objetivo de explorar las bases narrativas y mecánicas del sistema de juego. Esta metodología permitió iterar rápidamente sobre las reglas, validar hipótesis de diseño y descartar ideas que no contribuían a la experiencia deseada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/proto2.jpeg}
+    \caption{Prototipo a papel de \textit{Bardtastic}. Creación propia.}
+    \label{fig:proto}
+\end{figure}
+
+\subsubsection{Diseño narrativo inicial}
+
+El primer reto consistió en definir qué significa ``contar una historia'' a través de cartas. Para ello se llevó a cabo una revisión de referentes teóricos sobre estructura narrativa:
+
+\begin{itemize}
+    \item \textbf{Aristóteles — \textit{Poética}} \cite{AristotlePoetics}: identificación de los seis elementos fundamentales del drama (acción, personajes, pensamiento, expresión, música y espectáculo), adoptados como base para los tipos de carta.
+    \item \textbf{Christopher Vogler — \textit{The Writer’s Journey}} \cite{Vogler2020WritersJourney}: refuerza la dimensión arquetípica del relato y la universalidad de ciertas estructuras que pueden activarse mediante mecánicas emergentes del mazo.
+    \item \textbf{John Yorke — \textit{Into the Woods}} \cite{Yorke2013IntoTheWoods}: ofrece una lectura moderna de la estructura clásica en tres actos, muy útil para organizar la secuencia narrativa de las cartas de Historia (inicio, nudo y desenlace).
+    \item \textbf{Julian Woolford — \textit{How Musicals Work and How to Write One}} \cite{Woolford2012HowMusicalsWork}: proporciona un puente entre la teoría clásica y la puesta en escena contemporánea, reforzando la importancia del espectáculo en la recepción del público.
+    \item \textbf{Monomito aplicado al viaje del héroe} \cite{OdysseusMonomyth}: ofrece una referencia estructural para la \textbf{narrativa macro} del juego (progresión entre tabernas, ascenso hacia un gran reto final), que se explora en la planificación futura del \textit{roguelike}.
+\end{itemize}
+
+Esta revisión permitió trasladar principios narrativos clásicos al dominio mecánico de las cartas, manteniendo una coherencia temática entre la forma de jugar y la fantasía que se propone al jugador.
+
+
+A partir de esta revisión, se definieron los seis tipos de cartas empleados en el prototipo, cada uno asociado a uno de los componentes dramáticos clásicos. Esta decisión vincula directamente la mecánica con la fantasía de juego: construir una historia frente a un público.
+
+\subsubsection{Atención como recurso central}
+
+En las primeras iteraciones se experimentó con diferentes representaciones de la respuesta del público: una puntuación global, medidores individuales por jugador o un sistema basado en espectadores múltiples. Finalmente, se optó por una audiencia compuesta por varios miembros con atención individual, al proporcionar:
+
+\begin{itemize}
+    \item mayor expresividad estratégica,
+    \item toma de decisiones más rica al elegir a quién influir,
+    \item coherencia temática con el espectáculo teatral.
+\end{itemize}
+
+Así, la \textbf{atención} se erige como el recurso principal del enfrentamiento, sustituyendo a los tradicionales puntos de vida en juegos de cartas competitivos.
+
+\subsubsection{Construcción del mazo y ciclo de cartas}
+
+Definida la atención, se generaron dos primeros mazos con efectos básicos (robar, descartar, interactuar con cartas en mesa, etc.) y se realizaron sesiones de prueba con jugadores reales. Estas pruebas permitieron ajustar aspectos fundamentales del flujo de partida, como:
+
+\begin{itemize}
+    \item establecer un número fijo de cartas en mano,
+    \item robar al inicio del turno hasta recuperar dicho límite,
+    \item mantener un descarte funcional que permita el ciclado del mazo.
+\end{itemize}
+
+Este diseño garantiza que las cartas de gestión de mano y mazo tengan relevancia táctica en la toma de decisiones.
+
+\subsubsection{Rimas como sistema de encadenado}
+
+Durante el proceso se descartó el uso de un sistema de recursos equivalente al ``maná'' de \textit{Magic: The Gathering} debido a sus problemas de flujo y variabilidad no controlada \cite{mtg}. En su lugar, se buscó un mecanismo temático y mecánicamente expresivo que regulara la capacidad de juego:
+
+\begin{itemize}
+    \item el sistema de rimas define qué cartas pueden jugarse en secuencia,
+    \item promueve la planificación sin bloquear en exceso al jugador,
+    \item refuerza la fantasía de recitar una historia en verso.
+\end{itemize}
+
+El encadenado de rimas actúa, por tanto, como alternativa narrativa al consumo de recursos tradicional.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/proto1.jpeg}
+    \caption{Jugada del prototipo a papel de \textit{Bardtastic}. Creación propia.}
+    \label{fig:proto_rimas}
+\end{figure}
+
+\subsubsection{Emociones de la audiencia}
+
+Tras varias iteraciones se identificó la necesidad de añadir una capa más de interacción, ya que influir únicamente en la atención individual resultaba tácticamente limitado. Así, se incorporó un sistema de \textbf{emociones} que modifica:
+
+\begin{itemize}
+    \item la efectividad con la que una carta puede afectar al público,
+    \item la lectura estratégica del tablero por parte del jugador,
+    \item la expresividad temática y humorística del enfrentamiento.
+\end{itemize}
+
+Este añadido refuerza tanto la toma de decisiones como la coherencia con la premisa narrativa del juego.
+
+\subsubsection{Conclusión de la fase de prototipado}
+
+El prototipo en papel permitió alcanzar un conjunto de mecánicas cohesionado y alineado con los pilares de diseño del proyecto. Una vez validados:
+
+\begin{itemize}
+    \item los tipos de carta y su fundamento narrativo,
+    \item el flujo de robo, mano, mesa y descarte,
+    \item la atención y emociones como recursos interactivos,
+    \item el sistema de rimas como regulador jugable,
+\end{itemize}
+
+se establecieron las bases suficientes para iniciar la implementación digital del prototipo jugable en Unreal Engine.
+
+
+\section{Diagrama de clases}
+\label{sec:uml}
+
+El diagrama de clases recoge únicamente los componentes \textbf{C++} del proyecto, es decir, la lógica central del juego y de la IA. La capa de presentación y flujo visual (animaciones, UI y orquestación de acciones) se aborda principalmente con \textit{Blueprints} y, por tanto, no se incluye aquí. Este enfoque permite analizar la \emph{estructura de datos y responsabilidades} que sostienen el prototipo, manteniendo la separación de intereses entre reglas, decisión e interfaz (véase la relación con los RNF en la Sección~\ref{sec:rnf}). % 
+
+\subsection{Alcance y criterios de modelado}
+El modelo UML se ha construido con los siguientes criterios:
+\begin{itemize}
+  \item \textbf{Foco en el dominio}: clases que representan cartas, mazo/descartes, audiencia y jugador controlado por lógica.
+  \item \textbf{Decisión desacoplada}: la IA rival se modela como una \emph{estrategia} independiente del jugador, con utilidades auxiliares para evaluar jugadas.
+  \item \textbf{Mutaciones controladas}: las simulaciones para puntuar secuencias no alteran el estado real del juego; se emplean estructuras ligeras o copias de trabajo.
+\end{itemize}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/ClassDiagram mitad 1.png}
+    \caption{Diagrama de clases UML (bloque 1: dominio y contexto). Creación propia.}
+    \label{fig:class-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/ClassDiagram mitad 2.png}
+    \caption{Diagrama de clases UML (bloque 2: IA y utilidades). Creación propia.}
+    \label{fig:class-2}
+\end{figure}
+
+
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO. 
+%--------------------------------------------------------------------
+

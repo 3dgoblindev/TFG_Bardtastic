@@ -1,0 +1,24 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+%
+%*******************************************************
+% Summary
+%*******************************************************
+
+\selectlanguage{english}
+\chapter{Summary}
+%REVISAR
+This project presents Bardtastic, a narrative deck-building game developed as a prototype within the framework of a Final Degree Project in the Double Degree in Computer Engineering and Mathematics. The work combines game design, software engineering, artificial intelligence, and mathematical modelling to create a complete playable prototype where the player competes against an AI-controlled bard by constructing verses, managing emotions, and capturing the audience’s attention.
+
+From the mathematical perspective, the project frames the decision-making process of the rival within game theory, formally characterising the encounter as a finite, adversarial, turn-based game. Concepts such as strategies, expected utilities, and rational choice are introduced, and the link between minimax reasoning and equilibrium behaviour is analysed. Although Bardtastic is not a strict zero-sum game, this theoretical foundation provides a rigorous framework for structuring the agent’s behaviour and for motivating the use of heuristic search guided by an approximate utility function.
+
+The project includes the full pipeline from conceptual design and paper prototyping to an implementation in Unreal Engine based on a modular architecture that separates gameplay, interface, and AI logic. A deliberative agent was developed to act as the rival, using a depth-limited search guided by a heuristic utility function that balances immediate audience gain, narrative progress, and hand-cycling potential. This approach achieves rational but not omniscient behaviour, offering a believable and strategically coherent opponent grounded in the principles of bounded rationality.
+
+The results validate the core mechanics and demonstrate that well-structured, extensible software enables future expansion of the game, including new cards, rules, and more advanced AI strategies. Potential future work includes refining the narrative progression, improving the AI’s reasoning, formalising the mathematical model of the encounter, and extending the prototype toward a full Vertical Slice suitable for presentation to publishers.
+
+%File: \texttt{preliminares/summary.tex}
+
+
+% Al finalizar el resumen en inglés, volvemos a seleccionar el idioma español para el documento
+\selectlanguage{spanish} 
+\endinput

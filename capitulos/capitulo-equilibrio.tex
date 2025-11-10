@@ -1,0 +1,394 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Utilidad, soluciones y equilibrio}
+
+En el capítulo anterior se ha definido formalmente qué se entiende por un juego y sus componentes principales: el conjunto de jugadores $J$, los conjuntos de estrategias $\{S_i\}_{i\in J}$, y las funciones de pagos $\{u_i(s)\}_{i\in J}$. A partir de esta base, se introducen los conceptos de \textit{utilidad}, \textit{concepto de solución} y \textit{equilibrio}, que constituyen los pilares analíticos de la Teoría de Juegos. 
+
+A partir de este punto se dejan de lado los aspectos de diseño para centrarse en la formalización teórica, cuya aplicación práctica se retomará posteriormente durante el desarrollo del \textit{software} (véase el capítulo \ref{cap_diseño}).
+
+Los conceptos principales de este capítulo se basan en lo expuesto en  \textit{Teoría de Juegos} (Cerdá, Pérez y Jimeno, 2004) \cite{TeoriaDeJuegosCJP}.
+
+\section{Utilidad}
+
+En la Teoría de Juegos, la \textbf{utilidad} es la medida numérica que representa las preferencias o el grado de satisfacción de cada jugador respecto a los posibles resultados del juego. Dado un conjunto de resultados $X$, cada jugador $i \in J$ posee una \textbf{función de utilidad} 
+\[
+u_i : X \rightarrow \mathbb{R},
+\]
+que asigna un valor real a cada resultado $x \in X$, de manera que
+\[
+u_i(x') > u_i(x'') \quad \text{si y sólo si el jugador } i \text{ prefiere } x' \text{ a } x''.
+\]
+Esta función de utilidad puede interpretarse como una representación \textit{ordinal} de las preferencias del jugador: sólo importa el orden, no la magnitud de los valores asignados. Cualquier transformación estrictamente creciente de $u_i$ representará las mismas preferencias \cite{TeoriaDeJuegosCJP}.
+
+En el contexto de un juego, los resultados dependen del perfil de estrategias $s$ donde:
+$$s=(s_1,\dots,s_n) \in S = S_1\times \cdots \times S_n.$$ 
+Así, la utilidad de un jugador se expresa como:
+\[
+u_i(s) = u_i(s_1, s_2, \dots, s_n),
+\]
+que indica lo que obtiene el jugador $i$ cuando todos los jugadores eligen las estrategias especificadas por el perfil $s$.
+
+\subsection{Utilidad esperada}
+
+Cuando existe incertidumbre sobre las acciones de los demás jugadores o sobre los resultados, se trabaja con \textbf{utilidades esperadas}. Si un jugador $i$ asocia una probabilidad $p(s)$ a cada perfil de estrategias $s$, la utilidad esperada se define como:
+\[
+\mathbb{E}[u_i] = \sum_{s \in S} p(s) \, u_i(s).
+\]
+
+Esta formulación supone que los jugadores cumplen los axiomas de racionalidad, continuidad e independencia, y permite representar sus preferencias sobre distribuciones probabilísticas de resultados mediante una función lineal en las probabilidades. En este caso, las utilidades $u_i(s)$ se denominan utilidades de Von Neumann-Morgenstern, únicas salvo una transformación afín positiva.
+
+\section{Concepto de solución}
+
+El objetivo de la Teoría de Juegos es identificar qué resultados pueden considerarse razonables o estables bajo el supuesto de que los jugadores actúan racionalmente. Para ello, se introducen los \textbf{conceptos de solución}, entendidos como criterios formales que permiten identificar los perfiles de estrategias más plausibles, dados los supuestos del juego \cite{TeoriaDeJuegosCJP,osborne1994course}.
+
+El concepto de solución asocia a cada juego
+\[
+G = \Big\{J, \{S_i\}_{i \in J}, \{u_i(s)\}_{i \in J}\Big\}
+\]
+un subconjunto $S^* \subseteq S$ de perfiles de estrategias considerados razonables o estables.
+
+Se entiende por comportamiento racional aquel orientado a maximizar la utilidad. Se asume, por tanto, que los jugadores actúan de manera racional e independiente. Aunque este supuesto no siempre se cumple en contextos reales, resulta una abstracción necesaria para poder aplicar plenamente el marco analítico de la teoría.
+
+\subsection{Principales conceptos de solución}
+
+Entre los conceptos de solución más relevantes se encuentran los siguientes:
+\begin{itemize}
+    \item \textbf{Estrategias dominantes y eliminación iterada.}  
+    Se eliminan las estrategias que resultan peores que otras para el mismo jugador, independientemente de lo que hagan los demás.
+    
+    \item \textbf{Equilibrio de Nash.}  
+    Se alcanzan perfiles de estrategias en los que ningún jugador puede mejorar su utilidad desviándose unilateralmente.
+    
+    \item \textbf{Óptimo de Pareto.}  
+    Describe situaciones donde no se puede mejorar la utilidad de un jugador sin empeorar la de otro \cite{osborne1994course}.
+    
+    \item \textbf{Equilibrio bayesiano.}  
+    Extiende el equilibrio de Nash a juegos con información incompleta, en los que los jugadores tienen creencias probabilísticas sobre los tipos o características de los demás.
+\end{itemize}
+
+\section{Dominación y racionalización}
+
+Antes de buscar equilibrios, puede simplificarse el conjunto de estrategias eliminando aquellas que nunca serían elegidas racionalmente. Este proceso se conoce como \textbf{eliminación iterada de estrategias dominadas}.
+
+\subsection{Estrategias dominadas}
+
+Sea $S_i$ el conjunto de estrategias de un jugador $i$. Se dice que una estrategia $s_i'$ está \textbf{estrictamente dominada} por otra $s_i''$ si:
+\[
+u_i(s_1,...,s'_i,...,s_n) < u_i(s_1,...,s''_i,...,s_n) \quad \forall s_{j} ~|~ j\not = i.
+\]
+En ese caso, un jugador racional nunca elegiría $s_i'$.
+
+Si la desigualdad es no estricta para todos los $s_{j}$ con $j\not=i$ y estricta para al menos uno, se dice que $s_i'$ está \textbf{débilmente dominada} por $s_i''$:
+\[
+u_i(s_1,...,s'_i,...,s_n) \le u_i(s_1,...,s''_i,...,s_n) \quad \forall s_{j} ~|~ j\not = i, \text{ con } > \text{ para algún } s_{j}.
+\]
+
+\subsection{Eliminación iterada}
+
+La \textbf{eliminación iterada de estrategias estrictamente dominadas} consiste en:
+\begin{enumerate}
+    \item Eliminar de cada jugador las estrategias estrictamente dominadas.
+    \item Repetir el proceso en el juego reducido.
+\end{enumerate}
+
+Si este procedimiento conduce a un único perfil de estrategias, se considera una \textbf{solución racionalizable}. En caso contrario, el conjunto restante representa las estrategias que podrían jugarse racionalmente sin contradecir la lógica de optimización individual.
+
+\section{Equilibrio de Nash}
+
+El \textbf{equilibrio de Nash} constituye el concepto de solución fundamental en el análisis de juegos no cooperativos. Un perfil de estrategias \( s^* = (s_1^*, \dots, s_n^*) \) constituye un equilibrio si ningún jugador puede mejorar su utilidad modificando unilateralmente su estrategia:
+\[
+u_i(s_1^*, \dots, s_i^*, \dots, s_n^*) \ge u_i(s_1^*, \dots, s_i, \dots, s_n^*) \quad \forall s_i \in S_i, \, \forall i \in J.
+\]
+
+\hfill \break
+
+Vamos a introducir algunas definiciones y resultados previos que serán necesarios para enunciar y demostrar los teoremas relativos al equilibrio de Nash.
+
+Diremos que una función \( f : S \to \mathbb{R} \) es \textbf{cuasicóncava} si, para todo par de puntos \( x, y \in S \) y para todo \( \lambda \in [0,1] \), se cumple que
+\[
+f(\lambda x + (1-\lambda)y) \geq \min\{f(x), f(y)\}.
+\]
+La cuasiconcavidad es una propiedad más débil que la concavidad, pero suficiente para asegurar que los conjuntos de mejores respuestas (es decir, los conjuntos de estrategias que maximizan la función de utilidad) sean \textbf{convexos}. Esta convexidad es un elemento clave en la demostración del teorema de existencia de equilibrio de Nash, ya que permite aplicar resultados de punto fijo (como el teorema de Kakutani).
+
+De forma complementaria, introducimos el concepto de \textbf{correspondencia}. Diremos que una correspondencia de un conjunto \( X \) en un conjunto \( Y \) es una aplicación multivaluada \( F : X \rightrightarrows Y \) que asigna a cada elemento \( x \in X \) un subconjunto \( F(x) \subseteq Y \). A diferencia de una función ordinaria, una correspondencia puede asociar varios valores posibles a un mismo elemento de su dominio.
+
+
+Por otro lado, diremos que una correspondencia \( F : X \rightrightarrows Y \) es \textbf{hemicontinua superiormente} si para toda sucesión \( \{x^k\} \subset X \) que converge a \( x \), y para toda sucesión \( \{y^k\} \subset Y \) con \( y^k \in F(x^k) \) que converge a \( y \), se cumple que \( y \in F(x) \). Intuitivamente, esta propiedad garantiza que los valores de la correspondencia no varían bruscamente ante pequeñas modificaciones de su argumento, asegurando la estabilidad de sus imágenes en el límite.
+
+Estas nociones resultan fundamentales para aplicar el siguiente resultado, que constituye la base de la demostración del teorema de existencia de equilibrio de Nash.
+
+\begin{teorema}[Teorema del punto fijo de Kakutani, \cite{TeoriaDeJuegosCJP}, Teorema 3.2]
+Sea \( X \) un subconjunto no vacío, compacto y convexo de \( \mathbb{R}^n \), y sea \( F : X \rightrightarrows X \) una correspondencia tal que:
+\begin{itemize}
+    \item \( F(x) \) es no vacío, convexo y compacto para todo \( x \in X \);
+    \item el grafo de \( F \) es cerrado, o equivalentemente, \( F \) es hemicontinua superiormente.
+\end{itemize}
+Entonces, existe al menos un punto \( x^* \in X \) tal que \( x^* \in F(x^*) \).
+\end{teorema}
+
+Este teorema garantiza la existencia de un punto fijo para correspondencias que cumplen condiciones de continuidad y convexidad, y será la herramienta central para demostrar la existencia del equilibrio de Nash en juegos continuos.
+
+\medskip
+
+Denotaremos por \( G \) un juego definido como:
+\[
+G = \Big\{J, \{S_i\}_{i \in J}, \{u_i(s)\}_{i \in J}\Big\}.
+\]
+
+A partir de los conceptos introducidos, podemos enunciar y demostrar el siguiente resultado sobre la existencia de equilibrio de Nash.
+
+\begin{teorema}[Existencia de equilibrio de Nash en juegos continuos \cite{TeoriaDeJuegosCJP}, Teorema 3.3]
+Sea \( G \) un juego en el que para cada jugador \( i \) se cumple que \( S_i \) es no vacío, compacto y convexo, y que \( u_i \) es continua en \( S \) y cuasicóncava en su propia estrategia \( s_i \). Entonces, existe al menos un equilibrio de Nash en estrategias puras.
+\end{teorema}
+
+
+\begin{proof}
+Sea \( G \) un juego que verifica las hipótesis del teorema.  
+Para cada jugador \( i \in J \), el conjunto de estrategias \( S_i \) es no vacío, compacto y convexo, y la función de utilidad \( u_i : S \to \mathbb{R} \) es continua en \( S = S_1 \times \cdots \times S_n \) y cuasicóncava en su propia estrategia \( s_i \).
+
+Para cada jugador \( i \) definimos su correspondencia de \emph{respuesta óptima} \( R_i \), que asigna a cada perfil de estrategias \( s = (s_1, \dots, s_i, \dots, s_n) \) el conjunto de estrategias de \( i \) que son respuesta óptima a dicho perfil:
+\[
+R_i(s) = \left\{ x_i \in S_i \,\middle|\, u_i(s_1, \dots, x_i, \dots, s_n) \ge u_i(s_1, \dots, y_i, \dots, s_n), \, \forall y_i \in S_i \right\}.
+\]
+
+Definimos la correspondencia global de respuesta óptima \( R \) como:
+\[
+R(s) = R_1(s) \times \cdots \times R_n(s)
+      = \left\{ t = (t_1, \dots, t_n) \in S \,\middle|\, t_i \in R_i(s), \, \forall i \in J \right\}.
+\]
+Esta correspondencia asigna a cada perfil de estrategias \( s \) el producto cartesiano de los conjuntos de respuesta óptima individuales.
+
+\medskip
+
+A continuación, comprobaremos que \( R \) cumple las condiciones del \textit{teorema del punto fijo de Kakutani}, lo que garantizará la existencia de un punto fijo \( s^* \in S \) tal que \( s^* \in R(s^*) \).
+
+\begin{enumerate}
+    \item \textbf{El conjunto \( S \) es no vacío, compacto y convexo.}  
+    Por hipótesis, cada \( S_i \) cumple estas propiedades; por tanto, su producto cartesiano \( S = S_1 \times \cdots \times S_n \) también lo es.
+
+    \item \textbf{\( R(s) \) es no vacío para todo \( s \in S \).}  
+    Dado que \( u_i(\cdot) \) es continua en el conjunto compacto \( S_i \), el teorema de Weierstrass garantiza que el máximo se alcanza.  
+    Por tanto, \( R_i(s) \neq \varnothing \) para cada jugador \( i \), y en consecuencia \( R(s) \neq \varnothing \).
+
+    \item \textbf{Cada \( R(s) \) es convexo.}  
+    La cuasicóncavidad de \( u_i \) respecto a su propia estrategia \( s_i \) implica que el conjunto de maximizadores \( R_i(s) \) es convexo.  
+    Por tanto, el producto cartesiano \( R(s) = R_1(s) \times \cdots \times R_n(s) \) es también convexo.
+
+    \item \textbf{La correspondencia \( R \) es hemicontinua superiormente.}  
+    Sea una sucesión \( \{s^k\} \subset S \) tal que \( s^k \to s \), y una sucesión \( \{t^k\} \) con \( t^k \in R(s^k) \) y \( t^k \to t \).  
+    Para cada jugador \( i \), se cumple:
+    \[
+    u_i(s_1^k, \dots, t_i^k, \dots, s_n^k) \ge u_i(s_1^k, \dots, y_i, \dots, s_n^k), \quad \forall y_i \in S_i.
+    \]
+    Al tomar el límite cuando \( k \to \infty \) y usar la continuidad de \( u_i \), se obtiene:
+    \[
+    u_i(s_1, \dots, t_i, \dots, s_n) \ge u_i(s_1, \dots, y_i, \dots, s_n), \quad \forall y_i \in S_i,
+    \]
+    de modo que \( t_i \in R_i(s) \) para todo \( i \). Por tanto, \( t \in R(s) \) y el grafo de \( R \) es cerrado, es decir, \( R \) es hemicontinua superiormente.
+\end{enumerate}
+
+Dado que \( R \) es una correspondencia definida sobre un conjunto no vacío, compacto y convexo, con valores no vacíos, convexos y un grafo cerrado, se cumplen las condiciones del \textit{teorema del punto fijo de Kakutani}.  
+En consecuencia, existe \( s^* \in S \) tal que \( s^* \in R(s^*) \).
+
+\medskip
+
+Podemos afirmar entonces que \( R \) tiene al menos un punto fijo \( s^* = (s_1^*, \dots, s_n^*) \).  
+Por tanto, \( s_i^* \in R_i(s^*) \, \forall i \in J \), es decir, \( s_i^* \) es una respuesta óptima frente a \( s^* \) para cada jugador.  
+En otras palabras, \( s^* \) constituye un \textbf{equilibrio de Nash en estrategias puras} para el juego \( G \).
+
+\end{proof}
+
+
+\hfill \break
+
+Este resultado garantiza la existencia de equilibrio en juegos con espacios de estrategias continuos, siempre que las preferencias sean bien comportadas.
+
+Podemos aplicar este Teorema para obtener un nuevo resultado sobre juegos con estrategias mixtas.
+
+\begin{teorema}[Existencia de equilibrio de Nash en juegos finitos \cite{TeoriaDeJuegosCJP}, Teorema 3.4] \label{T_mixtas}
+En todo juego finito $G$ existe al menos un equilibrio de Nash en estrategias mixtas.
+\end{teorema}
+
+\begin{proof}
+Dado el juego finito
+\[
+G \;=\; \{\, J,\ \{S_i\}_{i\in J},\ \{u_i\}_{i\in J}\,\},
+\]
+con $S_i=\{s^1_i,\dots,s^{m_i}_i\}$ finito para cada $i$, consideremos el juego $B(G)$, que tiene los mismos jugadores que $G$ y definimos como:
+
+\smallskip
+
+ Para cada jugador $i$, sea $B(S_i)$ el conjunto de distribuciones de probabilidad sobre $S_i$ (estrategias mixtas de $i$).  
+ El espacio de perfiles mixtos es $B(S)=B(S_1)\times\cdots\times B(S_n)$.  
+ Para $p=(p_1,\dots,p_n)\in B(S)$, el pago esperado de $i$ viene dado por
+\[
+U_i(p_1,\dots,p_n)\;=\; \sum_{s\in S}\Big(\prod_{j\in J} p_j(s_j)\Big)\,u_i(s),
+\]
+donde $s=(s_1,\dots,s_n)$.
+
+\medskip
+Comprobamos ahora las hipótesis del Teorema~\ref{T_mixtas} continuo (Teorema~3.3):
+
+\begin{itemize}
+  \item[(a)] Para cada $i$, $B(S_i)$ es un subconjunto no vacío, compacto y convexo de $\mathbb{R}^{m_i}$.
+  \item[(b)] $U_i$ es continua en todo $B(S)$ y, fijados $p_j$ para $j\neq i$, la aplicación $p_i\mapsto U_i(p_1,\dots,p_i,\dots,p_n)$ es \emph{afín} en $p_i$; por tanto, es cuasicóncava en $p_i$.
+\end{itemize}
+
+En conclusión, por el teorema anterior, existe un equilibrio de Nash en estrategias puras para $B(G)$. Por tanto, existe un equilibrio de Nash en estrategias mixtas de $G$.
+
+\end{proof}
+
+Por último, vamos a enunciar, sin demostrar, un resultado importante acerca de los juegos simétricos.
+
+\begin{teorema}[Equilibrio de Nash simétrico \cite{TeoriaDeJuegosCJP}, Teorema 3.5]
+Si el juego $G$ es simétrico, donde $S_i=A$ para todo $i$, y si $A$ es compacto y convexo y las funciones $u_i$ son continuas y cuasicóncavas en su propia estrategia, entonces existe al menos un equilibrio de Nash \emph{simétrico}. Si el juego es finito, existe al menos un equilibrio de Nash simétrico en estrategias mixtas.
+\end{teorema}
+
+Los juegos simétricos son frecuentes en la economía y la biología, ya que modelan situaciones donde todos los jugadores enfrentan el mismo conjunto de estrategias y pagos estructuralmente equivalentes.
+
+
+\subsection{Juegos de suma cero}
+
+Antes de presentar un resultado clásico que conecta el equilibrio de Nash con las estrategias \textit{maximín}, conviene introducir formalmente el concepto de \textbf{juego de suma cero}.
+
+Un juego bipersonal es de suma cero si las utilidades de ambos jugadores verifican que:
+\[
+u_1(s_1, s_2) + u_2(s_1, s_2) = 0 \quad \forall (s_1, s_2) \in S_1 \times S_2.
+\]
+Es decir, cualquier ganancia de un jugador implica una pérdida equivalente del otro.  
+En este tipo de juegos el conflicto es total y los intereses de los jugadores son estrictamente opuestos.  
+Por tanto, basta con analizar la función de pago de un solo jugador, ya que la del otro se deduce automáticamente como su negación.
+
+\hfill \break
+En los juegos de suma cero, cada jugador trata de optimizar su resultado bajo la hipótesis de que el adversario juega del modo más desfavorable posible.  
+Así, el jugador $1$ buscará maximizar su ganancia mínima esperada:
+\[
+v_1 = \max_{p_1 \in \Delta(S_1)} \min_{p_2 \in \Delta(S_2)} U_1(p_1, p_2),
+\]
+mientras que el jugador $2$ intentará minimizar la ganancia máxima de su oponente:
+\[
+v_2 = \min_{p_2 \in \Delta(S_2)} \max_{p_1 \in \Delta(S_1)} U_1(p_1, p_2).
+\]
+Las estrategias que alcanzan esos valores se denominan, respectivamente, \textit{maximín} y \textit{minimax}.  
+En general, $v_1 \le v_2$, y si ambos valores coinciden, el juego se dice que tiene un \textbf{valor} $v = v_1 = v_2$.
+
+\vspace{1em}
+En este contexto cobra especial relevancia el teorema del \textit{minimax}, resultado fundamental debido a John von Neumann, que garantiza precisamente la existencia de ese valor en todo juego finito de suma cero.  
+El siguiente resultado presenta su formulación más general.
+
+\begin{teorema}[Teorema del minimax \cite{TeoriaDeJuegosCJP}, Teorema 3.6] \label{T_minimax_neumann}
+Dado un juego bipersonal finito de suma cero
+\[
+G = \{\{1,2\}, S_1, S_2; u_1, u_2 \},
+\]
+dicho juego tiene un \textbf{valor}. Es decir, existe un $v \in \mathbb{R}$ tal que $v_1 = v_2 = v$, siendo $v_1$ y $v_2$ los valores \textit{maximín} y \textit{minimax}.
+\end{teorema}
+
+\vspace{1em}
+El teorema anterior establece la existencia de una situación de equilibrio en términos de expectativas:  
+el jugador $1$ puede garantizarse una ganancia no inferior a $v$, mientras que el jugador $2$ puede limitar la ganancia de su adversario a lo sumo a $v$.  
+El número $v$ se denomina \textbf{valor del juego} y constituye la solución natural de los juegos de conflicto puro.
+
+\vspace{1em}
+A partir de esta idea se puede establecer una conexión directa entre el equilibrio de Nash y las estrategias \textit{minimax}.  
+El siguiente resultado demuestra que, en los juegos de suma cero, ambos conceptos son equivalentes: las estrategias que satisfacen la condición del teorema del \textit{minimax} son exactamente las que forman parte de los equilibrios de Nash.
+
+\begin{teorema}[Equilibrio y estrategias \textit{minimax} \cite{TeoriaDeJuegosCJP}, Teorema 3.7] \label{T_minimax_equilibrio}
+En los juegos bipersonales finitos de suma cero, las estrategias \textit{minimax} forman parte de los equilibrios de Nash, y únicamente ellas.
+\end{teorema}
+
+\begin{proof}
+Sea el juego bipersonal finito de suma cero
+\[
+G = \{\{1,2\}, S_1, S_2; u_1, u_2 \},
+\]
+donde
+\[
+u_1(s_1, s_2) + u_2(s_1, s_2) = 0 \quad \forall (s_1, s_2) \in S_1 \times S_2.
+\]
+Denotemos por $A_1$ la matriz de pagos del jugador $1$, es decir,
+\[
+A_1 = \big(u_1(s_1, s_2)\big)_{s_1 \in S_1,\, s_2 \in S_2}, 
+\qquad
+A_2 = -A_1.
+\]
+Sean $p_1$ y $p_2$ estrategias mixtas genéricas de $1$ y $2$, es decir, distribuciones de probabilidad sobre sus respectivos conjuntos de estrategias puras.
+
+\medskip
+\textbf{(a) Si $(p_1^*, p_2^*)$ es un equilibrio de Nash, entonces $p_1^*$ y $p_2^*$ son estrategias \textit{maximín} y \textit{minimax}, y el pago corresponde al valor del juego.}
+
+Por definición de equilibrio de Nash,
+\[
+U_1(p_1^*, p_2^*) = p_1^{*} A_1 p_2^{*t}
+= \max_{p_1 \in \Delta(S_1)} p_1 A_1 p_2^{*t}
+= \min_{p_2 \in \Delta(S_2)} p_1^{*} A_1 p_2^{t}.
+\]
+Denotando por $v_1$ y $v_2$ los valores \textit{maximín} y \textit{minimax} definidos como
+\[
+v_1 = \max_{p_1} \min_{p_2} p_1 A_1 p_2^{t}, 
+\qquad
+v_2 = \min_{p_2} \max_{p_1} p_1 A_1 p_2^{t},
+\]
+se deduce que $v_1 = v_2 = v$, por el teorema del minimax anterior.  
+Por tanto,
+\[
+U_1(p_1^*, p_2^*) = v, \qquad U_2(p_1^*, p_2^*) = -v,
+\]
+y cada jugador obtiene el valor del juego.
+
+\medskip
+\textbf{(b) Recíprocamente, si $(p_1^*, p_2^*)$ son estrategias \textit{maximín} y \textit{minimax}, entonces forman un equilibrio de Nash.}
+
+Si $p_1^*$ y $p_2^*$ alcanzan los extremos del teorema del minimax, se cumple para todo par $(p_1, p_2)$:
+\[
+U_1(p_1, p_2^*) \le v \le U_1(p_1^*, p_2),
+\]
+lo que implica que $p_1^*$ es una mejor respuesta a $p_2^*$ y viceversa.  
+Por definición, $(p_1^*, p_2^*)$ constituye entonces un equilibrio de Nash.
+
+\medskip
+En resumen, en los juegos bipersonales finitos de suma cero, las estrategias \textit{maximín} y \textit{minimax} coinciden con las estrategias de equilibrio de Nash, y el valor del juego es único.
+\end{proof}
+
+
+\vspace{1em}
+Los resultados anteriores son relevantes para el desarrollo de agentes en juego bipersonales. En capítulos posteriores (véase la Sección~\ref{minimax}) se presentará su implementación práctica, donde el algoritmo \textit{minimax} se aplica a la toma de decisiones del agente mediante exploración de árboles de juego y poda alfa–beta, buscando reproducir un comportamiento racional coherente con el valor teórico del juego.
+
+\section{Eficiencia de Pareto}
+
+Un perfil de estrategias $s \in S$ es \textbf{óptimo de Pareto} si no existe otro perfil $s'$ tal que:
+\[
+u_i(s') \ge u_i(s) \quad \forall i \in J, \quad \text{y} \quad u_j(s') > u_j(s) \text{ para algún } j \in J.
+\]
+Es decir, no puede mejorarse la situación de un jugador sin perjudicar a otro.  
+
+En general, los equilibrios de Nash no son necesariamente óptimos de Pareto, como ilustra el clásico dilema del prisionero (ver sección \ref{prisionero}). La diferencia entre ambos conceptos radica en que el equilibrio de Nash se centra en la estabilidad individual, mientras que la eficiencia de Pareto mide la eficiencia social.
+
+\section{Equilibrio bayesiano}
+
+En los juegos con información incompleta, los jugadores desconocen ciertos elementos del entorno o de los demás. Cada jugador $i$ tiene un \textbf{tipo} $t_i \in T_i$, y una estrategia que depende de él:
+\[
+s_i : T_i \rightarrow S_i.
+\]
+Sea $p(t)$ la distribución común de probabilidad sobre los tipos $t = (t_1, \dots, t_n)$. La utilidad esperada de un jugador $i$, dado su tipo, es:
+\[
+\mathbb{E}_{t_{-i}}[u_i(s_i(t_i), s_{-i}(t_{-i}), t_i, t_{-i})].
+\]
+
+Un perfil $(s_1^*, \dots, s_n^*)$ constituye un \textbf{equilibrio bayesiano} si, para todo jugador $i$ y tipo $t_i$,
+\[
+\mathbb{E}_{t_{-i}}\!\big[u_i(s_i^*(t_i), s_{-i}^*(t_{-i}), t_i, t_{-i})\big] 
+\ge 
+\mathbb{E}_{t_{-i}}\!\big[u_i(s_i(t_i), s_{-i}^*(t_{-i}), t_i, t_{-i})\big],
+\]
+para toda estrategia alternativa $s_i$.
+
+Este equilibrio generaliza el de Nash a entornos de información asimétrica. Su existencia se apoya, conceptualmente, en el mismo principio que el \textbf{Teorema de existencia de Nash en estrategias mixtas} (Teorema \ref{T_mixtas}), ya que los jugadores, al desconocer los tipos ajenos, deben formar distribuciones de probabilidad sobre ellos. Así, el equilibrio bayesiano puede entenderse como una extensión del equilibrio mixto de Nash al caso de incertidumbre estructurada mediante creencias probabilísticas.
+
+Este concepto resulta fundamental en contextos como subastas, selección adversa o negociación.
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO.
+%--------------------------------------------------------------------

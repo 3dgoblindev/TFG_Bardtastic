@@ -1,0 +1,268 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Nuestro caso: \textit{Bardtastic}} 
+\label{cap_bardtastic}
+\begin{flushright}
+\itshape
+``Who lives, who dies, who tells your story?''\\[1ex]
+\hrulefill\\[-0.5ex]
+\small Lin-Manuel Miranda, \textit{Hamilton} (2015) \cite{Hamilton2015}
+\end{flushright}
+
+\vspace{2em}
+
+Con el marco teórico establecido, este capítulo presenta el caso práctico de \textit{Bardtastic}, analizando su naturaleza como juego y su clasificación dentro de los modelos formales expuestos en capítulos anteriores. Este análisis permite situar el proyecto tanto desde una perspectiva de producto de software como desde la teoría de juegos, facilitando la justificación del algoritmo implementado para el agente inteligente desarrollado.
+
+El objetivo es doble: en primer lugar, describir \textit{Bardtastic} como producto y como sistema de reglas; en segundo lugar, identificar su tipología de juego para determinar las condiciones teóricas bajo las cuales opera el agente. Una vez caracterizado el entorno, se podrá discutir con precisión la estrategia de resolución y el comportamiento racional del agente dentro de él.
+
+Aunque \textit{Bardtastic} se presenta aquí bajo una doble lente técnica y formal, el análisis de las decisiones de diseño desde la perspectiva lúdica se abordará en capítulos posteriores.
+
+\section{Descripción general del juego}
+
+\textit{Bardtastic} es un videojuego del género \textit{roguelike deckbuilder}, ambientado en un universo de fantasía medieval poblado de bardos y cuentacuentos. El jugador encarna a un joven bardo que viaja desde su aldea hasta la capital del reino, compitiendo en distintas tabernas contra otros narradores con el objetivo de ganar fama, recursos y reconocimiento suficiente para abrir su propio teatro.
+
+En términos de diseño, el juego combina dos estructuras principales:
+
+\begin{itemize}
+    \item \textbf{Roguelike}: se estructura en partidas o \textit{runs} independientes de duración media, donde cada intento presenta variaciones en el recorrido, los oponentes y las cartas disponibles. La progresión está sujeta a decisiones estratégicas y a elementos aleatorios que garantizan la rejugabilidad \cite{Szabados2023Roguelike}.
+    \item \textbf{Deckbuilder}: el núcleo del sistema de juego consiste en la \textit{construcción y gestión de mazos}. A lo largo de la partida, el jugador adquiere nuevas cartas, modifica su mazo y adapta su estrategia narrativa para mejorar sus probabilidades de éxito frente a distintos rivales \cite{Nealen2013Deckbuilding}.
+\end{itemize}
+
+Durante la partida, el jugador alterna entre enfrentamientos contra otros bardos y secciones de \textit{deckbuilding}, que funcionan como eventos narrativos que representan su viaje entre tabernas. En estas fases es posible modificar el mazo, añadiendo, eliminando o reemplazando cartas.
+
+Al finalizar cada partida se desbloquean elementos persistentes, como nuevos jefes, cartas o eventos, que estarán disponibles en intentos futuros. El juego cuenta con un final canónico, que se alcanza al vencer el enfrentamiento en la capital y su correspondiente viaje de vuelta. Para desbloquearlo es necesario haber completado con éxito varias partidas y derrotado a los jefes intermedios.
+
+Este apartado ofrece una visión general de la progresión del juego, aunque dicha progresión será retomada posteriormente al tratar el diseño. A continuación, se describe la dinámica de los enfrentamientos, donde interviene el agente de inteligencia artificial.
+
+\section{Dinámica de los enfrentamientos}
+
+Cada enfrentamiento tiene lugar en una taberna, donde el jugador se enfrenta a otro bardo controlado por la IA. Ambos disponen de un mazo de cartas que representa los elementos narrativos de su historia y las formas de ponerla en escena. Durante su turno, el jugador selecciona y juega cartas para construir y relatar su historia ante la audiencia. Para poder ser jugadas, las cartas deben rimar entre sí, siguiendo una estructura formal. Cada carta posee una rima anterior y una posterior, que determinan las secuencias válidas.
+
+El objetivo es captar y mantener la atención del público mejor que el rival. La audiencia está compuesta por cinco miembros, que pueden prestar atención al jugador o a su oponente. La atención del público actúa como el recurso central y la métrica de éxito en cada enfrentamiento. Las cartas pueden producir efectos variados: modificar la atención ganada, robar nuevas cartas, alterar cartas ya jugadas o influir sobre el mazo adversario.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/Bardtastic_intro.png}
+    \caption{Pantalla principal de los enfrentamientos en \textit{Bardtastic}. Creación propia.}
+    \label{fig:Bardtastic_intro}
+\end{figure}
+
+Como se muestra en la Figura~\ref{Bardtastic_intro}, la interfaz principal de los enfrentamientos presenta a los dos bardos: el jugador, situado a la izquierda, y su rival, a la derecha. En la parte inferior aparece la mano del jugador, desde la cual se seleccionan las cartas que compondrán la jugada. 
+
+Sobre cada personaje se encuentran las mesas de juego, representadas mediante bocadillos, que contienen las cartas permanentes que conforman la historia en construcción. En el centro de la pantalla se sitúa la audiencia, cuyos miembros muestran tanto su nivel de atención como su emoción actual. 
+
+Todos estos elementos y su funcionamiento se describen con mayor detalle en los apartados siguientes.
+
+\subsection{Desarrollo de un turno}
+
+El flujo del juego se desarrolla por turnos alternos, donde cada jugador toma decisiones basadas en la información disponible. La secuencia típica de una ronda es:
+
+\begin{enumerate}
+    \item Robar cartas hasta tener cinco en la mano.
+    \item Seleccionar una secuencia válida de cartas según sus rimas.
+    \item Resolver los efectos asociados a las cartas jugadas.
+    \item Pasar el turno al oponente.
+\end{enumerate}
+
+\subsection{Fin de la partida}
+
+El ciclo continúa hasta que ambos jugadores han completado siete turnos. En determinadas tabernas pueden aparecer turnos con efectos globales, como la duplicación de la puntuación o la modificación de las reglas de atención.
+
+Gana el jugador que, al finalizar la partida, posea la mayoría de los miembros de la audiencia a su favor y una historia completa. Se considera historia completa aquella que contiene inicio, nudo y desenlace, además de al menos un personaje y un pensamiento.
+
+Si ninguno de los dos jugadores ha completado la historia, gana el que tenga mayoría en la audiencia.
+
+\subsection{Tipos de cartas} \label{tipos_de_cartas}
+
+Existen dos tipos principales de cartas: \textbf{permanentes} e \textbf{instantáneas}.
+
+Las cartas permanentes permanecen en la mesa tras su uso. Se clasifican en:
+\begin{itemize}
+    \item \textbf{Historia}: representan las partes narrativas (inicio, nudo y desenlace). Solo puede haber una de cada tipo, y deben jugarse en orden.
+    \item \textbf{Personaje}: representan los personajes involucrados en la historia. No hay límite en su número.
+    \item \textbf{Pensamiento}: expresan los temas o mensajes subyacentes de la narración. No hay límite en su número.
+\end{itemize}
+
+Las cartas instantáneas se descartan tras su uso. Se dividen en:
+\begin{itemize}
+    \item \textbf{Melodía}: representan los elementos musicales de la narración.
+    \item \textbf{Dicción}: representan los recursos discursivos empleados.
+    \item \textbf{Espectáculo}: representan los recursos escénicos o visuales.
+\end{itemize}
+
+Como se muestra en la Figura~\ref{fig:carta_bardtastic}, cada carta recoge sus propiedades principales:
+
+\begin{enumerate}
+    \item Nombre.
+    \item Tipo.
+    \item Valor de atención (puntos que pueden asignarse a miembros de la audiencia).
+    \item Rimas (anterior y posterior).
+    \item Emociones (antigua y nueva).
+    \item Texto descriptivo (efecto de la carta).
+    \item Texto de ambientación (sin impacto en la mecánica).
+    \item Imagen asociada.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Ejemplo carta.png}
+    \caption{Ejemplo de carta de \textit{Bardtastic}. Cada carta contiene sus propiedades principales: tipo, atención, rimas y emociones. Creación propia.}
+    \label{fig:carta_bardtastic}
+\end{figure}
+
+\subsubsection{Rimas}
+
+Para jugar una carta, debe rimar con la anterior en la secuencia activa. Las rimas posibles son A, B, C, X (sin rima) y ``–'' (rima libre). Cada carta posee una rima anterior y una posterior; la carta jugada debe coincidir en su rima anterior con la rima posterior de la carta precedente. Algunas cartas no pueden iniciar una secuencia y requieren ser enlazadas mediante rima.
+
+\subsubsection{Audiencia}
+
+La audiencia está compuesta por cinco miembros, cada uno con una puntuación de atención, representada por un entero en $[-3,3]$. Un valor de $-3$ indica máxima atención al rival, mientras que $3$ indica atención total hacia el jugador. Se considera que un miembro de la audiencia está de parte del jugador si su atención es $>0$ y del rival si es $<0$. Una puntuación de $0$ representa un miembro que no está de parte de ningún jugador.
+
+De esta forma, por ejemplo, si los miembros de la audiencia tienen unas puntuaciones de atención de $1$,$0$,$3$,$-1$ y $-2$, tendremos a dos miembros de nuestra parte, el rival tendrá otros dos, y habría un miembro que no está de parte de ninguno.
+
+Cada miembro muestra además una emoción, que puede cambiar durante la partida.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/Ejemplo_audiencia.png}
+    \caption{Ejemplo de audiencia en \textit{Bardtastic}. Cada miembro tiene su puntuación de atención y muestra una emoción. Creación propia.}
+    \label{fig:atudiencia_bardtastic}
+\end{figure}
+
+\subsubsection{Emociones}
+
+Las cartas poseen una emoción antigua y una nueva, entre las siguientes: feliz, triste, enfadado o sorprendido.  
+Si un miembro de la audiencia presenta la emoción antigua de la carta jugada y se le aplica atención, se obtiene un punto adicional de atención.  
+Por ejemplo, si una carta con emoción antigua ``triste'' aplica atención a un espectador ``triste'' con valor $-3$, este pasará a $-1$.  
+Si el espectador queda del lado del jugador tras el cambio, su emoción se actualiza a la nueva de la carta.  
+Algunas cartas pueden afectar emociones globalmente o interactuar con ellas de manera indirecta.
+
+\section{Clasificación teórica del juego}
+
+Desde una perspectiva formal, los enfrentamientos en \textit{Bardtastic} pueden modelarse como un juego dinámico de dos jugadores con información incompleta:
+
+\begin{itemize}
+    \item Es \textbf{dinámico} porque las decisiones se toman de forma secuencial y los estados del juego dependen de las acciones previas de ambos jugadores.
+    \item Es de \textbf{información incompleta} porque cada jugador desconoce las cartas que el oponente tiene en mano o las que quedan en su mazo. Además, el robo de cartas introduce incertidumbre.
+\end{itemize}
+
+El juego presenta \textbf{aleatoriedad limitada}, derivada del orden de las cartas y de ciertos efectos de azar, lo que incrementa su complejidad estratégica.  
+Dado que los jugadores compiten por un recurso común (la atención de la audiencia), puede considerarse un \textbf{juego de suma cero}: la ganancia de atención de un jugador implica la pérdida equivalente del otro.  
+Sin embargo, a diferencia de los juegos deterministas como el ajedrez o el tres en raya, \textit{Bardtastic} incorpora incertidumbre y aleatoriedad, lo que condiciona la planificación óptima y justifica el uso de un agente basado en búsqueda y evaluación heurística.
+
+
+
+\section{Agente desarrollado: El rival} \label{agente_rival}
+
+El agente de \textit{Bardtastic} representa al oponente controlado por la máquina durante los enfrentamientos. Su objetivo de diseño no es la perfección algorítmica, sino emular a un bardo rival creíble que toma decisiones estratégicas y racionales coherentes con las reglas del juego.
+
+\paragraph{Objetivo y alcance}
+En cada turno, el agente decide qué secuencia de cartas jugar en función del estado observable (mano, cartas en mesa, audiencia y emociones), sujeto a las mismas limitaciones de información que un jugador humano. Su ámbito se restringe al enfrentamiento; no gestiona la progresión global de la \textit{run}.
+
+\paragraph{Modelo deliberativo (visión conceptual)}
+El agente sigue un esquema deliberativo de horizonte corto: percibir el estado, generar acciones candidatas (secuencias válidas por rima y tipo), evaluarlas con una heurística y ejecutar la mejor. La racionalidad es limitada en el sentido de Simon \cite{Simon1957ModelsOfMan}: opera con incertidumbre y recursos acotados para mantener flujo de juego y reto significativo \cite{costikyan2002,schell2014}.
+
+\subsection{Función de utilidad (criterios de valoración)} \label{funcion_utilidad}
+La valoración de una secuencia candidata combina atención inmediata, progreso narrativo y calidad de mano futura. Formalmente:
+\begin{equation}
+\label{eq:utility}
+U \;=\; w_1 \cdot \text{Atención}
+\;+\; w_2 \cdot \text{Longitud}
+\;+\; w_3 \cdot \text{ProgresoHistoria}
+\;+\; w_4 \cdot \text{Ciclo},
+\end{equation}
+donde:
+\begin{itemize}
+  \item \textbf{Atención}: ganancia neta sobre la audiencia.
+  \item \textbf{Longitud}: número de cartas jugadas (aprovechamiento del turno).
+  \item \textbf{ProgresoHistoria}: avance hacia historia completa (inicio, nudo, desenlace, personaje y pensamiento).
+  \item \textbf{Ciclo}: capacidad de robar/descartar para mejorar opciones futuras.
+\end{itemize}
+
+Los pesos $w_i$ pueden interpretarse como la importancia relativa de cada criterio en la toma de decisiones del agente. Estos se fijan en el prototipo para favorecer secuencias estructuralmente valiosas sin descuidar la eficacia inmediata.
+
+\subsection{Ámbitos de decisión}
+El comportamiento se articula en tres ámbitos: (i) \textbf{selección de jugada} (secuencia de cartas), (ii) \textbf{asignación de atención} a espectadores cuando procede, y (iii) \textbf{decisiones auxiliares} (robo y descarte) basadas en utilidad esperada por carta. Los algoritmos concretos y su materialización software se describen en la sección~\ref{sec:agente-rival}.
+
+\subsubsection{Selección de jugada}
+
+La decisión principal del agente consiste en determinar qué secuencia de cartas jugar durante su turno.  
+Para ello, se realiza una búsqueda en profundidad sobre el conjunto de combinaciones posibles generadas a partir de las cartas en mano y las reglas de encadenamiento (rima y tipo).  
+Cada secuencia candidata se evalúa mediante la función de utilidad descrita en la sección~\ref{funcion_utilidad}, que pondera factores como la atención obtenida, la longitud de la jugada, el progreso narrativo y el potencial de ciclo.
+
+El agente selecciona la secuencia con la puntuación heurística más alta, es decir, aquella que ofrece el mejor equilibrio entre ganancia inmediata y construcción narrativa a medio plazo.  
+Este enfoque no garantiza la solución óptima global, pero proporciona una \textbf{racionalidad limitada} adecuada para un entorno interactivo: mantiene el desafío del jugador y asegura tiempos de respuesta compatibles con el ritmo de juego.
+
+\subsubsection{Asignación de atención}
+
+Tras elegir la jugada, el agente decide a qué miembro de la audiencia dará cada punto de atención obtenido.
+
+Para cada espectador posible, se simula el efecto de la acción teniendo en cuenta la emoción asociada a la carta actual y se obtiene un nuevo nivel de atención simulado.
+
+La elección se realiza con una heurística por etapas:
+\begin{enumerate}
+    \item se prioriza al espectador cuyo nivel simulado queda más cerca del objetivo del bando propio (\(+1\) si el agente actúa como jugador 1, \(-1\) si lo hace como jugador 2).
+    \item en caso de empate, se prefiere a quien \emph{cruza} al lado del agente (de atención no favorable a favorable)
+    \item si persiste el empate, se elige el cambio de mayor magnitud en la 
+    \item finalmente, se deshacen empates atendiendo al nivel simulado más alineado con el bando del agente.
+\end{enumerate}
+
+Este criterio local garantiza una decisión coherente con el objetivo táctico del turno: 
+\emph{acercar} a un espectador concreto hacia la zona favorable y, cuando es posible, provocar el cruce a nuestro lado, aprovechando el efecto emocional de la carta actual.
+
+
+
+\subsubsection{Decisiones auxiliares}
+
+Además de la elección de jugada y de la asignación de atención, el agente debe resolver decisiones complementarias que afectan a su estado futuro: robar o descartar cartas.  
+Estas decisiones se abordan mediante una valoración heurística que estima la utilidad potencial de cada carta en el contexto actual, ponderando distintos criterios.
+
+\paragraph{Selección de carta a robar.}
+Cuando el agente puede elegir entre varias cartas para incorporar a su mano, se calcula una puntuación para cada opción combinando tres factores:
+\begin{itemize}
+  \item \textbf{Necesidad narrativa:} prioridad a las cartas que permiten completar una historia coherente (por ejemplo, si falta un \textit{conflicto} o un \textit{desenlace}).
+  \item \textbf{Atención potencial:} incremento esperado de atención del público al jugar la carta, considerando sus efectos.
+  \item \textbf{Capacidad de ciclado:} utilidad para renovar la mano o acceder a combinaciones futuras.
+\end{itemize}
+Las cartas se ordenan según esta puntuación compuesta (primero por necesidad narrativa, después por atención y, en último lugar, por capacidad de ciclo) y el agente selecciona la mejor. De esta forma, se asegura de avanzar hacia la condición de victoria, ya que necesitamos tener una historia completa para ganar (premia las cartas que le faltan y el ciclo, pues es una posibilidad de obtener una carta necesaria) y tener mayoría de audiencia (evalúa la atención potencial).
+
+\paragraph{Selección de carta a descartar.}
+De modo análogo, al descartar cartas se invierte el criterio: se prioriza eliminar aquellas con menor contribución a la estrategia global.  
+Se consideran principalmente dos aspectos:
+\begin{itemize}
+  \item \textbf{Redundancia:} cartas permanentes cuyo tipo ya está representado en la historia o sobre la mesa, y por tanto aportan poco valor adicional.
+  \item \textbf{Baja atención:} cartas que generan un efecto de atención reducido o que interrumpen la progresión temática.
+\end{itemize}
+El agente descarta la carta con peor balance entre estos factores. Da prioridad a la redundancia (si ya tiene de ese tipo, la puede descartar sin problema) y luego a la atención.
+
+\medskip
+En conjunto, estas decisiones auxiliares refuerzan la coherencia interna del comportamiento del agente:  
+su política de robo maximiza el potencial de progreso a medio plazo, mientras que su política de descarte minimiza redundancias y mantiene una mano eficiente.  
+El resultado es un oponente que, aunque no persigue la optimización perfecta, exhibe una racionalidad perceptible y mantiene el flujo del juego, ajustándose al objetivo de ofrecer un desafío creíble y consistente con la ambientación de \textit{Bardtastic}.
+
+En los siguientes capítulos se detalla cómo este modelo deliberativo se implementa en el sistema software del juego, traduciendo los conceptos teóricos de utilidad y racionalidad limitada en un flujo de decisión ejecutable en tiempo real (véase la sección~\ref{sec:agente-rival}).
+
+
+\subsection{Complejidad computacional del agente}
+
+El agente rival emplea una búsqueda en profundidad (\textit{Depth-First Search}, DFS) para explorar las secuencias jugables de cartas en cada turno. La elección de este enfoque está justificada por el tamaño acotado del espacio de búsqueda: dado un máximo de cinco cartas en mano, y considerando que el orden importa y no se permite la repetición, el número máximo de secuencias posibles corresponde a las variaciones sin repetición de cinco elementos,
+\[
+V(5,5) \;=\; \frac{5!}{(5-5)!} \;=\; 5! \;=\; 120.
+\]
+Este límite superior garantiza que incluso en el peor caso la exploración exhaustiva es perfectamente abordable en tiempo real. Además, el propio sistema de rimas y tipos de carta introduce una poda natural: en cuanto una secuencia candidata deja de ser extensible según las reglas del juego, la rama se descarta inmediatamente sin necesidad de continuar la exploración.
+
+En cuanto a las decisiones auxiliares, su complejidad es también reducida y estable. El algoritmo de asignación de atención debe evaluar únicamente a los cinco miembros de la audiencia, por lo que su coste es constante,
+\[
+O(1) \quad \text{(cinco evaluaciones)}.
+\]
+Del mismo modo, los procesos de selección de carta a robar o descartar analizan únicamente las opciones disponibles en ese momento. Las manos están limitadas a un máximo de cinco cartas y los efectos que permiten elegir entre varias opciones rara vez superan las diez alternativas. Incluso considerando el tamaño máximo de un mazo (30 cartas), el análisis sigue siendo lineal en el número de candidatos y completamente compatible con los requisitos de interacción en tiempo real.
+
+En conjunto, tanto la exploración deliberativa de secuencias como las decisiones auxiliares operan dentro de un rango de complejidad muy reducido y fuertemente acotado. Esto permite al agente responder de forma inmediata durante el transcurso de la partida sin comprometer el ritmo del juego ni la fluidez del enfrentamiento.
+
+
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO. 
+%--------------------------------------------------------------------

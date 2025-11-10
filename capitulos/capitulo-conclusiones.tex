@@ -1,0 +1,52 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Conclusiones y trabajo a futuro}
+
+El presente Trabajo de Fin de Grado ha tenido como objetivo el diseño e implementación de un prototipo funcional del videojuego \textit{Bardtastic}, un \textit{deckbuilder} narrativo en el que el jugador encarna a un bardo que debe entretener a una audiencia mediante el uso estratégico de cartas que elementos narrativos y puestas en escena.  
+El proyecto ha combinado la faceta creativa del diseño de juegos con el rigor técnico de la Ingeniería Informática y los fundamentos matemáticos de la Teoría de Juegos y la Inteligencia Artificial.
+
+\section{Síntesis y logros del proyecto}
+
+A lo largo del desarrollo se ha abordado la construcción de un prototipo completo que incluye la lógica de juego, la gestión de cartas, la interfaz de usuario y un agente rival controlado por IA.  
+El prototipo cumple plenamente su función como \textbf{prueba de concepto}: valida la idea jugable y demuestra la viabilidad de un sistema narrativo competitivo basado en reglas probabilísticas y toma de decisiones racional.
+
+En el plano teórico, se han aplicado formalismos propios de la Teoría de Juegos, concretamente los modelos de juegos de suma cero y los algoritmos de exploración de árboles de decisión.  
+El agente implementado utiliza una exploración de árboles con una función heurística, ajustada a la naturaleza aleatoria y a la información oculta del juego, y ha mostrado un comportamiento \textbf{coherente, racional y competitivo}, capaz de evaluar las jugadas del jugador humano y responder con decisiones óptimas dentro de la información disponible.
+
+Desde el punto de vista de la ingenieria, se ha puesto especial énfasis en la \textbf{arquitectura modular y extensible del software}.  
+El diseño basado en clases bien encapsuladas, el uso de componentes reutilizables y la separación entre la lógica del juego, la IA y la presentación visual, permiten que el sistema pueda ampliarse fácilmente con nuevos elementos: cartas, mecánicas, tipos de audiencia o incluso agentes con distintos estilos de juego.  
+Este principio de modularidad garantiza la mantenibilidad del código y su posible reutilización en versiones futuras o proyectos derivados.
+
+\section{Valoración de los objetivos}
+
+Los objetivos establecidos al inicio del TFG se han alcanzado satisfactoriamente:
+
+\begin{itemize}
+  \item Se ha diseñado e implementado un videojuego tipo \textit{deckbuilder} con una propuesta original y temática coherente.
+  \item Se ha aplicado la Teoría de Juegos para modelar la toma de decisiones de los oponentes.
+  \item Se ha desarrollado un agente de IA funcional, basado en exploración de árboles, capaz de jugar de forma racional contra el usuario.
+  \item Se ha validado experimentalmente el concepto de juego, confirmando la viabilidad de su mecánica central y del modelo de atención del público.
+\end{itemize}
+
+Estos resultados integran los conocimientos adquiridos en el grado, demostrando la capacidad de aplicar conceptos teóricos a un desarrollo \textit{software} real y funcional. Además, se amplían y combinan hacia ámbitos como el diseño.
+
+\section{Trabajo a futuro}
+
+El proyecto deja abiertas varias líneas de desarrollo que pueden explorarse en trabajos posteriores:
+
+\begin{itemize}
+  \item \textbf{Ampliación del contenido jugable:} incorporación de más cartas, efectos y sinergias que profundicen en la estrategia del jugador y aumenten la rejugabilidad.
+  \item \textbf{Evolución de la IA:} sustitución del algoritmo determinista por aproximaciones estocásticas basadas en \textit{Monte Carlo Tree Search (MCTS)}, capaces de manejar incertidumbre y explorar grandes espacios de decisión.
+  \item \textbf{Optimización del rendimiento:} análisis de costes computacionales de la exploración de árboles y paralelización de cálculos en GPU o hilos independientes.
+  \item \textbf{Integración narrativa y visual:} mejora el diseño de personajes, arte y sonido para convertir el prototipo en una obra más llamativa.
+  \item \textbf{Comercialización:} pasar de prototipo a juego completo y viable para lanzar en el mercado de PC y consolas.
+\end{itemize}
+
+En conjunto, \textit{Bardtastic} demuestra que un videojuego puede servir como banco de pruebas para conceptos avanzados de decisión racional y equilibrio estratégico.  
+El enfoque modular adoptado y la base teórica empleada aseguran que el proyecto pueda crecer, diversificarse y evolucionar tanto en el terreno académico como en el creativo.
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO.
+%--------------------------------------------------------------------

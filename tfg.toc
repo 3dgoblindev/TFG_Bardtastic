@@ -1,0 +1,180 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\nonumberline Agradecimientos}{\es@scroman {v}}{chapter*.3}%
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\nonumberline Summary}{\es@scroman {vii}}{chapter*.4}%
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\nonumberline Introducción}{\es@scroman {xiii}}{chapter*.9}%
+\contentsline {section}{\numberline {1}Motivación y contexto}{\es@scroman {xiii}}{section.0.1}%
+\contentsline {section}{\numberline {2}Objetivos del trabajo}{\es@scroman {xiii}}{section.0.2}%
+\contentsline {paragraph}{\nonumberline Objetivo general 1: Fundamentación matemática y teórica}{\es@scroman {xiii}}{paragraph*.11}%
+\contentsline {paragraph}{\nonumberline Objetivo general 2: Diseño e implementación del prototipo y del agente}{\es@scroman {xiv}}{paragraph*.13}%
+\contentsline {section}{\numberline {3}Estructura del documento}{\es@scroman {xiv}}{section.0.3}%
+\contentsline {chapter}{\numberline {1}¿Qué es un juego?}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Teoría de Juegos}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Definición}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Tipos de juegos}{2}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Representación formal}{2}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Pero, ¿qué es realmente un juego?}{4}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Juegos como actividades culturales y sociales}{4}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Juegos como superación de obstáculos}{5}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}La necesidad de un vocabulario para diseñar}{5}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Definición operativa}{6}{subsection.1.2.4}%
+\contentsline {chapter}{\numberline {2}Utilidad, soluciones y equilibrio}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Utilidad}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Utilidad esperada}{8}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}Concepto de solución}{9}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Principales conceptos de solución}{9}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}Dominación y racionalización}{9}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Estrategias dominadas}{10}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Eliminación iterada}{10}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Equilibrio de Nash}{10}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Juegos de suma cero}{13}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}Eficiencia de Pareto}{15}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Equilibrio bayesiano}{15}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Ejemplos de juegos}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Juegos estáticos}{17}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Juegos de información completa}{17}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Dilema del prisionero}{17}{subsubsection.3.1.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}Piedra papel o tijeras}{18}{subsubsection.3.1.1.2}%
+\contentsline {subsection}{\numberline {3.1.2}Juegos de información incompleta}{20}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}Mercado del limón}{20}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}Póker a una ronda o \textit {Kuhn}}{21}{subsubsection.3.1.2.2}%
+\contentsline {section}{\numberline {3.2}Juegos dinámicos}{22}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Juegos de información completa}{22}{subsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.1}Tres en raya}{22}{subsubsection.3.2.1.1}%
+\contentsline {subsubsection}{\numberline {3.2.1.2}Ajedrez}{23}{subsubsection.3.2.1.2}%
+\contentsline {subsection}{\numberline {3.2.2}Juegos de información incompleta}{24}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}Póker Texas Hold’em}{24}{subsubsection.3.2.2.1}%
+\contentsline {paragraph}{\nonumberline Ejemplo.}{25}{paragraph*.15}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}Magic: The Gathering}{26}{subsubsection.3.2.2.2}%
+\contentsline {chapter}{\numberline {4}Algoritmos para IA en juegos}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Agentes}{27}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Algoritmos para juegos con información completa}{27}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Minimax}{27}{subsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.1.1}Minimax en el tres en raya.}{28}{subsubsection.4.2.1.1}%
+\contentsline {subsection}{\numberline {4.2.2}Poda \(\alpha \)-\(\beta \)}{29}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}El algoritmo de búsqueda $\alpha -\beta $}{31}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}$\alpha $-$\beta $ en el tres en raya}{31}{subsubsection.4.2.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Heurísticas}{32}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}Algoritmos heurísticos destacados}{33}{subsubsection.4.2.3.1}%
+\contentsline {section}{\numberline {4.3}Algoritmos para juegos con información incompleta}{33}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Monte Carlo}{33}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Algoritmos Evolutivos y Genéticos}{34}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}Algoritmos Evolutivos en MTG}{35}{subsubsection.4.3.2.1}%
+\contentsline {chapter}{\numberline {5}Nuestro caso: \textit {Bardtastic}}{36}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Descripción general del juego}{36}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Dinámica de los enfrentamientos}{37}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Desarrollo de un turno}{38}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Fin de la partida}{38}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Tipos de cartas}{38}{subsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.3.1}Rimas}{39}{subsubsection.5.2.3.1}%
+\contentsline {subsubsection}{\numberline {5.2.3.2}Audiencia}{40}{subsubsection.5.2.3.2}%
+\contentsline {subsubsection}{\numberline {5.2.3.3}Emociones}{40}{subsubsection.5.2.3.3}%
+\contentsline {section}{\numberline {5.3}Clasificación teórica del juego}{41}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Agente desarrollado: El rival}{41}{section.5.4}%
+\contentsline {paragraph}{\nonumberline Objetivo y alcance}{41}{paragraph*.17}%
+\contentsline {paragraph}{\nonumberline Modelo deliberativo (visión conceptual)}{41}{paragraph*.19}%
+\contentsline {subsection}{\numberline {5.4.1}Función de utilidad (criterios de valoración)}{41}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Ámbitos de decisión}{42}{subsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.1}Selección de jugada}{42}{subsubsection.5.4.2.1}%
+\contentsline {subsubsection}{\numberline {5.4.2.2}Asignación de atención}{42}{subsubsection.5.4.2.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.3}Decisiones auxiliares}{43}{subsubsection.5.4.2.3}%
+\contentsline {paragraph}{\nonumberline Selección de carta a robar.}{43}{paragraph*.21}%
+\contentsline {paragraph}{\nonumberline Selección de carta a descartar.}{43}{paragraph*.23}%
+\contentsline {subsection}{\numberline {5.4.3}Complejidad computacional del agente}{44}{subsection.5.4.3}%
+\contentsline {chapter}{\numberline {6}Estado del arte}{45}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Diseño y género}{45}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Origen y evolución del \textit {deckbuilding roguelike}}{45}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}\textit {Slay the Spire}}{46}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}\textit {Balatro}}{47}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.1.4}\textit {Storyteller}}{48}{subsection.6.1.4}%
+\contentsline {section}{\numberline {6.2}Síntesis comparativa}{48}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Conclusiones}{49}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}Artístico y temático}{49}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Planificación y diseño}{51}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Diagrama de \textit {Gantt}}{51}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Presupuesto}{52}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Metodología de diseño y desarrollo}{52}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Análisis de requisitos}{53}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Requisitos funcionales (RF)}{53}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Requisitos no funcionales (RNF)}{54}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Modelo de casos de uso}{54}{subsection.7.4.3}%
+\contentsline {subsection}{\numberline {7.4.4}Matriz de trazabilidad UC $\leftrightarrow $ RF}{57}{subsection.7.4.4}%
+\contentsline {subsection}{\numberline {7.4.5}Criterios de verificación}{57}{subsection.7.4.5}%
+\contentsline {section}{\numberline {7.5}Diseño del juego}{57}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Pilares de diseño}{57}{subsection.7.5.1}%
+\contentsline {subsubsection}{\numberline {7.5.1.1}Creación}{58}{subsubsection.7.5.1.1}%
+\contentsline {subsubsection}{\numberline {7.5.1.2}Resolución de problemas}{58}{subsubsection.7.5.1.2}%
+\contentsline {subsubsection}{\numberline {7.5.1.3}Comedia}{58}{subsubsection.7.5.1.3}%
+\contentsline {subsection}{\numberline {7.5.2}Referencias de diseño}{58}{subsection.7.5.2}%
+\contentsline {subsection}{\numberline {7.5.3}Prototipo en papel}{59}{subsection.7.5.3}%
+\contentsline {subsubsection}{\numberline {7.5.3.1}Diseño narrativo inicial}{59}{subsubsection.7.5.3.1}%
+\contentsline {subsubsection}{\numberline {7.5.3.2}Atención como recurso central}{60}{subsubsection.7.5.3.2}%
+\contentsline {subsubsection}{\numberline {7.5.3.3}Construcción del mazo y ciclo de cartas}{60}{subsubsection.7.5.3.3}%
+\contentsline {subsubsection}{\numberline {7.5.3.4}Rimas como sistema de encadenado}{61}{subsubsection.7.5.3.4}%
+\contentsline {subsubsection}{\numberline {7.5.3.5}Emociones de la audiencia}{61}{subsubsection.7.5.3.5}%
+\contentsline {subsubsection}{\numberline {7.5.3.6}Conclusión de la fase de prototipado}{62}{subsubsection.7.5.3.6}%
+\contentsline {section}{\numberline {7.6}Diagrama de clases}{62}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}Alcance y criterios de modelado}{62}{subsection.7.6.1}%
+\contentsline {chapter}{\numberline {8}Herramientas}{65}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Justificación de la elección tecnológica}{65}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Prototipado y velocidad de iteración}{65}{section.8.2}%
+\contentsline {section}{\numberline {8.3}\textit {Pipeline} de arte y contenido}{66}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Diseño 2D y UI}{66}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Audio}{67}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Herramientas de producción}{67}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Conclusiones}{67}{section.8.7}%
+\contentsline {chapter}{\numberline {9}\textit {Software} desarrollado}{68}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Descripción general}{68}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Enfrentamientos}{68}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Interfaz de usuario}{69}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Cartas}{71}{subsection.9.2.2}%
+\contentsline {subsubsection}{\numberline {9.2.2.1}Representación de los datos y propiedades}{71}{subsubsection.9.2.2.1}%
+\contentsline {subsubsection}{\numberline {9.2.2.2}Lógica de juego y efectos}{71}{subsubsection.9.2.2.2}%
+\contentsline {subsubsection}{\numberline {9.2.2.3}Creación dinámica y carga desde \textit {DataTables}}{72}{subsubsection.9.2.2.3}%
+\contentsline {subsubsection}{\numberline {9.2.2.4}Interacción con la interfaz y el flujo de partida}{72}{subsubsection.9.2.2.4}%
+\contentsline {subsubsection}{\numberline {9.2.2.5}Desacoplamiento y escalabilidad del sistema}{72}{subsubsection.9.2.2.5}%
+\contentsline {subsection}{\numberline {9.2.3}Jugadores}{73}{subsection.9.2.3}%
+\contentsline {subsubsection}{\numberline {9.2.3.1}Jugador}{73}{subsubsection.9.2.3.1}%
+\contentsline {subsubsection}{\numberline {9.2.3.2}Rival e Inteligencia Artificial}{73}{subsubsection.9.2.3.2}%
+\contentsline {subsubsection}{\numberline {9.2.3.3}Ventajas de esta organización}{74}{subsubsection.9.2.3.3}%
+\contentsline {section}{\numberline {9.3}Agente Rival}{74}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Arquitectura y desacoplamiento}{74}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Flujo de decisión en turno}{75}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}Notas de complejidad y rendimiento}{75}{subsection.9.3.3}%
+\contentsline {subsection}{\numberline {9.3.4}Puntos de extensión}{75}{subsection.9.3.4}%
+\contentsline {section}{\numberline {9.4}Eventos}{76}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Arquitectura general}{76}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Lógica del evento}{76}{subsection.9.4.2}%
+\contentsline {subsection}{\numberline {9.4.3}Extensibilidad del sistema}{77}{subsection.9.4.3}%
+\contentsline {subsection}{\numberline {9.4.4}Integración con la progresión del juego}{77}{subsection.9.4.4}%
+\contentsline {section}{\numberline {9.5}Sistema de guardado}{78}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}Modelo general en Unreal}{78}{subsection.9.5.1}%
+\contentsline {subsection}{\numberline {9.5.2}Guardado actual: \texttt {SavedRun}}{78}{subsection.9.5.2}%
+\contentsline {subsection}{\numberline {9.5.3}Múltiples guardados lógicos}{78}{subsection.9.5.3}%
+\contentsline {subsection}{\numberline {9.5.4}Ciclo de vida de guardado y carga}{79}{subsection.9.5.4}%
+\contentsline {subsection}{\numberline {9.5.5}Rendimiento y restricciones de plataforma}{79}{subsection.9.5.5}%
+\contentsline {subsection}{\numberline {9.5.6}Estado actual y ampliaciones previstas}{79}{subsection.9.5.6}%
+\contentsline {section}{\numberline {9.6}Menú principal}{80}{section.9.6}%
+\contentsline {chapter}{\numberline {10}Evaluación y pruebas}{81}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Objetivos de la evaluación}{81}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Estrategia empleada (prototipo)}{81}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Pruebas exploratorias}{81}{subsection.10.2.1}%
+\contentsline {subsection}{\numberline {10.2.2}\textit {Playtesting} supervisado}{82}{subsection.10.2.2}%
+\contentsline {subsection}{\numberline {10.2.3}Trazas y depuración}{82}{subsection.10.2.3}%
+\contentsline {section}{\numberline {10.3}Cobertura funcional alcanzada}{82}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Casos de prueba manuales (muestra)}{83}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Limitaciones del enfoque actual}{83}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Plan de formalización de pruebas (\textit {Vertical Slice})}{83}{section.10.6}%
+\contentsline {subsection}{\numberline {10.6.1}Niveles y tipos de prueba}{83}{subsection.10.6.1}%
+\contentsline {subsection}{\numberline {10.6.2}Herramientas de Unreal recomendadas}{84}{subsection.10.6.2}%
+\contentsline {subsection}{\numberline {10.6.3}Matriz mínima de pruebas (RF $\rightarrow $ TC)}{84}{subsection.10.6.3}%
+\contentsline {subsection}{\numberline {10.6.4}Criterios de aceptación y métricas}{84}{subsection.10.6.4}%
+\contentsline {subsection}{\numberline {10.6.5}Procedimiento de \textit {playtest} estructurado}{84}{subsection.10.6.5}%
+\contentsline {chapter}{\numberline {11}Conclusiones y trabajo a futuro}{85}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Síntesis y logros del proyecto}{85}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Valoración de los objetivos}{85}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Trabajo a futuro}{86}{section.11.3}%
+\def \@chapapp {\appendixname }
+\contentsline {chapter}{\nonumberline Bibliograf\'{\i }a}{87}{chapter*.26}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

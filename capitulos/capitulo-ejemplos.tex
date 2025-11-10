@@ -1,0 +1,362 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Ejemplos de juegos}
+Una vez establecidos los conceptos fundamentales, resulta pertinente presentar diversos ejemplos de juegos. Con el propósito de ilustrar la clasificación expuesta en el primer capítulo, se introduce un ejemplo representativo para cada categoría considerada.
+
+\section{Juegos estáticos}
+En esta sección se presentan varios juegos que ejemplifican la categoría de juegos estáticos. Se exponen dos casos clásicos y ampliamente utilizados en la literatura académica para ilustrar conceptos fundamentales: el dilema del prisionero y el mercado del limón. 
+Para complementar, se muestran también algunos juegos reales, más sencillos y conocidos, que no sólo pueden modelarse dentro de este marco teórico, sino que además son jugados con fines recreativos.
+
+\subsection{Juegos de información completa}
+\subsubsection{Dilema del prisionero} \label{prisionero}
+
+El dilema del prisionero es un ejemplo clásico y sencillo de juego de información completa.
+
+El siguiente ejemplo está tomado textualmente de \cite{TeoriaDeJuegosCJP}, (ejemplo 2.1).
+
+\begin{quote}
+``
+Dos delincuentes habituales son apresados cuando acaban de cometer un delito grave. No hay prueba clara contra ellos, pero sí indicios fuertes de dicho delito y además hay pruebas de un delito menor. Son interrogados simultáneamente en habitaciones separadas. Ambos saben que si los dos se callan serán absueltos del delito principal por falta de pruebas, pero condenados por el delito menor (1 año de cárcel), que si ambos confiesan, serán condenados por el principal pero se les rebajará un poco la pena por confesar (4 años), y finalmente, que si sólo uno confiesa, él se librará de penas y al otro «se le caerá el pelo» (5 años).''
+\end{quote} 
+
+Es claro que se trata de un juego estático, ya que ambos jugadores eligen sus estrategias de manera simultánea, sin conocer la decisión del otro. Además, es un juego de información completa, puesto que ambos jugadores conocen las estrategias disponibles y los pagos asociados a cada perfil de estrategias.
+
+Para representarlo de forma estratégica, primero definimos el conjunto de jugadores: $$J=\{1,2\}$$ Cada jugador tiene dos estrategias disponibles:
+\[
+S_1=S_2=\{C,E\},
+\]
+donde $C$ significa ``callarse'' y $E$ significa ``entregarse''. Denotamos por $s=(s_1,s_2)$ un perfil de estrategias. Tomamos como función de pagos la negación de los años de prisión (utilidad negativa), de modo que mayores años representan peores pagos:
+
+\[
+\begin{array}{c|cc}
+       & C_2 & E_2 \\ \hline
+C_1    & (-1,-1) & (-5,0) \\
+E_1    & (0,-5)  & (-4,-4)
+\end{array}
+\]
+
+La entrada $(u_1,u_2)$ indica las utilidades de los jugadores $1$ y $2$ respectivamente. Por ejemplo, si ambos eligen $C$ reciben cada uno $-1$ (un año de prisión). Si ambos confiesan ($E,E$) reciben $-4$ (cuatro años). Si uno confiesa y el otro no, el confesor recibe $0$ y el otro $-5$.
+
+Para cada jugador $i$ comparar las utilidades entre $C$ y $E$ muestra que $E$ es estrategia estrictamente dominante:
+\begin{itemize}
+    \item Si el otro juega $C$: $u_i(E, C)=0 > u_i(C, C)=-1$.
+    \item Si el otro juega $E$: $u_i(E, E)=-4 > u_i(C,E)=-5$.
+\end{itemize}
+Por tanto el único equilibrio de Nash en estrategias puras es $(E,E)$.
+
+El perfil $(C,C)$ es Pareto-óptimo frente a $(E,E)$ porque $-1>-4$ para ambos. Sin embargo, la estructura de incentivos lleva a ambos jugadores hacia $(E,E)$ pese a que $(C,C)$ sería mejor colectivamente. Esto ejemplifica el conflicto entre interés individual y bienestar social que caracteriza al dilema del prisionero.
+
+\subsubsection{Piedra papel o tijeras} \label{piedra_papel_tijeras}
+
+El juego de piedra, papel o tijeras es otro ejemplo de juego estático y de información completa, ampliamente conocido por su sencillez y simetría.
+
+En este juego, ambos jugadores eligen simultáneamente una de las tres posibles acciones: piedra, papel o tijeras. Las reglas son bien conocidas: la piedra gana a la tijera, la tijera gana al papel y el papel gana a la piedra. Si ambos jugadores eligen la misma opción, el resultado es un empate.
+
+Formalmente, definimos el conjunto de jugadores: $$J=\{1,2\}$$
+Y los conjuntos de estrategias
+\[
+S_1 = S_2 = \{R, P, S\},
+\]
+donde $R$ representa piedra (\textit{rock}), $P$ papel (\textit{paper}) y $S$ tijeras (\textit{scissors}). Cada jugador recibe un pago de $1$ si gana, $-1$ si pierde y $0$ si empata. La matriz de pagos puede representarse del siguiente modo:
+
+\[
+\begin{array}{c|ccc}
+      & R_2 & P_2 & S_2 \\ \hline
+R_1   & (0,0) & (-1,1) & (1,-1) \\
+P_1   & (1,-1) & (0,0) & (-1,1) \\
+S_1   & (-1,1) & (1,-1) & (0,0)
+\end{array}
+\]
+
+Cada entrada $(u_1,u_2)$ indica las utilidades obtenidas por los jugadores $1$ y $2$ respectivamente. Por ejemplo, si el jugador 1 elige piedra y el jugador 2 tijeras, el primero gana y obtiene $1$, mientras que el segundo pierde y obtiene $-1$.
+
+Cada entrada $(u_1,u_2)$ indica las utilidades obtenidas por los jugadores $1$ y $2$, respectivamente. Por ejemplo, si el jugador 1 elige piedra y el jugador 2 tijeras, el primero gana y obtiene $1$, mientras que el segundo pierde y obtiene $-1$.
+
+Observamos que este juego no posee un equilibrio de Nash en estrategias puras, ya que para cualquier combinación determinista alguno de los jugadores puede mejorar su resultado cambiando unilateralmente su elección. Formalmente, para cualquier par $(s_1,s_2) \in S_1 \times S_2$, existe una desviación $s_1' \in S_1$ tal que:
+\[
+u_1(s_1',s_2) > u_1(s_1,s_2),
+\]
+y de modo análogo para el jugador $2$.
+
+Sin embargo, existe un equilibrio en estrategias mixtas, en el que cada jugador elige piedra, papel o tijeras con igual probabilidad $\frac{1}{3}$.
+
+En este caso, en lugar de trabajar con estrategias puras, consideramos funciones de distribución de probabilidad sobre $S_i = \{R, P, S\}$:
+\[
+\sigma_i(s)=
+\begin{cases}
+    p_r & \text{si } s=R, \\
+    p_p & \text{si } s=P, \\
+    p_s & \text{si } s=S.
+\end{cases}
+\]
+Las funciones de utilidad esperada vienen dadas por:
+\[
+\mathbb{E}[u_i(\sigma_1,\sigma_2)]
+\]
+donde la esperanza se calcula sobre las distribuciones de probabilidad de ambos jugadores.
+
+Podemos tomar la distribución que asigna la misma probabilidad a cada estrategia:
+\[
+\sigma_i^*(s)=
+\begin{cases}
+    \frac{1}{3} & \text{si } s=R, \\
+    \frac{1}{3} & \text{si } s=P, \\
+    \frac{1}{3} & \text{si } s=S.
+\end{cases}
+\]
+
+La utilidad esperada para cada jugador viene dada por:
+\[
+\mathbb{E}[u_i(\sigma_1,\sigma_2)] = \sum_{s_1\in S_1}\sum_{s_2\in S_2} \sigma_1(s_1)\sigma_2(s_2)\,u_i(s_1,s_2).
+\]
+Sustituyendo las distribuciones uniformes, obtenemos:
+\[
+\mathbb{E}[u_i(\sigma_1^*,\sigma_2^*)]=0 \qquad \forall i\in J.
+\]
+
+Este perfil de estrategias mixtas constituye un equilibrio de Nash, ya que ningún jugador puede mejorar su utilidad esperada mediante una desviación unilateral:
+\[
+\mathbb{E}[u_i(\sigma_1^*,\sigma_{2}^*)] \ge \mathbb{E}[u_i(\sigma_1,\sigma_{2}^*)] \qquad \forall \sigma_1 \in \Delta(S_1)
+\]
+donde $\Delta(S_1)$ denota el conjunto de distribuciones de probabilidad sobre el conjunto de estrategias puras $S_1$. El mismo razonamiento es válido para el jugador $2$.
+
+En este equilibrio, cada jugador selecciona piedra, papel o tijeras con igual probabilidad, de modo que el juego permanece perfectamente simétrico y de suma cero. Así, piedra, papel o tijeras constituye un ejemplo clásico de equilibrio mixto en un juego competitivo simple.
+
+
+\hfill \break
+
+El estudio de juegos como piedra, papel o tijeras resulta especialmente útil porque ejemplifica un patrón de relaciones cíclicas de ventaja/desventaja que aparece en muchos sistemas lúdicos reales. En efecto, numerosos subsistemas de juegos más complejos se fundamentan en equilibrios similares, en los que distintas categorías interactúan mediante ventajas y debilidades recíprocas. Por ejemplo, esta estructura está presente en los tipos elementales de \textit{Pokémon} \cite{wrpsa_pokemon} y en los roles o tipos de campeones en los juegos \textit{MOBA} (Massive Online Battle Arena), donde cada tipo puede tener ventaja frente a uno y desventaja frente a otro, generando una dinámica de contrarrestes mutuos. \cite{80lv_rps_strategy, wrpsa_modern_games}
+%lidia este parrafo es super importante me querrias
+
+%\subsubsection{Penalti}
+%Tirar un penalti
+%y yo aqui pongo que esto es inutil y es que me gusta pensar en cosas o eso me lo guardo?
+
+\subsection{Juegos de información incompleta}
+\subsubsection{Mercado del limón} \label{limon}
+El mercado del limón es un ejemplo clásico de juego de información incompleta, introducido por George Akerlof en su artículo \textit{The Market for ``Lemons``} \cite{akerlof1970lemons}. Este modelo ilustra cómo la asimetría de información puede provocar un fallo de mercado.
+
+\begin{quote}
+Supongamos un mercado de automóviles usados en el que hay dos tipos de coches: malos y buenos (llamados ``limones`` y ``melocotones`` respectivamente). Los vendedores conocen la calidad real de su coche, pero los compradores no pueden distinguir entre un coche bueno y uno malo antes de la compra. Ambos saben, sin embargo, la proporción de coches buenos y malos en el mercado, así como los valores medios esperados.
+\end{quote}
+
+En este contexto, la información sobre la calidad del coche no es completa: los vendedores conocen más que los compradores. Por tanto, el juego presenta información incompleta.
+
+Podemos representarlo de manera simplificada como un juego estático de tipo bayesiano con dos jugadores:
+\[
+J=\{\text{Vendedor}, \text{Comprador}\}.
+\]
+
+El vendedor puede tener dos tipos posibles:
+\[
+T_{\text{Vendedor}} = \{\text{Melocotón}, \text{Limón}\}.
+\]
+El comprador no conoce el tipo del vendedor, pero tiene una creencia inicial sobre la probabilidad de que el coche sea bueno o malo. Denotamos estas probabilidades por $p$ y $1-p$, respectivamente.
+
+Las estrategias posibles son:
+\[
+S_{\text{Vendedor}} = \{\text{Ofrecer}, \text{No ofrecer}\}, \quad S_{\text{Comprador}} = \{\text{Comprar}, \text{No comprar}\}.
+\]
+
+Si el comprador adquiere un coche bueno, su utilidad neta es el valor del coche $v_b$ menos el precio $p_c$. Si compra un coche malo, obtiene $v_m - p_c$, con $v_m < v_b$. Para el vendedor, el pago depende del precio recibido menos su valoración del coche.
+
+Debido a la asimetría de información, el comprador anticipa que, a cualquier precio intermedio, los vendedores de coches buenos tendrán menos incentivo para vender que los de coches malos. Esto reduce la calidad esperada de los coches ofertados y, en equilibrio, puede hacer que desaparezca el mercado: sólo se venden coches malos.
+
+En resumen, el \textit{mercado del limón} muestra cómo la falta de información simétrica puede generar un equilibrio ineficiente, en el que las transacciones potencialmente mutuamente beneficiosas no se llevan a cabo. Este resultado pone de manifiesto que la información incompleta puede alterar de forma sustancial el equilibrio de un mercado.
+
+Los sistemas de apuestas resultan de gran interés tanto en contextos económicos reales como en el diseño de juegos de mesa modernos. En particular, constituyen una mecánica habitual dentro del género de los \textit{Eurogames}. Este subgénero se caracteriza, entre otros aspectos, por priorizar la solidez mecánica frente a la temática y por propiciar formas de interacción más sutiles entre los jugadores, basadas en el conflicto indirecto, lo que explica la popularidad de las mecánicas de pujas y apuestas \cite{eurogames2012}. Algunos diseñadores de reconocido prestigio, como Reiner Knizia (matemático de formación y autor de más de setecientos juegos publicados), incorporan principios relacionados con el equilibrio bayesiano en los mecanismos de pujas y puntuación, con el objetivo de generar sistemas estratégicamente ricos y dinámicos \cite{knizia_tlagd}.
+
+\subsubsection{Póker a una ronda o \textit{Kuhn}}\label{poker_una_ronda}
+
+El póker a una ronda, también conocido como \textit{Kuhn poker}, constituye un ejemplo paradigmático de juego con información incompleta y componente estratégico de engaño, ampliamente estudiado en la Teoría de Juegos como modelo de interacción con información privada y señales. A diferencia de juegos como el dilema del prisionero o piedra, papel o tijeras, aquí los jugadores no disponen de información completa sobre el estado del juego, lo que introduce incertidumbre y estrategias mixtas basadas en probabilidades y credibilidad.
+
+\begin{quote}
+Consideremos un juego simplificado de póker entre dos jugadores. Cada uno recibe una carta del mazo, la cual puede ser alta (A) o baja (B), con igual probabilidad. El valor de la carta es conocido solo por el jugador que la recibe. A continuación, el jugador 1 puede apostar (subir) o pasar. Si pasa, el jugador 2 también pasa y ambos muestran sus cartas: gana el jugador con la carta más alta. Si el jugador 1 apuesta, el jugador 2 puede retirarse o igualar la apuesta. Si se retira, el jugador 1 gana automáticamente; si iguala, ambos muestran sus cartas y el jugador con la carta más alta gana el bote \cite{sklansky1994theory}.
+\end{quote}
+
+Este escenario es un juego de información incompleta, ya que cada jugador conoce su propia carta pero desconoce la del oponente. La incertidumbre sobre la mano del rival da lugar a estrategias de \textit{bluffing} (faroles), en las cuales un jugador con una carta baja puede apostar intentando hacer creer al otro que posee una carta alta.
+
+Formalmente, podemos definir el juego como:
+\[
+J = \{1,2\}, \quad T_i = \{\text{Alta}, \text{Baja}\} \text{ para } i=1,2.
+\]
+
+Cada jugador conoce su tipo, pero desconoce el del rival. Las estrategias disponibles son:
+\[
+S_1 = \{\text{Apostar si Alta}, \text{Apostar si Baja}, \text{Pasar}\}, \quad
+S_2 = \{\text{Igualar}, \text{Retirarse}\}.
+\]
+
+El póker a una ronda es un juego bayesiano simple: cada jugador dispone de información privada (su carta) y toma decisiones estratégicas en función de sus creencias sobre el oponente. En equilibrio bayesiano, las estrategias suelen ser mixtas e incluyen, ocasionalmente, apuestas con manos débiles (faroles) para preservar la incertidumbre. No obstante, la forma concreta del equilibrio depende críticamente de los parámetros del modelo, como la probabilidad \textit{ex ante} de cada tipo y el tamaño relativo de las apuestas. \cite{osborne1994course}
+
+Este modelo, formulado originalmente por John C. Harsanyi como ejemplo de juego bayesiano, muestra cómo la información privada y las estrategias de señalización pueden influir de manera decisiva en el resultado del juego \cite{harsanyi1967games1}.
+
+\section{Juegos dinámicos}
+En esta sección se presentan diversos juegos que ilustran la categoría de juegos dinámicos. Los ejemplos seleccionados no solo poseen relevancia en la literatura académica, sino que también constituyen elecciones populares en contextos recreativos y competitivos.
+
+\subsection{Juegos de información completa}
+
+\subsubsection{Tres en raya} \label{tres_en_raya}
+
+El tres en raya es un ejemplo clásico de juego de información completa, finito y determinista. Ambos jugadores observan todas las jugadas y conocen exactamente el estado del tablero en cada momento.
+
+\begin{quote}
+Dos jugadores, $X$ y $O$, alternan turnos colocando su símbolo en una cuadrícula de $3\times3$. Gana quien consiga alinear tres de sus símbolos en fila, columna o diagonal. Si todas las casillas se llenan sin que nadie consiga alinear tres, el juego termina en empate.
+\end{quote}
+
+Podemos representar el juego en forma extensiva, donde cada nodo corresponde a un estado del tablero y cada rama a una jugada posible. Dado que ambos jugadores observan el tablero completo, no hay información oculta.
+
+En términos formales:
+\[
+J = \{X, O\}, \quad S_X, S_O = \text{conjunto de secuencias posibles de movimientos válidos.}
+\]
+
+Los pagos se definen como:
+\[
+u_X =
+\begin{cases}
+1 & \text{si $X$ gana},\\
+0 & \text{si hay empate},\\
+-1 & \text{si $O$ gana,}
+\end{cases}
+\qquad
+\]
+\[
+ u_O = -u_X.
+\]
+%hago un ejemplo de partida que termine emn empate representado en arbol?
+
+La representación en forma extensiva permite visualizar las decisiones secuenciales y el carácter de información perfecta del juego. En la Figura~\ref{fig:tictactoe_extensivo} se muestra un fragmento del árbol de decisión correspondiente al tres en raya.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\textwidth]{img/tres_en_ralla_arbol.PNG}
+\caption{Representación parcial en forma extensiva del juego de tres en raya. Creación propia.}
+\label{fig:tictactoe_extensivo}
+\end{figure}
+
+%no he definido lo que es suma cero y simétrico, debería hacerlo en lo de tipos de juegos?
+El juego es de suma cero y simétrico. Su análisis permite determinar estrategias dominantes y soluciones mediante retroinducción. De hecho, se sabe que, con juego perfecto de ambos lados, el resultado siempre será un empate. El tres en raya ilustra un caso de equilibrio de Nash puro, alcanzado cuando ninguno de los jugadores puede mejorar su resultado cambiando unilateralmente de estrategia.
+
+Resulta pertinente retomar las definiciones expuestas en la sección \ref{que_es_juego}, pues el tres en raya constituye un ejemplo limítrofe entre el concepto de ``juego'' y el de ``puzzle''. Dado que posee un equilibrio perfectamente definido: en el que, al jugar de forma óptima, la partida siempre concluye en empate. La interacción estratégica y la resolución de problemas son prácticamente inexistentes. No obstante, para jugadores que desconocen dicha estrategia óptima, como puede ser el caso de los niños pequeños, el tres en raya sí cumple las condiciones necesarias para ser considerado un juego. Este ejemplo pone de manifiesto que la naturaleza lúdica depende tanto de la experiencia del jugador como del sistema de reglas en sí. \cite{nguyen2020}
+
+
+\subsubsection{Ajedrez} \label{ajedrez}
+
+El ajedrez es otro ejemplo representativo de juego de información completa, aunque con una complejidad combinatoria mucho mayor que el tres en raya. En este caso, los jugadores también observan completamente el tablero, las piezas y los movimientos posibles del adversario.
+
+\begin{quote}
+Dos jugadores, Blancas y Negras, alternan turnos moviendo sus piezas sobre un tablero de $8\times8$ siguiendo reglas bien definidas. El objetivo es dar jaque mate al rey contrario, es decir, situarlo bajo amenaza de captura sin posibilidad de escape.
+\end{quote}
+%explico al detalle las reglas del ajedrez?
+
+Formalmente:
+\[
+J = \{\text{Blancas}, \text{Negras}\}, \quad S_i = \text{conjunto de secuencias legales de movimientos.}
+\]
+
+Los pagos pueden definirse como:
+\[
+u_{\text{Blancas}} =
+\begin{cases}
+1 & \text{si Blancas ganan},\\
+0 & \text{si hay tablas},\\
+-1 & \text{si Negras ganan,}
+\end{cases}
+\qquad
+\]
+\[
+u_{\text{Negras}} = -u_{\text{Blancas}}.
+\]
+
+Aunque el ajedrez es teóricamente resoluble por ser un juego finito de información perfecta, su tamaño hace inviable el cálculo completo de la forma extensiva o del árbol de decisión. Sin embargo, la teoría garantiza que existe un equilibrio de Nash en estrategias puras: una secuencia de jugadas óptimas para ambos jugadores que determina el resultado final (victoria de uno o tablas).
+
+El ajedrez es, por tanto, un ejemplo paradigmático de cómo los juegos de información completa pueden ser analizados mediante los principios de la Teoría de Juegos, aunque su resolución práctica requiera aproximaciones computacionales o heurísticas.
+
+\subsection{Juegos de información incompleta}
+
+\subsubsection{Póker Texas Hold’em}\label{poker_holdem}
+El \textit{Texas Hold’em} es la variante de póker más popular tanto en entornos recreativos como competitivos. Se trata de un juego de información incompleta, en el que cada jugador dispone de información privada (sus cartas ocultas) y de información pública (las cartas comunitarias visibles por todos). El desarrollo secuencial de las apuestas genera un espacio de decisión extenso que combina incertidumbre y estrategia probabilística.
+
+\begin{quote}
+El juego utiliza una baraja estándar de 52 cartas y puede involucrar entre dos y diez jugadores. Cada uno recibe dos cartas privadas, conocidas como \textit{hole cards}, mientras que cinco cartas comunitarias se revelan progresivamente en el centro de la mesa. Los jugadores forman su mejor mano de cinco cartas combinando sus dos cartas privadas con las cinco comunitarias.
+\end{quote}
+
+Cada ronda de \textit{Texas Hold’em} se compone de las siguientes fases \cite{harlan2006dummies}:
+
+\begin{enumerate}
+\item \textbf{Apuestas iniciales y ciegas.} Antes de repartir las cartas se colocan dos apuestas forzadas: la \textit{ciega pequeña} (\textit{small blind}) y la \textit{ciega grande} (\textit{big blind}). Estas apuestas garantizan la existencia de un bote inicial e introducen incentivos estratégicos desde el primer momento.
+\item \textbf{Pre-flop.} Cada jugador recibe sus dos cartas privadas y decide si retirarse (\textit{fold}), igualar la apuesta (\textit{call}) o subir (\textit{raise}).
+\item \textbf{Flop.} Se descubren tres cartas comunitarias boca arriba. Tiene lugar una nueva ronda de apuestas en la que los jugadores actualizan sus creencias sobre la fuerza de su mano.
+\item \textbf{Turn.} Se revela una cuarta carta comunitaria, seguida de otra ronda de apuestas.
+\item \textbf{River.} Se muestra la quinta carta comunitaria y se realiza la última ronda de apuestas.
+\item \textbf{Showdown.} Si quedan varios jugadores activos, muestran sus cartas privadas y gana quien tenga la mejor combinación de cinco cartas.
+\end{enumerate}
+
+\paragraph{Ejemplo.}
+Consideremos una mano simplificada entre tres jugadores: A, B y C. Las ciegas son de 50 y 100 fichas, y el juego es \textit{No-Limit}.
+\begin{itemize}
+\item A recibe As\spade{} y 10\heart{}, B recibe 7\club{} y 7\diamondcard{}, C recibe K\club{} y 9\spade{}.
+\item En el pre-flop, A sube a 300 fichas, B iguala y C se retira.
+\item En el \textit{flop} (10\diamondcard{}, 7\spade{}, 3\club{}), B obtiene un trío de sietes y A una pareja de dieces. A apuesta 400 fichas y B iguala.
+\item En el \textit{turn} (Q\club{}), B mantiene la ventaja.
+\item En el \textit{river} (10\club{}), A mejora a trío de dieces y gana la mano, obteniendo todas las fichas apostadas.
+\end{itemize}
+
+Este ejemplo ilustra cómo la información incompleta y las apuestas sucesivas inducen comportamientos estratégicos complejos: faroles, semifaroles, gestión del riesgo y deducción probabilística del rango del oponente.
+
+Siguiendo la formulación de Harsanyi para juegos bayesianos \cite{harsanyi1967games1}, en el \textit{Texas Hold’em} se identifican los siguientes elementos:
+\[
+J = \{1,2,\dots,n\},
+\]
+donde $n$ es el número de jugadores.
+
+Cada jugador $i$ recibe un tipo privado $t_i \in T_i$, que corresponde a sus dos cartas iniciales (\textit{hole cards}). La distribución de tipos está dada por una probabilidad comúnmente conocida por combinatoria,
+%\[
+%p(t_1, \dots, t_n) = \frac{1}{\binom{52}{2}\binom{50}{2}\dots\binom{52-2(n-1)}{2}},
+%\]
+lo que garantiza información común sobre la estructura del azar.
+
+Las estrategias puras de un jugador $i$ pueden definirse como funciones:
+\[
+s_i : T_i \times H_i \rightarrow A_i,
+\]
+donde $H_i$ representa el historial público de apuestas y cartas reveladas, y $A_i$ el conjunto de acciones posibles en cada ronda: $A_i={\text{retirarse}, \text{igualar}, \text{subir}}$.
+
+Los pagos $u_i$ dependen del resultado final (la mejor mano de cinco cartas y el tamaño del bote) y se distribuyen como:
+\[
+u_i(s_1, \dots, s_n, t_1, \dots, t_n) =
+\begin{cases}
+b_i, & \text{si el jugador $i$ gana el bote},\\
+-b_i', & \text{si pierde la mano},\\
+0, & \text{en caso de empate.}
+\end{cases}
+\]
+
+El equilibrio de Bayes-Nash se alcanza cuando cada jugador elige su estrategia óptima dada su información privada y las creencias sobre las estrategias de los demás.
+
+\hfill \break
+El \textit{Texas Hold’em} combina información privada, azar y señales públicas en una estructura secuencial. Su análisis dentro de la Teoría de Juegos permite estudiar conceptos como la actualización bayesiana de creencias, la racionalidad limitada y el equilibrio estratégico bajo incertidumbre. Por ello, constituye uno de los modelos más utilizados en la investigación sobre decisión estratégica y Teoría de Juegos aplicada a la economía del comportamiento \cite{chen2006poker}.
+
+\subsubsection{Magic: The Gathering}
+
+\textit{Magic: The Gathering} (MTG) \footnote{A partir de ahora usaremos MTG para referirnos a \textit{Magic: The Gathering}} \cite{mtg} es un \textit{trading card game} (TCG)\footnote{A partir de ahora usaremos TCG para referirnos a los \textit{trading card games}} o juego de cartas coleccionables de temática fantástica cuyo objetivo consiste en derrotar al oponente reduciendo sus puntos de vida a cero mediante el uso de criaturas, conjuros y encantamientos. Diseñado en 1993 por Richard Garfield \cite{bbg_richard}, MTG fue el título que popularizó el género y estableció muchas de las bases mecánicas que aún hoy definen los TCG. Su influencia en el diseño moderno de juegos de mesa y cartas es incuestionable: resulta difícil encontrar un diseñador que no cite \textit{Magic: The Gathering} como una de sus principales referencias, o un jugador que no haya oído hablar de él. \cite{garfield_tlagd}
+
+Los trading card games (TCCG o TCG) son juegos de cartas en los que los participantes construyen sus propios mazos a partir de una amplia colección de cartas con diferentes habilidades, valores y funciones. Estas cartas suelen obtenerse mediante sobres aleatorios o intercambios entre jugadores, lo que introduce un componente económico y de coleccionismo además del estratégico. El diseño de un TCG combina gestión de recursos, construcción de mazos y toma de decisiones tácticas, generando una profundidad de juego que equilibra azar y habilidad.
+
+En el caso de MTG, en su modalidad \textit{standard}, dos jugadores se enfrentan con mazos de al menos 60 cartas y una reserva inicial de 20 puntos de vida. El desarrollo de la partida se organiza en turnos compuestos por varias fases: mantenimiento, principal y combate. En los que los jugadores pueden desplegar criaturas, lanzar conjuros o activar habilidades. Uno de los elementos más característicos del sistema de reglas es la gestión del maná, recurso con el que se pagan los costes de las cartas. Este se obtiene de las cartas de \textit{Tierra}, que se pueden jugar una por turno y deben “girarse” para generar maná de distintos colores. La correcta administración de este recurso determina las acciones disponibles en cada turno y condiciona la estrategia general, ya que las cartas más poderosas exigen mayores cantidades o combinaciones específicas de maná \cite{ganivet2024}.
+
+MTG combina elementos de información incompleta, el contenido del mazo y la mano de cada jugador permanecen ocultos, con un marcado componente de planificación previa, representado por la construcción del mazo o \textit{deckbuilding}. Esta doble dimensión, estratégica y táctica, genera un espacio de decisión extenso y altamente complejo. Según Ganivet et al. \cite{ganivet2024}, la estructura secuencial y la dependencia contextual de las decisiones hacen de MTG un entorno idóneo para el estudio de la inteligencia artificial y la optimización heurística, ya que el número de posibles configuraciones supera ampliamente cualquier capacidad de cálculo exhaustivo.
+
+En consecuencia, MTG puede considerarse un juego con múltiples equilibrios dinámicos, donde las estrategias óptimas dependen del contexto: composición del mazo, tipo de oponente y evolución de la partida. Los estudios recientes demuestran que incluso agentes basados en reglas o algoritmos evolutivos tienden a converger hacia comportamientos \textit{cuasi–óptimos} sin alcanzar un equilibrio estable en el sentido clásico. Esta propiedad lo convierte en un modelo de referencia para el análisis de sistemas con información oculta y toma de decisiones secuencial. En nuestro caso, el paralelismo con MTG es directo: el jugador debe gestionar información incompleta, optimizar recursos limitados y equilibrar riesgo y recompensa dentro de un entorno con resultados parcialmente impredecibles. \cite{urzagpt2025}
+
+
+
+% https://www.sciencedirect.com/science/article/pii/S1875952125000771
+% https://ceur-ws.org/Vol-3599/paper_4.pdf
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO. 
+%--------------------------------------------------------------------

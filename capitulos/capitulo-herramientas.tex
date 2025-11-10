@@ -1,0 +1,105 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Herramientas}
+\label{chap:herramientas}
+
+El desarrollo de \textit{Bardtastic} se ha realizado mediante un conjunto de herramientas ampliamente utilizadas tanto en la industria como en el ámbito independiente del desarrollo de videojuegos. La combinación de estas tecnologías ha permitido abordar el proyecto desde una perspectiva integral que abarca programación, diseño visual, producción de contenidos y gestión del desarrollo.
+
+% ----------------------------------------------------------------------------------
+\section{Justificación de la elección tecnológica}
+
+La elección del motor de juego no responde únicamente a criterios de difusión industrial, sino también a la experiencia previa del desarrollador. Unreal Engine \cite{unrealengine} ha sido seleccionado porque es la herramienta en la que el autor ya posee conocimientos previos, especialmente en el uso de \textit{Blueprints}, lo que permite una curva de desarrollo más eficiente en fases iniciales. Los \textit{Blueprints} constituyen el sistema de programación visual de Unreal: un lenguaje basado en nodos que permite crear lógica de juego, interfaces y comportamientos complejos sin necesidad de escribir código C++, facilitando el prototipado rápido y la iteración sobre mecánicas.
+
+Aunque Godot \cite{godot} constituye una alternativa emergente y atractiva en el desarrollo independiente, particularmente por su ligereza, flexibilidad y licencia completamente abierta, presenta todavía limitaciones en cuanto a exportación nativa a plataformas de consola, lo cual condiciona potencialmente la escalabilidad comercial del proyecto. Unreal, en cambio, dispone de \textit{toolchains} y soporte oficial para Xbox, PlayStation y Nintendo Switch, lo que refuerza la viabilidad a largo plazo de \textit{Bardtastic}.
+
+Los puntos clave de esta decisión son:
+
+\begin{itemize}
+    \item \textbf{Prototipado rápido con Blueprints}, que permite experimentar con mecánicas, IA y UI sin coste elevado.
+    \item \textbf{Posibilidad futura de publicar en consolas} sin rehacer el pipeline técnico ni migrar el proyecto.
+    \item Convergencia entre industria AAA y estudios indie que adoptan Unreal como motor principal, lo que garantiza documentación, soporte y comunidad.
+\end{itemize}
+
+\section{Prototipado y velocidad de iteración}
+
+El componente más ventajoso de Unreal para este proyecto son los \textit{Blueprints}. Permiten:
+
+\begin{itemize}
+    \item Probar mecánicas en cuestión de minutos.
+    \item Reimplementar funciones y métodos para alterar comportamientos sin recompilar C++.
+    \item Facilitar los momentos del desarrollo más centrados en la parte artística y el disñeo de niveles.
+\end{itemize}
+
+En \textit{Bardtastic}, las reglas del juego (validación de rimas, efectos de emociones y atención) requieren numerosos ajustes y testeo continuo. Realizar estos cambios únicamente en C++ ralentizaría el flujo de trabajo. La arquitectura híbrida permite así reservar el código nativo para lo que realmente lo requiere: el motor lógico y la IA.
+
+En resumen:
+
+\begin{itemize}
+    \item \textbf{BluePrints} $\rightarrow$ experiencia de usuario, UI, flujo visual del combate.
+    \item \textbf{C++} $\rightarrow$ lógica del sistema, reglas de victoria y comportamiento inteligente.
+\end{itemize}
+
+Este patrón es considerado una buena práctica en Unreal tanto para equipos independientes como grandes producciones.
+
+%aqui podria meter un diagrama de como funciona la interacción entre BP y C++ de este video
+% https://www.youtube.com/watch?v=VMZftEVDuCE&t=404s
+
+\section{\textit{Pipeline} de arte y contenido}
+
+El proceso de creación artística sigue un flujo iterativo orientado a garantizar la coherencia estética del juego y su adecuación al tono teatral y caricaturesco de la propuesta. 
+Es importante destacar que \textbf{todo el arte desarrollado para el prototipo —modelos, texturas, animaciones, iconografía y materiales— es de elaboración propia}, producido específicamente para este Trabajo Fin de Grado.
+
+\paragraph{}{Flujo de creación}
+
+El \textit{pipeline} aplicado es el siguiente:
+
+\begin{enumerate}
+    \item \textbf{\textit{Moodboard} y bocetos}: exploración visual inicial para definir el estilo caricaturesco, la paleta cromática y las referencias teatrales del universo del juego.
+    \item \textbf{Modelado en Blender}: creación desde cero de personajes, objetos y elementos escénicos, con énfasis en formas simples y siluetas expresivas.
+    \item \textbf{Pintado en Substance Painter}: texturizado manual con un acabado \textit{cartoon}, coherente con la dirección artística del proyecto.
+    \item \textbf{Rigging y animación en Blender}: elaboración de esqueletos, pesos y animaciones básicas, centradas en gestos exagerados propios de la interpretación bardesca.
+    \item \textbf{Integración en Unreal Engine}: importación de modelos y texturas, creación de materiales, configuración de \textit{skeletons}, \textit{montages} y controladores de animación.
+    \item \textbf{Asignación de comportamiento}: conexión del contenido artístico con la lógica de juego mediante C\texttt{++} y \textit{Blueprints}, integrando animaciones, efectos y respuestas a eventos del gameplay.
+\end{enumerate}
+
+
+
+\section{Diseño 2D y UI}
+
+Para el diseño visual de \textit{Bardtastic} se utiliza Adobe Photoshop como herramienta principal de creación gráfica. En él se desarrollan tanto las cartas y sus ilustraciones como los iconos y botones necesarios para la interfaz del juego. Photoshop constituye además el entorno donde se componen los distintos elementos promocionales y de presentación del proyecto, como la carátula del juego, materiales para tiendas digitales y posibles publicaciones en redes. Los recursos generados en esta fase se integran posteriormente en el sistema \textit{UMG} de Unreal Engine, desde donde se implementa su comportamiento e interacción dentro del flujo de partida.
+
+\section{Audio}
+
+El apartado sonoro de \textit{Bardtastic} se centra en dos elementos fundamentales: la música de fondo que acompaña a los enfrentamientos y los efectos asociados al uso de las cartas. Para la edición y optimización de estos audios se emplea Audacity, donde se realizan ajustes básicos como recortes, normalización y limpieza de ruido cuando resulta necesario. Una vez preparados, los recursos se integran en el motor de sonido de Unreal Engine, que se encarga de reproducirlos de forma contextual durante la partida y de proporcionar al jugador un apoyo auditivo coherente con el ritmo del combate y la construcción de su historia.
+
+
+\section{Herramientas de producción}
+
+Para gestionar la evolución del proyecto se integra:
+
+\begin{itemize}
+    \item \textbf{Notion}: organización del desarrollo, diseño del juego y documentación.
+    \item \textbf{Git}: control de versiones del código y activos con configuración específica para repositorios de Unreal.
+\end{itemize}
+
+La gestión con Notion permite aplicar incrementos iterativos de funcionalidad y contenido, priorizando siempre aquello que aporta valor jugable en cada momento.
+
+\section{Conclusiones}
+
+El conjunto de herramientas seleccionado está alineado con:
+\begin{itemize}
+    \item Los \textbf{estándares de la industria} en motor y pipeline.
+    \item La \textbf{realidad del desarrollo indie}, que exige flexibilidad y rapidez de iteración.
+    \item La experiencia previa del desarrollador, lo que se traduce en mayor eficiencia.
+\end{itemize}
+
+La combinación de \textbf{C++ y Blueprints} en Unreal representa un equilibrio idóneo entre rendimiento, mantenibilidad y velocidad de prototipado, factores decisivos en un juego experimental y basado en toma de decisiones estratégicas como \textit{Bardtastic}.
+% ----------------------------------------------------------------------------------
+
+
+
+\endinput
+%--------------------------------------------------------------------
+% FIN DEL CAPÍTULO. 
+%--------------------------------------------------------------------
