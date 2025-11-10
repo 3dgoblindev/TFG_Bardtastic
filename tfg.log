@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.10)  10 NOV 2025 19:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.10)  10 NOV 2025 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1666,45 +1666,49 @@ has been already used, duplicate ignored
 l.101     \item E
                  n el caso MIN: cuando obtenemos un sucesor con valor \(v\),...
  <./img/Minimax_tres_en_raya.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 112.
+put line 113.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 150.
-LaTeX Info: Redefining \% on input line 150.
+LaTeX Info: Redefining \. on input line 151.
+LaTeX Info: Redefining \% on input line 151.
  [30]
-LaTeX Info: Redefining \. on input line 157.
-LaTeX Info: Redefining \% on input line 157.
+LaTeX Info: Redefining \. on input line 158.
+LaTeX Info: Redefining \% on input line 158.
 
 [31]
-<img/Alfa-Beta_tres_en_ralla.PNG, id=676, 576.35326pt x 322.806pt>
+<img/Alfa-Beta_tres_en_ralla.PNG, id=677, 576.35326pt x 322.806pt>
 File: img/Alfa-Beta_tres_en_ralla.PNG Graphic file (type png)
 <use img/Alfa-Beta_tres_en_ralla.PNG>
 Package pdftex.def Info: img/Alfa-Beta_tres_en_ralla.PNG  used on input line 16
-0.
+1.
 (pdftex.def)             Requested size: 408.2971pt x 228.6816pt.
-LaTeX Info: Redefining \. on input line 191.
-LaTeX Info: Redefining \% on input line 191.
+LaTeX Info: Redefining \. on input line 192.
+LaTeX Info: Redefining \% on input line 192.
  [32
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.191   \item \textbf
+l.192   \item \textbf
                      {Búsqueda $A^*$}: combina el costo hasta el nodo \(g(n...
  <./img/Alfa-Beta_tres_en_ralla.PNG>]
-LaTeX Info: Redefining \. on input line 217.
-LaTeX Info: Redefining \% on input line 217.
+LaTeX Info: Redefining \. on input line 218.
+LaTeX Info: Redefining \% on input line 218.
  [33]
-Underfull \hbox (badness 10000) in paragraph at lines 229--231
+Underfull \hbox (badness 10000) in paragraph at lines 230--232
 
  []
 
-LaTeX Info: Redefining \. on input line 233.
-LaTeX Info: Redefining \% on input line 233.
+LaTeX Info: Redefining \. on input line 234.
+LaTeX Info: Redefining \% on input line 234.
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
@@ -1716,7 +1720,7 @@ chapter 5.
 [36
 
 ]
-<img/Bardtastic_intro.png, id=719, 1441.63594pt x 775.39688pt>
+<img/Bardtastic_intro.png, id=720, 1441.63594pt x 775.39688pt>
 File: img/Bardtastic_intro.png Graphic file (type png)
 <use img/Bardtastic_intro.png>
 Package pdftex.def Info: img/Bardtastic_intro.png  used on input line 46.
@@ -1738,7 +1742,7 @@ l.54
 LaTeX Info: Redefining \. on input line 100.
 LaTeX Info: Redefining \% on input line 100.
  [38]
-<img/Ejemplo carta.png, id=737, 433.62pt x 433.62pt>
+<img/Ejemplo carta.png, id=738, 433.62pt x 433.62pt>
 File: img/Ejemplo carta.png Graphic file (type png)
 <use img/Ejemplo carta.png>
 Package pdftex.def Info: img/Ejemplo carta.png  used on input line 109.
@@ -1752,7 +1756,7 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.121 
        <./img/Ejemplo carta.png>]
-<img/Ejemplo_audiencia.png, id=752, 1927.2pt x 1032.85875pt>
+<img/Ejemplo_audiencia.png, id=753, 1927.2pt x 1032.85875pt>
 File: img/Ejemplo_audiencia.png Graphic file (type png)
 <use img/Ejemplo_audiencia.png>
 Package pdftex.def Info: img/Ejemplo_audiencia.png  used on input line 128.
@@ -1787,7 +1791,7 @@ chapter 6.
 [45
 
 ]
-<img/slay_the_spire.jpg, id=824, 1927.2pt x 1084.05pt>
+<img/slay_the_spire.jpg, id=825, 1927.2pt x 1084.05pt>
 File: img/slay_the_spire.jpg Graphic file (type jpg)
 <use img/slay_the_spire.jpg>
 Package pdftex.def Info: img/slay_the_spire.jpg  used on input line 33.
@@ -1801,12 +1805,12 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.49 \end{itemize}
                    <./img/slay_the_spire.jpg>]
-<img/balatro.jpg, id=833, 1954.34366pt x 1099.31831pt>
+<img/balatro.jpg, id=834, 1954.34366pt x 1099.31831pt>
 File: img/balatro.jpg Graphic file (type jpg)
 <use img/balatro.jpg>
 Package pdftex.def Info: img/balatro.jpg  used on input line 55.
 (pdftex.def)             Requested size: 408.2971pt x 229.65591pt.
-<img/Storyteller.jpg, id=837, 1954.34366pt x 1099.31831pt>
+<img/Storyteller.jpg, id=838, 1954.34366pt x 1099.31831pt>
 File: img/Storyteller.jpg Graphic file (type jpg)
 <use img/Storyteller.jpg>
 Package pdftex.def Info: img/Storyteller.jpg  used on input line 77.
@@ -1842,7 +1846,7 @@ LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
  [50]
 chapter 7.
-<img/gantt.PNG, id=871, 754.61925pt x 309.5565pt>
+<img/gantt.PNG, id=872, 754.61925pt x 309.5565pt>
 File: img/gantt.PNG Graphic file (type png)
 <use img/gantt.PNG>
 Package pdftex.def Info: img/gantt.PNG  used on input line 31.
@@ -1971,7 +1975,7 @@ LaTeX Info: Redefining \% on input line 291.
 LaTeX Info: Redefining \. on input line 317.
 LaTeX Info: Redefining \% on input line 317.
  [58]
-<img/proto2.jpeg, id=1029, 1301.86375pt x 1148.29pt>
+<img/proto2.jpeg, id=1030, 1301.86375pt x 1148.29pt>
 File: img/proto2.jpeg Graphic file (type jpg)
 <use img/proto2.jpeg>
 Package pdftex.def Info: img/proto2.jpeg  used on input line 320.
@@ -1989,7 +1993,7 @@ l.332     \item \textbf
 LaTeX Info: Redefining \. on input line 369.
 LaTeX Info: Redefining \% on input line 369.
  [60]
-<img/proto1.jpeg, id=1053, 1606.0pt x 698.61pt>
+<img/proto1.jpeg, id=1054, 1606.0pt x 698.61pt>
 File: img/proto1.jpeg Graphic file (type jpg)
 <use img/proto1.jpeg>
 Package pdftex.def Info: img/proto1.jpeg  used on input line 380.
@@ -2003,7 +2007,7 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.403     \item e
                  l flujo de robo, mano, mesa y descarte, <./img/proto1.jpeg>]
-<img/ClassDiagram mitad 1.png, id=1063, 972.0315pt x 1129.821pt>
+<img/ClassDiagram mitad 1.png, id=1064, 972.0315pt x 1129.821pt>
 File: img/ClassDiagram mitad 1.png Graphic file (type png)
 <use img/ClassDiagram mitad 1.png>
 Package pdftex.def Info: img/ClassDiagram mitad 1.png  used on input line 427.
@@ -2014,7 +2018,7 @@ Underfull \vbox (badness 4341) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 431.
 LaTeX Info: Redefining \% on input line 431.
  [62]
-<img/ClassDiagram mitad 2.png, id=1069, 1224.9765pt x 670.9065pt>
+<img/ClassDiagram mitad 2.png, id=1070, 1224.9765pt x 670.9065pt>
 File: img/ClassDiagram mitad 2.png Graphic file (type png)
 <use img/ClassDiagram mitad 2.png>
 Package pdftex.def Info: img/ClassDiagram mitad 2.png  used on input line 434.
@@ -2062,12 +2066,12 @@ chapter 9.
 [68
 
 ]
-<img/UI general.jpg, id=1112, 1927.2pt x 1084.05pt>
+<img/UI general.jpg, id=1113, 1927.2pt x 1084.05pt>
 File: img/UI general.jpg Graphic file (type jpg)
 <use img/UI general.jpg>
 Package pdftex.def Info: img/UI general.jpg  used on input line 36.
 (pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
-<img/has ganado.jpg, id=1114, 1927.2pt x 1084.05pt>
+<img/has ganado.jpg, id=1115, 1927.2pt x 1084.05pt>
 File: img/has ganado.jpg Graphic file (type jpg)
 <use img/has ganado.jpg>
 Package pdftex.def Info: img/has ganado.jpg  used on input line 53.
@@ -2084,12 +2088,12 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.57 
       <./img/UI general.jpg>]
-<img/descartes.jpg, id=1120, 1927.2pt x 1084.05pt>
+<img/descartes.jpg, id=1121, 1927.2pt x 1084.05pt>
 File: img/descartes.jpg Graphic file (type jpg)
 <use img/descartes.jpg>
 Package pdftex.def Info: img/descartes.jpg  used on input line 62.
 (pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
-<img/mazo.jpg, id=1121, 1927.2pt x 1084.05pt>
+<img/mazo.jpg, id=1122, 1927.2pt x 1084.05pt>
 File: img/mazo.jpg Graphic file (type jpg)
 <use img/mazo.jpg>
 Package pdftex.def Info: img/mazo.jpg  used on input line 69.
@@ -2121,7 +2125,7 @@ l.89
 LaTeX Info: Redefining \. on input line 127.
 LaTeX Info: Redefining \% on input line 127.
  [72]
-<img/jugadores_clases.PNG, id=1142, 681.747pt x 290.88675pt>
+<img/jugadores_clases.PNG, id=1143, 681.747pt x 290.88675pt>
 File: img/jugadores_clases.PNG Graphic file (type png)
 <use img/jugadores_clases.PNG>
 Package pdftex.def Info: img/jugadores_clases.PNG  used on input line 132.
@@ -2160,7 +2164,7 @@ AddCardToPlay()\T1/pplj/m/n/10 ,
 LaTeX Info: Redefining \. on input line 229.
 LaTeX Info: Redefining \% on input line 229.
 [75]
-<img/evento.jpg, id=1174, 1927.2pt x 1084.05pt>
+<img/evento.jpg, id=1175, 1927.2pt x 1084.05pt>
 File: img/evento.jpg Graphic file (type jpg)
 <use img/evento.jpg>
 Package pdftex.def Info: img/evento.jpg  used on input line 232.
@@ -2205,7 +2209,7 @@ LaTeX Info: Redefining \% on input line 327.
 LaTeX Info: Redefining \. on input line 366.
 LaTeX Info: Redefining \% on input line 366.
  [79]
-<img/menu.jpg, id=1197, 1927.2pt x 1084.05pt>
+<img/menu.jpg, id=1198, 1927.2pt x 1084.05pt>
 File: img/menu.jpg Graphic file (type jpg)
 <use img/menu.jpg>
 Package pdftex.def Info: img/menu.jpg  used on input line 369.
@@ -2303,9 +2307,9 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 93 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 31976 strings out of 474485
- 609065 string characters out of 5743733
- 1951542 words of memory out of 5000000
+ 31977 strings out of 474485
+ 609068 string characters out of 5743733
+ 1952542 words of memory out of 5000000
  53050 multiletter control sequences out of 15000+600000
  757893 words of font info for 261 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2336,9 +2340,9 @@ ts/type1/urw/palatino/uplbi8a.pfb><C:/Users/loren/AppData/Local/Programs/MiKTeX
 /fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/loren/AppData/Local/Programs/MiK
 TeX/fonts/type1/urw/palatino/uplri8a.pfb><C:/Users/loren/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on tfg.pdf (108 pages, 11892292 bytes).
+Output written on tfg.pdf (108 pages, 11892473 bytes).
 PDF statistics:
- 1885 PDF objects out of 2073 (max. 8388607)
- 487 named destinations out of 1000 (max. 500000)
+ 1886 PDF objects out of 2073 (max. 8388607)
+ 488 named destinations out of 1000 (max. 500000)
  1163 words of extra memory for PDF output out of 10000 (max. 10000000)
 
