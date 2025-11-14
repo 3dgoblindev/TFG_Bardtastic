@@ -3,12 +3,12 @@
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\nonumberline Summary}{\es@scroman {vii}}{chapter*.4}%
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{\nonumberline Introducción}{\es@scroman {xi}}{chapter*.9}%
-\contentsline {section}{\numberline {1}Motivación y contexto}{\es@scroman {xi}}{section.0.1}%
-\contentsline {section}{\numberline {2}Objetivos del trabajo}{\es@scroman {xi}}{section.0.2}%
-\contentsline {paragraph}{\nonumberline Objetivo general 1: Fundamentación matemática y teórica}{\es@scroman {xi}}{paragraph*.11}%
-\contentsline {paragraph}{\nonumberline Objetivo general 2: Diseño e implementación del prototipo y del agente}{\es@scroman {xii}}{paragraph*.13}%
-\contentsline {section}{\numberline {3}Estructura del documento}{\es@scroman {xii}}{section.0.3}%
+\contentsline {chapter}{\nonumberline Introducción}{\es@scroman {xiii}}{chapter*.9}%
+\contentsline {section}{\numberline {1}Motivación y contexto}{\es@scroman {xiii}}{section.0.1}%
+\contentsline {section}{\numberline {2}Objetivos del trabajo}{\es@scroman {xiii}}{section.0.2}%
+\contentsline {paragraph}{\nonumberline Objetivo general 1: Fundamentación matemática y teórica}{\es@scroman {xiii}}{paragraph*.11}%
+\contentsline {paragraph}{\nonumberline Objetivo general 2: Diseño e implementación del prototipo y del agente}{\es@scroman {xiv}}{paragraph*.13}%
+\contentsline {section}{\numberline {3}Estructura del documento}{\es@scroman {xiv}}{section.0.3}%
 \contentsline {chapter}{\numberline {1}¿Qué es un juego?}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Teoría de Juegos}{1}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Definición}{1}{subsection.1.1.1}%
@@ -120,7 +120,6 @@
 \contentsline {section}{\numberline {8.1}Justificación de la elección tecnológica}{65}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Prototipado y velocidad de iteración}{65}{section.8.2}%
 \contentsline {section}{\numberline {8.3}\textit {Pipeline} de arte y contenido}{66}{section.8.3}%
-\contentsline {paragraph}{\nonumberline Flujo de creación}{66}{paragraph*.27}%
 \contentsline {section}{\numberline {8.4}Diseño 2D y UI}{66}{section.8.4}%
 \contentsline {section}{\numberline {8.5}Audio}{67}{section.8.5}%
 \contentsline {section}{\numberline {8.6}Herramientas de producción}{67}{section.8.6}%
@@ -163,19 +162,19 @@
 \contentsline {subsection}{\numberline {10.2.1}Pruebas exploratorias}{81}{subsection.10.2.1}%
 \contentsline {subsection}{\numberline {10.2.2}\textit {Playtesting} supervisado}{82}{subsection.10.2.2}%
 \contentsline {subsection}{\numberline {10.2.3}Trazas y depuración}{82}{subsection.10.2.3}%
-\contentsline {section}{\numberline {10.3}Cobertura funcional alcanzada}{83}{section.10.3}%
-\contentsline {paragraph}{\nonumberline Casos de prueba manuales (muestra)}{83}{paragraph*.29}%
-\contentsline {paragraph}{\nonumberline Limitaciones del enfoque actual}{83}{paragraph*.31}%
-\contentsline {section}{\numberline {10.4}Plan de formalización de pruebas (\textit {Vertical Slice})}{84}{section.10.4}%
-\contentsline {paragraph}{\nonumberline Niveles y tipos de prueba}{84}{paragraph*.33}%
-\contentsline {paragraph}{\nonumberline Herramientas de Unreal recomendadas}{84}{paragraph*.35}%
-\contentsline {paragraph}{\nonumberline Matriz mínima de pruebas (RF $\rightarrow $ TC)}{84}{paragraph*.37}%
-\contentsline {paragraph}{\nonumberline Criterios de aceptación y métricas}{84}{paragraph*.39}%
-\contentsline {paragraph}{\nonumberline Procedimiento de \textit {playtest} estructurado}{85}{paragraph*.41}%
-\contentsline {chapter}{\numberline {11}Conclusiones y trabajo a futuro}{86}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Síntesis y logros del proyecto}{86}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Valoración de los objetivos}{86}{section.11.2}%
-\contentsline {section}{\numberline {11.3}Trabajo futuro}{87}{section.11.3}%
+\contentsline {section}{\numberline {10.3}Cobertura funcional alcanzada}{82}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Casos de prueba manuales (muestra)}{83}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Limitaciones del enfoque actual}{83}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Plan de formalización de pruebas (\textit {Vertical Slice})}{83}{section.10.6}%
+\contentsline {subsection}{\numberline {10.6.1}Niveles y tipos de prueba}{83}{subsection.10.6.1}%
+\contentsline {subsection}{\numberline {10.6.2}Herramientas de Unreal recomendadas}{84}{subsection.10.6.2}%
+\contentsline {subsection}{\numberline {10.6.3}Matriz mínima de pruebas (RF $\rightarrow $ TC)}{84}{subsection.10.6.3}%
+\contentsline {subsection}{\numberline {10.6.4}Criterios de aceptación y métricas}{84}{subsection.10.6.4}%
+\contentsline {subsection}{\numberline {10.6.5}Procedimiento de \textit {playtest} estructurado}{84}{subsection.10.6.5}%
+\contentsline {chapter}{\numberline {11}Conclusiones y trabajo a futuro}{85}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Síntesis y logros del proyecto}{85}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Valoración de los objetivos}{85}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Trabajo a futuro}{86}{section.11.3}%
 \def \@chapapp {\appendixname }
-\contentsline {chapter}{\nonumberline Bibliograf\'{\i }a}{88}{chapter*.42}%
+\contentsline {chapter}{\nonumberline Bibliograf\'{\i }a}{87}{chapter*.28}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

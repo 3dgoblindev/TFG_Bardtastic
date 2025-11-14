@@ -5,51 +5,51 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: abbrv.bst
 Reallocating 'name_of_file' (item size: 1) to 12 items.
 Database file #1: library.bib
-Warning--I didn't find a database entry for "notion"
-Warning--I didn't find a database entry for "git"
 Warning--to sort, need author or key in mtg
 Warning--to sort, need author or key in bbg_richard
 Warning--to sort, need author or key in mtg_legal_cards
+Warning--to sort, need author or key in notion
+Warning--to sort, need author or key in git
 Warning--empty journal in costikyan2002
-You've used 58 entries,
+You've used 60 entries,
             2118 wiz_defined-function locations,
-            824 strings with 12058 characters,
-and the built_in function-call counts, 13353 in all, are:
-= -- 1284
-> -- 481
+            829 strings with 12154 characters,
+and the built_in function-call counts, 13689 in all, are:
+= -- 1318
+> -- 483
 < -- 1
-+ -- 208
++ -- 210
 - -- 142
-* -- 534
-:= -- 2281
-add.period$ -- 201
-call.type$ -- 58
-change.case$ -- 226
+* -- 544
+:= -- 2319
+add.period$ -- 207
+call.type$ -- 60
+change.case$ -- 232
 chr.to.int$ -- 0
-cite$ -- 62
-duplicate$ -- 552
-empty$ -- 1296
+cite$ -- 66
+duplicate$ -- 566
+empty$ -- 1342
 format.name$ -- 142
-if$ -- 2889
+if$ -- 2973
 int.to.chr$ -- 0
-int.to.str$ -- 58
+int.to.str$ -- 60
 missing$ -- 49
-newline$ -- 319
+newline$ -- 329
 num.names$ -- 110
-pop$ -- 438
+pop$ -- 458
 preamble$ -- 1
-purify$ -- 187
+purify$ -- 191
 quote$ -- 0
-skip$ -- 378
+skip$ -- 388
 stack$ -- 0
-substring$ -- 364
-swap$ -- 64
+substring$ -- 374
+swap$ -- 66
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 190
-warning$ -- 4
+type$ -- 198
+warning$ -- 6
 while$ -- 117
-width$ -- 60
-write$ -- 656
+width$ -- 62
+write$ -- 674
 (There were 6 warnings)

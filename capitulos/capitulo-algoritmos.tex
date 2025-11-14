@@ -96,16 +96,25 @@ u(n), & \text{si } n \text{ es terminal}, \\
 
 pero con las condiciones de poda:
 
-\begin{itemize}
-    \item En el caso MAX: cuando calculamos un sucesor \(s\) y obtenemos un valor \(v = \text{AlphaBeta}(s, \alpha, \beta)\), si \(v > \alpha\) actualizamos \(\alpha = v\). Si en algún momento \(\alpha \ge \beta\), rompemos el bucle de sucesores (corte).
-    \item En el caso MIN: cuando obtenemos un sucesor con valor \(v\), si \(v < \beta\) actualizamos \(\beta = v\). Si \(\beta \le \alpha\), hacemos corte (podar).
+\needspace{8\baselineskip} % reserva sitio para que no se parta
+\begin{itemize}[leftmargin=1.8em, itemsep=2pt, topsep=2pt, parsep=0pt, partopsep=0pt]
+	\item En el caso MAX: cuando calculamos un sucesor \(s\) y obtenemos un valor
+	\(v = \text{AlphaBeta}(s, \alpha, \beta)\), si \(v > \alpha\) actualizamos
+	\(\alpha = v\). Si en algún momento \(\alpha \ge \beta\), rompemos el bucle de sucesores (corte).
+	\item En el caso MIN: cuando obtenemos un sucesor con valor \(v\), si \(v < \beta\)
+	actualizamos \(\beta = v\). Si \(\beta \le \alpha\), hacemos corte (podar).
 \end{itemize}
+
+
+%\medskip
 
 El agente que utiliza poda $\alpha-\beta$ mantiene el mismo tipo de racionalidad que el agente minimax, pero optimiza su proceso de decisión reduciendo la cantidad de estados explorados. Se trata, por tanto, de un agente basado en modelos que emplea un mecanismo de búsqueda más eficiente para alcanzar decisiones racionales en tiempo finito.
 
 Es por esto que se utiliza ampliamente para juegos complejos bipersonales de suma cero, como el ajedrez o el tres en raya.
 
+
 \newpage
+
 
 \paragraph{El algoritmo de búsqueda $\alpha-\beta$}
 

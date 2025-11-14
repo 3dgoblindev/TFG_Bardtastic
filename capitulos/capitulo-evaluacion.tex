@@ -19,7 +19,7 @@ Durante esta fase no se han implementado tests unitarios automatizados. La valid
 
 \subsection{Pruebas exploratorias}
 
-La validación se ha centrado en un enfoque de pruebas exploratorias, en el que el propio desarrollador interactúa con el sistema sin un guion rígido, observando el comportamiento del juego y buscando posibles fallos en sus mecánicas principales. Dentro de este enfoque se han aplicado tres técnicas complementarias:
+La validación se ha centrado en un enfoque de pruebas exploratorias, en el que la propia desarrolladora interactúa con el sistema sin un guion rígido, observando el comportamiento del juego y buscando posibles fallos en sus mecánicas principales. Dentro de este enfoque se han aplicado tres técnicas complementarias:
 
 \begin{itemize}
   \item \textbf{Pruebas sistemáticas de juego}: sesiones completas y repetidas de enfrentamientos cubriendo tanto flujos habituales como situaciones límite (mazo agotado, rima inválida, empate en audiencia, etc.).
@@ -46,21 +46,7 @@ La validación se ha centrado en un enfoque de pruebas exploratorias, en el que 
 
 \subsection{\textit{Playtesting} supervisado}
 
-Se llevaron a cabo varias sesiones de \textit{playtesting} supervisado con perfiles de usuario representativos del público objetivo: jugadores ocasionales familiarizados con juegos narrativos, usuarios con experiencia previa en \textit{deckbuilders}, y personas sin experiencia específica en este género pero habituadas a videojuegos en general. El objetivo principal fue evaluar la comprensibilidad de la interfaz, la legibilidad de la información en pantalla, la claridad del \textit{feedback} y el ritmo de toma de decisiones.
-
-Durante estas sesiones se registraron diversas observaciones cualitativas, entre ellas:
-
-\begin{itemize}
-	\item \textbf{Incidencia 1: Confusión en el encadenamiento de rimas.} Algunos usuarios tardaron en identificar qué cartas eran válidas para continuar la secuencia, lo que evidenció la necesidad de reforzar el resaltado visual de opciones disponibles.
-	
-	\item \textbf{Incidencia 2: Lectura incompleta del estado de la audiencia.} Se detectó que parte de los usuarios ignoraban la puntuación de atención individual y tomaban decisiones sin considerar los efectos emocionales, lo que llevó a aumentar el tamaño de ciertos elementos y de añadir una animación especial para el bono de emoción.
-	
-	\item \textbf{Incidencia 3: Tamaño insuficiente de las cartas en pantalla.} Parte de los usuarios indicó dificultades para leer el texto y distinguir ciertos iconos en resoluciones intermedias (1080p), especialmente durante la selección de jugada. Este comportamiento motivó un reajuste del tamaño mínimo de las cartas y una mejora en el escalado adaptativo de la \textit{UI}.
-
-\end{itemize}
-
-Estas incidencias permitieron refinar tanto la presentación visual como el flujo de interacción, contribuyendo a mejorar la claridad y la suavidad de la experiencia de juego.
-s
+Se realizaron pruebas informales con usuarios (principalmente compañeros) con el objetivo de observar la comprensibilidad de la interfaz, la claridad del \textit{feedback} y el ritmo de juego. Durante estas sesiones se registraron observaciones cualitativas relacionadas con posibles confusiones, tiempos de decisión, errores de lectura de rimas y la claridad del resultado final.
 
 \subsection{Trazas y depuración}
 
@@ -78,7 +64,7 @@ A nivel práctico se han verificado los siguientes bloques:
   \item \textbf{Guardado}: persistencia básica de la \textit{run} (\texttt{SavedRun} con \texttt{Deck}).
 \end{itemize}
 
-\paragraph{Casos de prueba manuales (muestra)}
+\section{Casos de prueba manuales (muestra)}
 A continuación se documentan casos representativos usados de forma manual durante el prototipado. Sirven como base para su futura automatización.
 
 \begin{longtable}{@{}p{2.2cm}p{3.2cm}p{6.6cm}p{2.5cm}@{}}
@@ -97,7 +83,7 @@ TC-08 & Guardado & Guardar tras evento y cargar; verificar integridad del mazo. 
 \end{longtable}
 
 
-\paragraph{Limitaciones del enfoque actual}
+\section{Limitaciones del enfoque actual}
 \begin{itemize}
   \item \textbf{Sin pruebas unitarias/funcionales automatizadas}: dependencia total de tests manuales.
   \item \textbf{Sin medición sistemática de rendimiento}: percepción subjetiva de fluidez.
@@ -107,7 +93,7 @@ TC-08 & Guardado & Guardar tras evento y cargar; verificar integridad del mazo. 
 \section{Plan de formalización de pruebas (\textit{Vertical Slice})}
 Para la siguiente fase se propone un plan incremental, compatible con Unreal:
 
-\paragraph{Niveles y tipos de prueba}
+\subsection{Niveles y tipos de prueba}
 \begin{itemize}
   \item \textbf{Unitarias} (C++): validación de utilidades puras (comparación de rimas, cálculo de atención, saturación, orden de efectos).
   \item \textbf{Funcionales/UI} (Blueprint \& Functional Testing): flujo \emph{end-to-end} en mapas de test (cargar carta, jugar, actualizar audiencia, fin de turno).
@@ -115,7 +101,7 @@ Para la siguiente fase se propone un plan incremental, compatible con Unreal:
   \item \textbf{Experiencia de usuario}: \textit{playtests} con protocolo, métricas y cuestionario SUS/attrakDiff.
 \end{itemize}
 
-\paragraph{Herramientas de Unreal recomendadas}
+\subsection{Herramientas de Unreal recomendadas}
 \begin{itemize}
   \item \textbf{Automation System (C++)}: pruebas unitarias con \texttt{IMPLEMENT\_SIMPLE\_AUTOMATION\_TEST}.
   \item \textbf{Functional Testing / Automation Spec}: mapas de prueba con \textit{steps} de juego.
@@ -123,7 +109,7 @@ Para la siguiente fase se propone un plan incremental, compatible con Unreal:
   \item \textbf{Commandlets} simples: generación/carga de mazos de prueba.
 \end{itemize}
 
-\paragraph{Matriz mínima de pruebas (RF $\rightarrow$ TC)}
+\subsection{Matriz mínima de pruebas (RF $\rightarrow$ TC)}
 \begin{tabularx}{\linewidth}{@{}lYYYYYYYY@{}}
 \toprule
 \textbf{RF} & \textbf{TC-01} & \textbf{TC-02} & \textbf{TC-03} & \textbf{TC-04} & \textbf{TC-05} & \textbf{TC-06} & \textbf{TC-07} & \textbf{TC-08}\\
@@ -141,14 +127,14 @@ RF-10 Ganador   &   &   &   & X &   &   &   &   \\
 \bottomrule
 \end{tabularx}
 
-\paragraph{Criterios de aceptación y métricas}
+\subsection{Criterios de aceptación y métricas}
 \begin{itemize}
   \item \textbf{Funcional}: 0 \textit{blockers} y 0 \textit{críticos} tras batería de TC-01..08.
   \item \textbf{Rendimiento}: acción típica (validar rima + aplicar efectos) $<$ 100\,ms en PC objetivo.
   \item \textbf{Playtest}: $\geq$ 80\% de jugadores comprende reglas de rima sin explicación adicional; tasa de finalización de partida $\geq$ 90\%.
 \end{itemize}
 
-\paragraph{Procedimiento de \textit{playtest} estructurado}
+\subsection{Procedimiento de \textit{playtest} estructurado}
 \begin{itemize}
   \item \textbf{Protocolo}: briefing (1 min) $\rightarrow$ partida (10--15 min) $\rightarrow$ encuesta corta (SUS) + entrevista (3 min).
   \item \textbf{Instrumentación}: contadores de turnos, tiempo por decisión, errores de rima, impulsos de atención por carta.

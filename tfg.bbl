@@ -1,5 +1,15 @@
 \begin{thebibliography}{10}
 
+\bibitem{git}
+Git.
+\newblock \url{https://git-scm.com}.
+\newblock Accedido el 10 de noviembre de 2025.
+
+\bibitem{notion}
+Notion.
+\newblock \url{https://www.notion.so}.
+\newblock Accedido el 10 de noviembre de 2025.
+
 \bibitem{mtg_legal_cards}
 {Number of cards legal in Standard over time - AFR Standard was the largest in
   history}.

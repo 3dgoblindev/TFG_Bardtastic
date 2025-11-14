@@ -47,36 +47,31 @@ Este patrón es considerado una buena práctica en Unreal tanto para equipos ind
 
 \section{\textit{Pipeline} de arte y contenido}
 
-El proceso de creación artística siguió un flujo iterativo orientado a garantizar la coherencia estética del juego y su adecuación al tono teatral y caricaturesco de la propuesta. 
-Es importante destacar que todo el arte desarrollado para el prototipo (modelos, texturas, animaciones, iconografía y materiales) fue de elaboración propia, producido específicamente para este Trabajo Fin de Grado.
+El proceso de creación artística sigue un flujo iterativo orientado a garantizar la coherencia estética del juego y su adecuación al tono teatral y caricaturesco de la propuesta. 
+Es importante destacar que \textbf{todo el arte desarrollado para el prototipo —modelos, texturas, animaciones, iconografía y materiales— es de elaboración propia}, producido específicamente para este Trabajo Fin de Grado.
 
-\paragraph{Flujo de creación}
+\paragraph{}{Flujo de creación}
 
-El \textit{pipeline} aplicado fue el siguiente:
+El \textit{pipeline} aplicado es el siguiente:
 
 \begin{enumerate}
-	\item \textbf{\textit{Moodboard} y bocetos}: se realizó una exploración visual inicial para definir el estilo caricaturesco, la paleta cromática y las referencias teatrales del universo del juego.
-	\item \textbf{Modelado en Blender}: se crearon desde cero personajes, objetos y elementos escénicos, con énfasis en formas simples y siluetas expresivas.
-	\item \textbf{Pintado en Substance Painter}: se llevó a cabo un texturizado manual con un acabado \textit{cartoon}, coherente con la dirección artística del proyecto.
-	\item \textbf{Rigging y animación en Blender}: se elaboraron esqueletos, pesos y animaciones básicas, centradas en gestos exagerados propios de la interpretación bardesca.
-	\item \textbf{Integración en Unreal Engine}: se importaron modelos y texturas, se construyeron materiales y se configuraron \textit{skeletons}, \textit{montages} y controladores de animación.
-	\item \textbf{Asignación de comportamiento}: se conectó el contenido artístico con la lógica de juego mediante C\texttt{++} y \textit{Blueprints}, integrando animaciones, efectos y respuestas a eventos del gameplay.
+    \item \textbf{\textit{Moodboard} y bocetos}: exploración visual inicial para definir el estilo caricaturesco, la paleta cromática y las referencias teatrales del universo del juego.
+    \item \textbf{Modelado en Blender}: creación desde cero de personajes, objetos y elementos escénicos, con énfasis en formas simples y siluetas expresivas.
+    \item \textbf{Pintado en Substance Painter}: texturizado manual con un acabado \textit{cartoon}, coherente con la dirección artística del proyecto.
+    \item \textbf{Rigging y animación en Blender}: elaboración de esqueletos, pesos y animaciones básicas, centradas en gestos exagerados propios de la interpretación bardesca.
+    \item \textbf{Integración en Unreal Engine}: importación de modelos y texturas, creación de materiales, configuración de \textit{skeletons}, \textit{montages} y controladores de animación.
+    \item \textbf{Asignación de comportamiento}: conexión del contenido artístico con la lógica de juego mediante C\texttt{++} y \textit{Blueprints}, integrando animaciones, efectos y respuestas a eventos del gameplay.
 \end{enumerate}
 
 
 
 \section{Diseño 2D y UI}
 
-Para el diseño visual de \textit{Bardtastic} se utilizó Adobe Photoshop como herramienta principal de creación gráfica. En él se desarrollaron tanto las cartas y sus ilustraciones como los iconos y botones necesarios para la interfaz del juego. Photoshop constituyó además el entorno donde se compusieron los distintos elementos promocionales y de presentación del proyecto, como la carátula del juego, materiales para tiendas digitales y publicaciones en redes. Los recursos generados en esta fase fueron integrados posteriormente en el sistema \textit{UMG} de Unreal Engine, desde donde se implementó su comportamiento e interacción dentro del flujo de partida.
+Para el diseño visual de \textit{Bardtastic} se utiliza Adobe Photoshop como herramienta principal de creación gráfica. En él se desarrollan tanto las cartas y sus ilustraciones como los iconos y botones necesarios para la interfaz del juego. Photoshop constituye además el entorno donde se componen los distintos elementos promocionales y de presentación del proyecto, como la carátula del juego, materiales para tiendas digitales y posibles publicaciones en redes. Los recursos generados en esta fase se integran posteriormente en el sistema \textit{UMG} de Unreal Engine, desde donde se implementa su comportamiento e interacción dentro del flujo de partida.
 
 \section{Audio}
 
-El apartado sonoro de \textit{Bardtastic} se centró en dos elementos fundamentales: la música de fondo que acompañaba a los enfrentamientos y los efectos asociados al uso de las cartas. Para la edición y optimización de estos audios se empleó Audacity, donde se realizaron ajustes básicos como recortes, normalización y limpieza de ruido cuando fue necesario.
-
-Dado que la banda sonora original del proyecto se encontraba en proceso de composición por parte de un colaborador externo, la música utilizada en el prototipo correspondió temporalmente a piezas libres de derechos (\textit{royalty-free}), seleccionadas para mantener la coherencia tonal y el ritmo del juego. En cuanto a los efectos sonoros, estos procedieron de bibliotecas gratuitas y fueron modificados posteriormente para adaptarlos a las necesidades del gameplay, reforzando la identidad acústica del prototipo.
-
-Una vez preparados, todos los recursos se integraron en el motor de sonido de Unreal Engine, que se encargó de reproducirlos de forma contextual durante la partida y de proporcionar al jugador un apoyo auditivo coherente con el ritmo del combate y la construcción de su historia.
-
+El apartado sonoro de \textit{Bardtastic} se centra en dos elementos fundamentales: la música de fondo que acompaña a los enfrentamientos y los efectos asociados al uso de las cartas. Para la edición y optimización de estos audios se emplea Audacity, donde se realizan ajustes básicos como recortes, normalización y limpieza de ruido cuando resulta necesario. Una vez preparados, los recursos se integran en el motor de sonido de Unreal Engine, que se encarga de reproducirlos de forma contextual durante la partida y de proporcionar al jugador un apoyo auditivo coherente con el ritmo del combate y la construcción de su historia.
 
 
 \section{Herramientas de producción}
@@ -88,7 +83,7 @@ Para gestionar la evolución del proyecto se integra:
     \item \textbf{Git} \cite{git}: control de versiones del código y activos con configuración específica para repositorios de Unreal.
 \end{itemize}
 
-La gestión con Notion ha permitido aplicar incrementos iterativos de funcionalidad y contenido, priorizando siempre aquello que aportaba valor jugable en cada momento.
+La gestión con Notion permite aplicar incrementos iterativos de funcionalidad y contenido, priorizando siempre aquello que aporta valor jugable en cada momento.
 
 Además, el repositorio completo del proyecto se mantuvo en GitHub en el siguiente enlace:  
 \url{https://github.com/3dgoblindev/SDBardos}

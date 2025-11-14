@@ -3,6 +3,17 @@
 
 \chapter{Conclusiones y trabajo a futuro}
 
+\begin{flushright}
+	\itshape
+	``Legacy. What is a legacy?\\
+	It’s planting seeds in a garden you never get to see.\\
+	I wrote some notes at the beginning of a song someone will sing for me.’’\\
+	--- Lin-Manuel Miranda, \textit{Hamilton} (2015)
+\end{flushright}
+
+\vspace{2em}
+
+
 El presente Trabajo de Fin de Grado ha tenido como objetivo el diseño e implementación de un prototipo funcional del videojuego \textit{Bardtastic}, un \textit{deckbuilder} narrativo en el que el jugador encarna a un bardo que debe entretener a una audiencia mediante el uso estratégico de cartas que elementos narrativos y puestas en escena.  
 El proyecto ha combinado la faceta creativa del diseño de juegos con el rigor técnico de la Ingeniería Informática y los fundamentos matemáticos de la Teoría de Juegos y la Inteligencia Artificial.
 
@@ -20,16 +31,18 @@ Este principio de modularidad garantiza la mantenibilidad del código y su posib
 
 \section{Valoración de los objetivos}
 
-Los objetivos planteados al inicio del TFG, tanto la fundamentación matemática como el desarrollo del prototipo y su agente, se han cumplido de manera satisfactoria, alcanzando los resultados previstos en ambas líneas del proyecto.
+Los objetivos establecidos al inicio del TFG se han alcanzado satisfactoriamente:
 
-En relación con el \textbf{objetivo general 1} (fundamentación matemática y teórica), se ha construido un marco formal completo basado en la teoría de juegos que permite describir rigurosamente qué es un juego, cuáles son sus estrategias y cómo se caracterizan sus equilibrios. Este análisis ha permitido clasificar el enfrentamiento central de \textit{Bardtastic}, justificando desde criterios matemáticos las elecciones de diseño y motivando la estructura de decisión del agente rival. Asimismo, se han presentado los conceptos esenciales (equilibrio de Nash, estrategias dominadas, modelos estáticos y dinámicos, información completa e incompleta) situando el videojuego dentro de un marco teórico sólido.
+\begin{itemize}
+  \item Se ha diseñado e implementado un videojuego tipo \textit{deckbuilder} con una propuesta original y temática coherente.
+  \item Se ha aplicado la Teoría de Juegos para modelar la toma de decisiones de los oponentes.
+  \item Se ha desarrollado un agente de IA funcional, basado en exploración de árboles, capaz de jugar de forma racional contra el usuario.
+  \item Se ha validado experimentalmente el concepto de juego, confirmando la viabilidad de su mecánica central y del modelo de atención del público.
+\end{itemize}
 
-En cuanto al \textbf{objetivo general 2} (diseño e implementación del prototipo y del agente), se ha desarrollado un videojuego funcional con mecánicas originales basadas en contar historias, rimas y estrategia de cartas. La arquitectura implementada en Unreal Engine separa adecuadamente la lógica del juego, la interfaz y la inteligencia artificial, lo que facilita la extensibilidad del sistema. El agente rival, basado en exploración mediante \emph{Depth-First Search} y guiado por una función de utilidad heurística, ha demostrado un comportamiento racional y coherente con las limitaciones del entorno, ofreciendo un desafío creíble al jugador. Finalmente, las pruebas funcionales y el \textit{playtesting} supervisado han servido para ajustar tanto las mecánicas como el comportamiento del agente, validando la jugabilidad y la claridad del sistema de atención del público.
+Estos resultados integran los conocimientos adquiridos en el grado, demostrando la capacidad de aplicar conceptos teóricos a un desarrollo \textit{software} real y funcional. Además, se amplían y combinan hacia ámbitos como el diseño.
 
-En conjunto, el trabajo ha logrado integrar de forma efectiva la modelización matemática con el diseño y la ingeniería del \textit{software}, resultando en un prototipo jugable que demuestra la aplicabilidad de la teoría en un contexto creativo y técnico real.
-
-
-\section{Trabajo futuro}
+\section{Trabajo a futuro}
 
 El proyecto deja abiertas varias líneas de desarrollo que pueden explorarse en trabajos posteriores:
 
