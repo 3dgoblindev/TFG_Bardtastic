@@ -118,7 +118,7 @@ Por otro lado, diremos que una correspondencia \( F : X \rightrightarrows Y \) e
 
 Estas nociones resultan fundamentales para aplicar el siguiente resultado, que constituye la base de la demostración del teorema de existencia de equilibrio de Nash.
 
-\begin{teorema}[Teorema del punto fijo de Kakutani, \cite{TeoriaDeJuegosCJP}, Teorema 3.2]
+\begin{teorema}[Teorema del punto fijo de Kakutani, {\cite[Teorema~3.2]{TeoriaDeJuegosCJP}}]
 Sea \( X \) un subconjunto no vacío, compacto y convexo de \( \mathbb{R}^n \), y sea \( F : X \rightrightarrows X \) una correspondencia tal que:
 \begin{itemize}
     \item \( F(x) \) es no vacío, convexo y compacto para todo \( x \in X \);
@@ -138,65 +138,50 @@ G = \Big\{J, \{S_i\}_{i \in J}, \{u_i(s)\}_{i \in J}\Big\}.
 
 A partir de los conceptos introducidos, podemos enunciar y demostrar el siguiente resultado sobre la existencia de equilibrio de Nash.
 
-\begin{teorema}[Existencia de equilibrio de Nash en juegos continuos \cite{TeoriaDeJuegosCJP}, Teorema 3.3]
-Sea \( G \) un juego en el que para cada jugador \( i \) se cumple que \( S_i \) es no vacío, compacto y convexo, y que \( u_i \) es continua en \( S \) y cuasicóncava en su propia estrategia \( s_i \). Entonces, existe al menos un equilibrio de Nash en estrategias puras.
+\begin{teorema}[Existencia de equilibrio de Nash en juegos continuos {\cite[Teorema~3.3]{TeoriaDeJuegosCJP}}]
+	Sea \( G = \{S_1,\dots,S_n; u_1,\dots,u_n\} \) un juego en el que, para cada jugador \( i \), se cumple que:
+	\begin{itemize}
+		\item \( S_i \) es un subconjunto no vacío, compacto y convexo de un espacio \(\mathbb{R}^k\),
+		\item la función de utilidad \( u_i \) es continua en todo su dominio \( S = S_1 \times \cdots \times S_n \) y es cuasicóncava en la variable \( s_i \).
+	\end{itemize}
+	Entonces, existe al menos un equilibrio de Nash en estrategias puras.
 \end{teorema}
 
-
 \begin{proof}
-Sea \( G \) un juego que verifica las hipótesis del teorema.  
-Para cada jugador \( i \in J \), el conjunto de estrategias \( S_i \) es no vacío, compacto y convexo, y la función de utilidad \( u_i : S \to \mathbb{R} \) es continua en \( S = S_1 \times \cdots \times S_n \) y cuasicóncava en su propia estrategia \( s_i \).
-
-Para cada jugador \( i \) definimos su correspondencia de \emph{respuesta óptima} \( R_i \), que asigna a cada perfil de estrategias \( s = (s_1, \dots, s_i, \dots, s_n) \) el conjunto de estrategias de \( i \) que son respuesta óptima a dicho perfil:
-\[
-R_i(s) = \left\{ x_i \in S_i \,\middle|\, u_i(s_1, \dots, x_i, \dots, s_n) \ge u_i(s_1, \dots, y_i, \dots, s_n), \, \forall y_i \in S_i \right\}.
-\]
-
-Definimos la correspondencia global de respuesta óptima \( R \) como:
-\[
-R(s) = R_1(s) \times \cdots \times R_n(s)
-      = \left\{ t = (t_1, \dots, t_n) \in S \,\middle|\, t_i \in R_i(s), \, \forall i \in J \right\}.
-\]
-Esta correspondencia asigna a cada perfil de estrategias \( s \) el producto cartesiano de los conjuntos de respuesta óptima individuales.
-
-\medskip
-
-A continuación, comprobaremos que \( R \) cumple las condiciones del \textit{teorema del punto fijo de Kakutani}, lo que garantizará la existencia de un punto fijo \( s^* \in S \) tal que \( s^* \in R(s^*) \).
-
-\begin{enumerate}
-    \item \textbf{El conjunto \( S \) es no vacío, compacto y convexo.}  
-    Por hipótesis, cada \( S_i \) cumple estas propiedades; por tanto, su producto cartesiano \( S = S_1 \times \cdots \times S_n \) también lo es.
-
-    \item \textbf{\( R(s) \) es no vacío para todo \( s \in S \).}  
-    Dado que \( u_i(\cdot) \) es continua en el conjunto compacto \( S_i \), el teorema de Weierstrass garantiza que el máximo se alcanza.  
-    Por tanto, \( R_i(s) \neq \varnothing \) para cada jugador \( i \), y en consecuencia \( R(s) \neq \varnothing \).
-
-    \item \textbf{Cada \( R(s) \) es convexo.}  
-    La cuasicóncavidad de \( u_i \) respecto a su propia estrategia \( s_i \) implica que el conjunto de maximizadores \( R_i(s) \) es convexo.  
-    Por tanto, el producto cartesiano \( R(s) = R_1(s) \times \cdots \times R_n(s) \) es también convexo.
-
-    \item \textbf{La correspondencia \( R \) es hemicontinua superiormente.}  
-    Sea una sucesión \( \{s^k\} \subset S \) tal que \( s^k \to s \), y una sucesión \( \{t^k\} \) con \( t^k \in R(s^k) \) y \( t^k \to t \).  
-    Para cada jugador \( i \), se cumple:
-    \[
-    u_i(s_1^k, \dots, t_i^k, \dots, s_n^k) \ge u_i(s_1^k, \dots, y_i, \dots, s_n^k), \quad \forall y_i \in S_i.
-    \]
-    Al tomar el límite cuando \( k \to \infty \) y usar la continuidad de \( u_i \), se obtiene:
-    \[
-    u_i(s_1, \dots, t_i, \dots, s_n) \ge u_i(s_1, \dots, y_i, \dots, s_n), \quad \forall y_i \in S_i,
-    \]
-    de modo que \( t_i \in R_i(s) \) para todo \( i \). Por tanto, \( t \in R(s) \) y el grafo de \( R \) es cerrado, es decir, \( R \) es hemicontinua superiormente.
-\end{enumerate}
-
-Dado que \( R \) es una correspondencia definida sobre un conjunto no vacío, compacto y convexo, con valores no vacíos, convexos y un grafo cerrado, se cumplen las condiciones del \textit{teorema del punto fijo de Kakutani}.  
-En consecuencia, existe \( s^* \in S \) tal que \( s^* \in R(s^*) \).
-
-\medskip
-
-Podemos afirmar entonces que \( R \) tiene al menos un punto fijo \( s^* = (s_1^*, \dots, s_n^*) \).  
-Por tanto, \( s_i^* \in R_i(s^*) \, \forall i \in J \), es decir, \( s_i^* \) es una respuesta óptima frente a \( s^* \) para cada jugador.  
-En otras palabras, \( s^* \) constituye un \textbf{equilibrio de Nash en estrategias puras} para el juego \( G \).
-
+	Sea \( G \) un juego que verifica las hipótesis del teorema.  
+	Para cada jugador \( i\in J \), el conjunto de estrategias \( S_i \) es no vacío, compacto y convexo, y la función de utilidad \( u_i : S \to \mathbb{R} \) es continua en \( S \) y cuasicóncava en la variable \( s_i \).
+	
+	Para cada jugador definimos su correspondencia de \textit{respuesta óptima}:
+	\[
+	R_i(s) = \left\{ x_i \in S_i \,\middle|\, u_i(s_1,\dots,x_i,\dots,s_n) \ge
+	u_i(s_1,\dots,y_i,\dots,s_n), \ \forall y_i \in S_i \right\}.
+	\]
+	
+	Definimos la correspondencia global:
+	\[
+	R(s) = R_1(s) \times \cdots \times R_n(s).
+	\]
+	
+	A continuación comprobamos que \(R\) cumple las hipótesis del teorema del punto fijo de Kakutani:
+	
+	\begin{enumerate}
+		\item \textbf{El conjunto \( S \) es no vacío, compacto y convexo.}  
+		Estas propiedades se preservan bajo el producto cartesiano.
+		
+		\item \textbf{\(R(s)\) es no vacío para todo \(s\).}  
+		Como \(u_i\) es continua en el compacto \(S_i\), el máximo existe por Weierstrass, por lo que \(R_i(s) \neq \varnothing\), y en consecuencia \(R(s)\neq\varnothing\).
+		
+		\item \textbf{Cada \( R(s) \) es convexo.}  
+		La cuasicóncavidad de \(u_i\) en \(s_i\) asegura que el conjunto de maximizadores \(R_i(s)\) es convexo. El producto cartesiano de conjuntos convexos también lo es.
+		
+		\item \textbf{La correspondencia \(R\) es hemicontinua superiormente.}  
+		Si \(s^k \to s\), \(t^k \in R(s^k)\) y \(t^k \to t\), al pasar al límite y usar la continuidad de \(u_i\) se obtiene \(t_i \in R_i(s)\) para todo \(i\).  
+		Por tanto, el grafo de \(R\) es cerrado.
+	\end{enumerate}
+	
+	Como \(R\) satisface todas las condiciones del teorema del punto fijo de Kakutani, existe \(s^* \in S\) tal que \(s^* \in R(s^*)\).  
+	Esto implica que cada componente \(s_i^*\) es respuesta óptima frente a \(s^*\), y por tanto \(s^*\) es un \textbf{equilibrio de Nash en estrategias puras}.
+	
 \end{proof}
 
 
@@ -206,7 +191,7 @@ Este resultado garantiza la existencia de equilibrio en juegos con espacios de e
 
 Podemos aplicar este Teorema para obtener un nuevo resultado sobre juegos con estrategias mixtas.
 
-\begin{teorema}[Existencia de equilibrio de Nash en juegos finitos \cite{TeoriaDeJuegosCJP}, Teorema 3.4] \label{T_mixtas}
+\begin{teorema}[Existencia de equilibrio de Nash en juegos finitos {\cite[Teorema~3.4]{TeoriaDeJuegosCJP}}] \label{T_mixtas}
 En todo juego finito $G$ existe al menos un equilibrio de Nash en estrategias mixtas.
 \end{teorema}
 
@@ -241,7 +226,7 @@ En conclusión, por el teorema anterior, existe un equilibrio de Nash en estrate
 
 Por último, vamos a enunciar, sin demostrar, un resultado importante acerca de los juegos simétricos.
 
-\begin{teorema}[Equilibrio de Nash simétrico \cite{TeoriaDeJuegosCJP}, Teorema 3.5]
+\begin{teorema}[Equilibrio de Nash simétrico {\cite[Teorema~3.5]{TeoriaDeJuegosCJP}}]
 Si el juego $G$ es simétrico, donde $S_i=A$ para todo $i$, y si $A$ es compacto y convexo y las funciones $u_i$ son continuas y cuasicóncavas en su propia estrategia, entonces existe al menos un equilibrio de Nash \emph{simétrico}. Si el juego es finito, existe al menos un equilibrio de Nash simétrico en estrategias mixtas.
 \end{teorema}
 
@@ -277,7 +262,7 @@ En general, $v_1 \le v_2$, y si ambos valores coinciden, el juego se dice que ti
 En este contexto cobra especial relevancia el teorema del \textit{minimax}, resultado fundamental debido a John von Neumann, que garantiza precisamente la existencia de ese valor en todo juego finito de suma cero.  
 El siguiente resultado presenta su formulación más general.
 
-\begin{teorema}[Teorema del minimax \cite{TeoriaDeJuegosCJP}, Teorema 3.6] \label{T_minimax_neumann}
+\begin{teorema}[Teorema del minimax {\cite[Teorema~3.6]{TeoriaDeJuegosCJP}}] \label{T_minimax_neumann}
 Dado un juego bipersonal finito de suma cero
 \[
 G = \{\{1,2\}, S_1, S_2; u_1, u_2 \},
@@ -294,7 +279,7 @@ El número $v$ se denomina \textbf{valor del juego} y constituye la solución na
 A partir de esta idea se puede establecer una conexión directa entre el equilibrio de Nash y las estrategias \textit{minimax}.  
 El siguiente resultado demuestra que, en los juegos de suma cero, ambos conceptos son equivalentes: las estrategias que satisfacen la condición del teorema del \textit{minimax} son exactamente las que forman parte de los equilibrios de Nash.
 
-\begin{teorema}[Equilibrio y estrategias \textit{minimax} \cite{TeoriaDeJuegosCJP}, Teorema 3.7] \label{T_minimax_equilibrio}
+\begin{teorema}[Equilibrio y estrategias \textit{minimax} {\cite[Teorema~3.7]{TeoriaDeJuegosCJP}}] \label{T_minimax_equilibrio}
 En los juegos bipersonales finitos de suma cero, las estrategias \textit{minimax} forman parte de los equilibrios de Nash, y únicamente ellas.
 \end{teorema}
 

@@ -45,8 +45,8 @@
 \contentsline {subsubsection}{\numberline {3.2.1.2}Ajedrez}{23}{subsubsection.3.2.1.2}%
 \contentsline {subsection}{\numberline {3.2.2}Juegos de información incompleta}{24}{subsection.3.2.2}%
 \contentsline {subsubsection}{\numberline {3.2.2.1}Póker Texas Hold’em}{24}{subsubsection.3.2.2.1}%
-\contentsline {paragraph}{\nonumberline Ejemplo.}{25}{paragraph*.15}%
-\contentsline {subsubsection}{\numberline {3.2.2.2}Magic: The Gathering}{26}{subsubsection.3.2.2.2}%
+\contentsline {paragraph}{\nonumberline Ejemplo.}{24}{paragraph*.15}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}Magic: The Gathering}{25}{subsubsection.3.2.2.2}%
 \contentsline {chapter}{\numberline {4}Algoritmos para IA en juegos}{27}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Agentes}{27}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Algoritmos para juegos con información completa}{27}{section.4.2}%

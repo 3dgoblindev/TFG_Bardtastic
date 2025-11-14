@@ -37,7 +37,7 @@ El diagrama de \textit{Gantt} de la Figura~\ref{fig:gantt} muestra la distribuci
 
 Se presenta un presupuesto para el prototipo que abarca desde inicios de julio a noviembre. 
 
-El cálculo se basa en una estimación razonable de horas dedicadas a tareas de diseño, programación, arte y producción, junto con los gastos asociados a marketing, sonido y otros servicios necesarios para completar el prototipo vertical. La Figura~\ref{fig:presupuesto} muestra el desglose presentado en la solicitud de financiación.
+El cálculo se basa en una estimación razonable de horas dedicadas a tareas de diseño, programación, arte y producción, junto con los gastos asociados a marketing, sonido y otros servicios necesarios para completar el prototipo vertical. La Figura~\ref{tab:presupuesto} muestra el desglose presentado en la solicitud de financiación.
 
 \begin{table}[H]
     \centering
@@ -87,13 +87,14 @@ Los requisitos se han clasificado en dos categorías principales:
 
 \subsection{Requisitos funcionales (RF)}
 \label{sec:rf}
-\begin{enumerate}[label=\textbf{RF-\arabic*}, leftmargin=2.2em]
+\begin{enumerate}[label=\textbf{RF-\arabic*}, leftmargin=3.5em, labelwidth=3.2em, labelsep=0.3em]
+
   \item \label{rf:turnos} El sistema debe permitir partidas con rondas y \textbf{turnos alternos} entre Jugador e IA.
   \item \label{rf:robo} Al inicio de cada turno del jugador, el sistema debe \textbf{robar cartas} hasta tener 5 en mano (si es posible).
   \item \label{rf:rimas} El sistema debe \textbf{validar la secuencia} de cartas jugadas según la regla de rima (la rima posterior de la carta previa coincide con la rima anterior de la siguiente).
   \item \label{rf:efectos} El sistema debe \textbf{resolver los efectos} de las cartas jugadas sobre audiencia, mano, mazo y mesa.
   \item \label{rf:tipos} El sistema debe \textbf{gestionar los tipos de carta}: permanentes (Historia, Personaje, Pensamiento) e instantáneas (Melodía, Dicción, Espectáculo).
-  \item \label{rf:atencion} El sistema debe \textbf{actualizar la atención} de cada espectador en el rango $[-3,3]$ de forma inmediata tras cada efecto.
+  \item \label{rf:atencion} El sistema debe \textbf{actualizar la atención} de cada miembro de la audiencia en el rango $[-3,3]$ de forma inmediata tras cada efecto.
   \item \label{rf:emociones} El sistema debe \textbf{gestionar emociones} por espectador y aplicar las \textbf{transiciones} indicadas por las cartas.
   \item \label{rf:ia} El sistema debe permitir que la \textbf{IA} seleccione y juegue \textbf{secuencias válidas} de cartas siguiendo su estrategia.
   \item \label{rf:fin} El sistema debe \textbf{detectar el fin de partida} al completar 7 turnos por jugador o al cumplirse reglas globales de taberna.
@@ -102,7 +103,8 @@ Los requisitos se han clasificado en dos categorías principales:
 
 \subsection{Requisitos no funcionales (RNF)}
 \label{sec:rnf}
-\begin{enumerate}[label=\textbf{RNF-\arabic*}, leftmargin=2.2em]
+\begin{enumerate}[label=\textbf{RF-\arabic*}, leftmargin=3.5em, labelwidth=3.2em, labelsep=0.3em]
+
   \item \label{rnf:usabilidad} \textbf{Usabilidad}: interfaz clara que muestre mano, audiencia y estado narrativo (cartas permanentes en mesa).
   \item \label{rnf:rendimiento} \textbf{Rendimiento}: respuesta interactiva sin latencias perceptibles al jugar/validar/actualizar (p.\,ej., $<100$ ms por acción típica).
   \item \label{rnf:portabilidad} \textbf{Portabilidad}: ejecutable en PC (Windows/Linux) con dependencias controladas.
@@ -285,17 +287,17 @@ La propuesta de diseño se articula en torno a tres pilares de diseño que sirve
 
 \subsection{Pilares de diseño}
 
-Los tres pilares de diseño definidos para \textit{Bardtastic} se inspiran en el marco conceptual planteado por Taylor \cite{Taylor2023DesignPillars}, adaptado aquí al contexto específico de un \textit{deckbuilder} con énfasis narrativo. Este enfoque invita a los diseñadores a concretar qué tipo de experiencia se desea provocar en el jugador, más allá de la noción genérica de “diversión”.
+Los tres pilares de diseño definidos para \textit{Bardtastic} se inspiran en el marco conceptual planteado por Taylor \cite{Taylor2023DesignPillars}, adaptado aquí al contexto específico de un \textit{deckbuilder} con énfasis narrativo. Este enfoque invita a los diseñadores a concretar qué tipo de experiencia se desea provocar en la persona que juegue, más allá de la noción genérica de “diversión”.
 
 En este sentido, se ha considerado también la clasificación de las catorce formas de diversión propuesta por Garneau \cite{Garnaeu2001FourteenFormsOfFun}, que facilita un análisis más granular del tipo de satisfacción que el juego puede ofrecer. Ambas referencias han servido de guía para identificar los elementos que resultan más relevantes en la experiencia que \textit{Bardtastic} busca construir: creatividad en la construcción del mazo, toma de decisiones con impacto estratégico y un tono humorístico que acompañe a la fantasía de actuar como un bardo en un entorno teatral.
 
 
 
 \subsubsection{Creación}
-El núcleo de un \textit{deckbuilder} reside en permitir que el jugador construya su propio enfoque estratégico. Cada decisión sobre qué cartas incluir, mejorar o descartar contribuye a la creación de su “voz” como bardo. Este proceso de construcción mecánica se complementa con la fantasía de “contar una historia”, reforzando la sensación de autoría y de creatividad emergente a lo largo de una partida.
+El núcleo de un \textit{deckbuilder} reside en permitir que la persona que juega construya su propio enfoque estratégico. Cada decisión sobre qué cartas incluir, mejorar o descartar contribuye a la creación de su “voz” como bardo. Este proceso de construcción mecánica se complementa con la fantasía de “contar una historia”, reforzando la sensación de autoría y de creatividad emergente a lo largo de una partida.
 
 \subsubsection{Resolución de problemas}
-Los enfrentamientos plantean un reto táctico constante: la gestión de recursos (cartas, rimas válidas, emociones del público) obliga al jugador a analizar el estado de la partida y tomar decisiones que maximizan su impacto narrativo frente al rival. La inteligencia artificial contribuye además a evitar patrones triviales, incentivando la adaptación y la planificación del jugador.
+Los enfrentamientos plantean un reto táctico constante: la gestión de recursos (cartas, rimas válidas, emociones del público) obliga la persona que juega a analizar el estado de la partida y tomar decisiones que maximizan su impacto narrativo frente al rival. La inteligencia artificial contribuye además a evitar patrones triviales, incentivando la adaptación y la planificación.
 
 \subsubsection{Comedia}
 La ambientación ligera y humorística, la exageración teatral y la interacción con una audiencia caricaturesca buscan generar una experiencia divertida, accesible y expresiva. La comedia actúa como estabilizador del tono, incluso en situaciones competitivas, alineándose con la naturaleza desenfadada del proyecto y su aspiración a poder ser disfrutado por un público amplio.
@@ -308,7 +310,7 @@ El diseño de \textit{Bardtastic} se apoya en una combinación de referentes mec
 
 Asimismo, el juego incorpora elementos clásicos del género \textit{deckbuilder} consolidados en \textit{Ascension} \cite{Ascension2010} y \textit{Magic: The Gathering} \cite{mtg}, aunque adaptándolos a un contexto competitivo asimétrico basado en la atención del público en lugar del daño directo. La progresión entre partidas se inspira en la estructura de \textit{Slay the Spire} y en la tradición \textit{roguelite} representada por \textit{The Binding of Isaac} \cite{BindingOfIsaac2011}, particularmente en cómo la narrativa avanza mediante la aparición de nuevos jefes y contenidos desbloqueables.
 
-Finalmente, se reconoce también la influencia de juegos humorísticos como \textit{Munchkin} \cite{Munchkin2001}, que combina interacción directa entre jugadores con un tono desenfadado y paródico, reforzando así uno de los pilares del diseño de \textit{Bardtastic}: la comedia.
+Finalmente, se reconoce también la influencia de juegos humorísticos como \textit{Munchkin} \cite{Munchkin2001}, que combina interacción directa con un tono desenfadado y paródico, reforzando así uno de los pilares del diseño de \textit{Bardtastic}: la comedia.
 
 
 \subsection{Prototipo en papel}
@@ -334,14 +336,14 @@ El primer reto consistió en definir qué significa ``contar una historia'' a tr
     \item \textbf{Monomito aplicado al viaje del héroe} \cite{OdysseusMonomyth}: ofrece una referencia estructural para la \textbf{narrativa macro} del juego (progresión entre tabernas, ascenso hacia un gran reto final), que se explora en la planificación futura del \textit{roguelike}.
 \end{itemize}
 
-Esta revisión permitió trasladar principios narrativos clásicos al dominio mecánico de las cartas, manteniendo una coherencia temática entre la forma de jugar y la fantasía que se propone al jugador.
+Esta revisión permitió trasladar principios narrativos clásicos al dominio mecánico de las cartas, manteniendo una coherencia temática entre la forma de jugar y la fantasía que se propone.
 
 
 A partir de esta revisión, se definieron los seis tipos de cartas empleados en el prototipo, cada uno asociado a uno de los componentes dramáticos clásicos. Esta decisión vincula directamente la mecánica con la fantasía de juego: construir una historia frente a un público.
 
 \subsubsection{Atención como recurso central}
 
-En las primeras iteraciones se experimentó con diferentes representaciones de la respuesta del público: una puntuación global, medidores individuales por jugador o un sistema basado en espectadores múltiples. Finalmente, se optó por una audiencia compuesta por varios miembros con atención individual, al proporcionar:
+En las primeras iteraciones se experimentó con diferentes representaciones de la respuesta del público: una puntuación global, medidores individuales o un sistema basado en varios miembros en la audiencia. Finalmente, se optó por una audiencia compuesta por varios miembros con atención individual, al proporcionar:
 
 \begin{itemize}
     \item mayor expresividad estratégica,
@@ -353,7 +355,7 @@ Así, la \textbf{atención} se erige como el recurso principal del enfrentamient
 
 \subsubsection{Construcción del mazo y ciclo de cartas}
 
-Definida la atención, se generaron dos primeros mazos con efectos básicos (robar, descartar, interactuar con cartas en mesa, etc.) y se realizaron sesiones de prueba con jugadores reales. Estas pruebas permitieron ajustar aspectos fundamentales del flujo de partida, como:
+Definida la atención, se generaron dos primeros mazos con efectos básicos (robar, descartar, interactuar con cartas en mesa, etc.) y se realizaron sesiones de prueba con jugadores y jugadoras reales. Estas pruebas permitieron ajustar aspectos fundamentales del flujo de partida, como:
 
 \begin{itemize}
     \item establecer un número fijo de cartas en mano,
@@ -369,7 +371,7 @@ Durante el proceso se descartó el uso de un sistema de recursos equivalente al 
 
 \begin{itemize}
     \item el sistema de rimas define qué cartas pueden jugarse en secuencia,
-    \item promueve la planificación sin bloquear en exceso al jugador,
+    \item promueve la planificación sin bloquear en exceso el flujo del juego,
     \item refuerza la fantasía de recitar una historia en verso.
 \end{itemize}
 
@@ -388,7 +390,7 @@ Tras varias iteraciones se identificó la necesidad de añadir una capa más de 
 
 \begin{itemize}
     \item la efectividad con la que una carta puede afectar al público,
-    \item la lectura estratégica del tablero por parte del jugador,
+    \item la lectura estratégica del tablero,
     \item la expresividad temática y humorística del enfrentamiento.
 \end{itemize}
 
@@ -417,7 +419,7 @@ El diagrama de clases recoge únicamente los componentes \textbf{C++} del proyec
 El modelo UML se ha construido con los siguientes criterios:
 \begin{itemize}
   \item \textbf{Foco en el dominio}: clases que representan cartas, mazo/descartes, audiencia y jugador controlado por lógica.
-  \item \textbf{Decisión desacoplada}: la IA rival se modela como una \emph{estrategia} independiente del jugador, con utilidades auxiliares para evaluar jugadas.
+  \item \textbf{Decisión desacoplada}: la IA rival se modela como una \emph{estrategia} independiente del agente jugador, con utilidades auxiliares para evaluar jugadas.
   \item \textbf{Mutaciones controladas}: las simulaciones para puntuar secuencias no alteran el estado real del juego; se emplean estructuras ligeras o copias de trabajo.
 \end{itemize}
 

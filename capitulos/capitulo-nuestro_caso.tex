@@ -39,7 +39,7 @@ Este apartado ofrece una visión general de la progresión del juego, aunque dic
 
 Cada enfrentamiento tiene lugar en una taberna, donde el jugador se enfrenta a otro bardo controlado por la IA. Ambos disponen de un mazo de cartas que representa los elementos narrativos de su historia y las formas de ponerla en escena. Durante su turno, el jugador selecciona y juega cartas para construir y relatar su historia ante la audiencia. Para poder ser jugadas, las cartas deben rimar entre sí, siguiendo una estructura formal. Cada carta posee una rima anterior y una posterior, que determinan las secuencias válidas.
 
-El objetivo es captar y mantener la atención del público mejor que el rival. La audiencia está compuesta por cinco miembros, que pueden prestar atención al jugador o a su oponente. La atención del público actúa como el recurso central y la métrica de éxito en cada enfrentamiento. Las cartas pueden producir efectos variados: modificar la atención ganada, robar nuevas cartas, alterar cartas ya jugadas o influir sobre el mazo adversario.
+El objetivo es captar y mantener la atención del público mejor que el rival. La audiencia está compuesta por cinco miembros, que pueden prestar atención cualquiera de los dos rivales. La atención del público actúa como el recurso central y la métrica de éxito en cada enfrentamiento. Las cartas pueden producir efectos variados: modificar la atención ganada, robar nuevas cartas, alterar cartas ya jugadas o influir sobre el mazo adversario.
 
 \begin{figure}[H]
     \centering
@@ -48,7 +48,7 @@ El objetivo es captar y mantener la atención del público mejor que el rival. L
     \label{fig:Bardtastic_intro}
 \end{figure}
 
-Como se muestra en la Figura~\ref{Bardtastic_intro}, la interfaz principal de los enfrentamientos presenta a los dos bardos: el jugador, situado a la izquierda, y su rival, a la derecha. En la parte inferior aparece la mano del jugador, desde la cual se seleccionan las cartas que compondrán la jugada. 
+Como se muestra en la Figura~\ref{fig:Bardtastic_intro}, la interfaz principal de los enfrentamientos presenta a los dos bardos: el jugador, situado a la izquierda, y su rival, a la derecha. En la parte inferior aparece la mano del jugador, desde la cual se seleccionan las cartas que compondrán la jugada. 
 
 Sobre cada personaje se encuentran las mesas de juego, representadas mediante bocadillos, que contienen las cartas permanentes que conforman la historia en construcción. En el centro de la pantalla se sitúa la audiencia, cuyos miembros muestran tanto su nivel de atención como su emoción actual. 
 
@@ -56,7 +56,7 @@ Todos estos elementos y su funcionamiento se describen con mayor detalle en los 
 
 \subsection{Desarrollo de un turno}
 
-El flujo del juego se desarrolla por turnos alternos, donde cada jugador toma decisiones basadas en la información disponible. La secuencia típica de una ronda es:
+El flujo del juego se desarrolla por turnos alternos, donde cada rival toma decisiones basadas en la información disponible. La secuencia típica de una ronda es:
 
 \begin{enumerate}
     \item Robar cartas hasta tener cinco en la mano.
@@ -67,11 +67,11 @@ El flujo del juego se desarrolla por turnos alternos, donde cada jugador toma de
 
 \subsection{Fin de la partida}
 
-El ciclo continúa hasta que ambos jugadores han completado siete turnos. En determinadas tabernas pueden aparecer turnos con efectos globales, como la duplicación de la puntuación o la modificación de las reglas de atención.
+El ciclo continúa hasta que ambos rivales han completado siete turnos. En determinadas tabernas pueden aparecer turnos con efectos globales, como la duplicación de la puntuación o la modificación de las reglas de atención.
 
-Gana el jugador que, al finalizar la partida, posea la mayoría de los miembros de la audiencia a su favor y una historia completa. Se considera historia completa aquella que contiene inicio, nudo y desenlace, además de al menos un personaje y un pensamiento.
+Gana el rival que, al finalizar la partida, posea la mayoría de los miembros de la audiencia a su favor y una historia completa. Se considera historia completa aquella que contiene inicio, nudo y desenlace, además de al menos un personaje y un pensamiento.
 
-Si ninguno de los dos jugadores ha completado la historia, gana el que tenga mayoría en la audiencia.
+Si ninguno de los dos rivales ha completado la historia, gana el que tenga mayoría en la audiencia.
 
 \subsection{Tipos de cartas} \label{tipos_de_cartas}
 
@@ -117,7 +117,13 @@ Para jugar una carta, debe rimar con la anterior en la secuencia activa. Las rim
 
 \subsubsection{Audiencia}
 
-La audiencia está compuesta por cinco miembros, cada uno con una puntuación de atención, representada por un entero en $[-3,3]$. Un valor de $-3$ indica máxima atención al rival, mientras que $3$ indica atención total hacia el jugador. Se considera que un miembro de la audiencia está de parte del jugador si su atención es $>0$ y del rival si es $<0$. Una puntuación de $0$ representa un miembro que no está de parte de ningún jugador.
+
+La audiencia está compuesta por cinco miembros, cada uno con una puntuación de atención representada por un entero en $[-3,3]$. Un valor de $-3$ indica máxima atención hacia el bando rival, mientras que $3$ indica atención plenamente orientada al bando de la persona jugadora. Se considera que un miembro de la audiencia apoya a uno de los bandos si su atención es estrictamente mayor o menor que cero. Un valor de $0$ representa neutralidad.
+
+Por ejemplo, si los cinco miembros tienen puntuaciones $1$, $0$, $3$, $-1$ y $-2$, dos miembros apoyarían a la persona jugadora, dos al rival y uno permanecería neutral.
+
+Cada miembro muestra además una emoción, que puede cambiar durante la partida.
+
 
 De esta forma, por ejemplo, si los miembros de la audiencia tienen unas puntuaciones de atención de $1$,$0$,$3$,$-1$ y $-2$, tendremos a dos miembros de nuestra parte, el rival tendrá otros dos, y habría un miembro que no está de parte de ninguno.
 
@@ -132,10 +138,10 @@ Cada miembro muestra además una emoción, que puede cambiar durante la partida.
 
 \subsubsection{Emociones}
 
-Las cartas poseen una emoción antigua y una nueva, entre las siguientes: feliz, triste, enfadado o sorprendido.  
+Las cartas poseen una emoción antigua y una nueva, entre las siguientes: felicidad, tristeza, enfado o sorpresa.  
 Si un miembro de la audiencia presenta la emoción antigua de la carta jugada y se le aplica atención, se obtiene un punto adicional de atención.  
-Por ejemplo, si una carta con emoción antigua ``triste'' aplica atención a un espectador ``triste'' con valor $-3$, este pasará a $-1$.  
-Si el espectador queda del lado del jugador tras el cambio, su emoción se actualiza a la nueva de la carta.  
+Por ejemplo, si una carta con emoción antigua ``triste'' aplica atención a un miembro de la audiencia ``triste'' con valor $-3$, este pasará a $-1$.  
+Si ese miembro queda del lado del que está aplicando la atención tras el cambio, su emoción se actualiza a la nueva de la carta.  
 Algunas cartas pueden afectar emociones globalmente o interactuar con ellas de manera indirecta.
 
 \section{Clasificación teórica del juego}
@@ -183,7 +189,7 @@ donde:
 Los pesos $w_i$ pueden interpretarse como la importancia relativa de cada criterio en la toma de decisiones del agente. Estos se fijan en el prototipo para favorecer secuencias estructuralmente valiosas sin descuidar la eficacia inmediata.
 
 \subsection{Ámbitos de decisión}
-El comportamiento se articula en tres ámbitos: (i) \textbf{selección de jugada} (secuencia de cartas), (ii) \textbf{asignación de atención} a espectadores cuando procede, y (iii) \textbf{decisiones auxiliares} (robo y descarte) basadas en utilidad esperada por carta. Los algoritmos concretos y su materialización software se describen en la sección~\ref{sec:agente-rival}.
+El comportamiento se articula en tres ámbitos: (i) \textbf{selección de jugada} (secuencia de cartas), (ii) \textbf{asignación de atención} a miembros de la audiencia cuando procede, y (iii) \textbf{decisiones auxiliares} (robo y descarte) basadas en utilidad esperada por carta. Los algoritmos concretos y su materialización software se describen en la sección~\ref{sec:agente-rival}.
 
 \subsubsection{Selección de jugada}
 
@@ -198,18 +204,18 @@ Este enfoque no garantiza la solución óptima global, pero proporciona una \tex
 
 Tras elegir la jugada, el agente decide a qué miembro de la audiencia dará cada punto de atención obtenido.
 
-Para cada espectador posible, se simula el efecto de la acción teniendo en cuenta la emoción asociada a la carta actual y se obtiene un nuevo nivel de atención simulado.
+Para cada miembro de la audiencia posible, se simula el efecto de la acción teniendo en cuenta la emoción asociada a la carta actual y se obtiene un nuevo nivel de atención simulado.
 
 La elección se realiza con una heurística por etapas:
 \begin{enumerate}
-    \item se prioriza al espectador cuyo nivel simulado queda más cerca del objetivo del bando propio (\(+1\) si el agente actúa como jugador 1, \(-1\) si lo hace como jugador 2).
-    \item en caso de empate, se prefiere a quien \emph{cruza} al lado del agente (de atención no favorable a favorable)
-    \item si persiste el empate, se elige el cambio de mayor magnitud en la 
+    \item se prioriza al miembro de la audiencia cuyo nivel simulado queda más cerca del objetivo del bando propio (\(+1\) si el agente actúa como jugador 1, \(-1\) si lo hace como jugador 2).
+    \item en caso de empate, se prefiere a quien cruza al lado del agente (de atención no favorable a favorable)
+    \item si persiste el empate, se elige la opción que produce el cambio absoluto de atención más grande;  
     \item finalmente, se deshacen empates atendiendo al nivel simulado más alineado con el bando del agente.
 \end{enumerate}
 
 Este criterio local garantiza una decisión coherente con el objetivo táctico del turno: 
-\emph{acercar} a un espectador concreto hacia la zona favorable y, cuando es posible, provocar el cruce a nuestro lado, aprovechando el efecto emocional de la carta actual.
+\emph{acercar} a un miembro de la audiencia concreto hacia la zona favorable y, cuando es posible, provocar el cruce a nuestro lado, aprovechando el efecto emocional de la carta actual.
 
 
 

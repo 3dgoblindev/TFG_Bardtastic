@@ -9,7 +9,8 @@ En este capítulo se describe el \textit{software} desarrollado como resultado d
 
 El resultado del presente Trabajo de Fin de Grado es un prototipo funcional de \textit{Bardtastic}, un videojuego \textit{roguelike deckbuilder} centrado en el uso estratégico de cartas dentro de enfrentamientos narrativos.
 
-El prototipo implementa el \textit{core loop} del juego: el jugador disputa una sucesión de combates, modifica progresivamente su mazo y se enfrenta a un oponente controlado por inteligencia artificial. Las cartas jugadas producen efectos que alteran la atención del público y modifican el estado de la partida. Tras cada victoria, el sistema presenta un evento que permite mejorar el mazo antes del siguiente combate.
+El prototipo implementa el \textit{core loop} del juego: cada partida consiste en una sucesión de combates contra un adversario controlado por IA. Entre un enfrentamiento y el siguiente, el mazo se ajusta de forma progresiva mediante las decisiones de mejora disponibles. Durante cada combate, las cartas jugadas producen efectos que alteran la atención del público y modifican el estado general de la partida. Tras cada victoria, el sistema presenta un evento que permite mejorar el mazo antes del siguiente desafío.
+
 
 En cuanto al apartado visual, el prototipo incluye ya las bases estéticas de la versión final: personajes animados, público reactivo, cartas ilustradas y un entorno tridimensional que reproduce una taberna teatralizada. La interfaz de usuario es funcional aunque provisional, actuando como guía para la futura \textit{Vertical Slice}.
 
@@ -110,7 +111,7 @@ La carta incorpora dos \textit{delegates} (\texttt{RequestVisualUpdate} y \textt
 \end{itemize}
 
 \subsubsection{Desacoplamiento y escalabilidad del sistema}
-El diseño se basa en un patrón de paso de mensajes: las cartas solicitan al jugador o a la IA las decisiones necesarias, pero sólo el \texttt{GameContext} conoce el estado global. Este enfoque facilita:
+El diseño se basa en un patrón de paso de mensajes: las cartas solicitan al agente correspondiente (humano o IA) las decisiones necesarias, pero sólo el \texttt{GameContext} conoce el estado global. Este enfoque facilita:
 
 \begin{itemize}
     \item La extensión futura del sistema (nuevos efectos, nuevos tipos de carta).
@@ -142,15 +143,16 @@ El jugador controlado por el usuario se representa mediante \texttt{ThePJ\_BP}. 
 
 \subsubsection{Rival e Inteligencia Artificial}
 
-El oponente se representa mediante \texttt{AIRival\_Pawn\_BP}, que también deriva de \texttt{Player\_Pawn\_Base\_BP}. La interfaz de decisiones de C++ (funciones como \texttt{RequestCardChoice()} o \texttt{StartTurn()}) se implementa aquí conectándose con un componente de IA capaz de decidir qué cartas jugar.
-
-La inteligencia artificial no está integrada en el \textit{Pawn} de manera rígida, sino que se delega en una clase independiente (\texttt{URivalAIBase}), que expone el método:
+El oponente se representa mediante \path|AIRival_Pawn_BP|, que también deriva de 
+\path|Player_Pawn_Base_BP|. La interfaz de decisiones de C++ (funciones como 
+\texttt{RequestCardChoice()} o \texttt{StartTurn()}) se implementa aquí conectándose 
+con un componente de IA capaz de decidir qué cartas jugar.
 
 \begin{center}
 \texttt{TArray<UCard*> DecidePlay(UGameContext* Context, bool FromP1)}
 \end{center}
 
-permitiendo así sustituir o ampliar la estrategia del rival sin afectar al resto del sistema. La primera implementación del prototipo, \texttt{UFirstRivalAI}, utiliza una lógica básica para seleccionar una secuencia válida de cartas teniendo en cuenta el estado de la partida.
+\noindent permitiendo así sustituir o ampliar la estrategia del rival sin afectar al resto del sistema. La primera implementación del prototipo, \texttt{UFirstRivalAI}, utiliza una lógica básica para seleccionar una secuencia válida de cartas teniendo en cuenta el estado de la partida.
 
 \subsubsection{Ventajas de esta organización}
 
@@ -177,7 +179,7 @@ Aquí se describe su implementación \textit{software}: arquitectura, componente
 %aqui puedo hacer una figura
 La implementación separa estrictamente la lógica de jugador del razonamiento de IA:
 \begin{itemize}
-  \item \texttt{AA\_Rival} (C\texttt{++}): clase base de jugador. Gestiona mazo (\texttt{UDeck}), mano, mesa, descartes y ciclo de turno (\texttt{StartTurn()}, \texttt{AddCardToPlay()}, \texttt{CanAddCardToPlay()}, \texttt{EndTurn()}, \ldots).
+  \item \texttt{AA\_Rival} (C\texttt{++}): clase base de jugador. Gestiona mazo (\texttt{UDeck}), mano, mesa, descartes y ciclo de turno (\texttt{StartTurn()}, \path|AddCardToPlay()|, \texttt{CanAddCardToPlay()}, \texttt{EndTurn()}, \ldots).
   \item \texttt{Player\_Pawn\_Base\_BP} (BP): envoltorio común en Blueprint para presentar/animar acciones de \texttt{AA\_Rival}.
   \item \texttt{AIRival\_Pawn\_BP} (BP): rival IA (hereda de \texttt{Player\_Pawn\_Base\_BP}); delega la decisión en la estrategia.
   \item \texttt{URivalAIBase} (C\texttt{++}, \texttt{UObject}): interfaz de estrategia, expone \texttt{DecidePlay(UGameContext*, bool)}.
@@ -198,8 +200,8 @@ Este diseño permite sustituir \texttt{UFirstRivalAI} por variantes (voraz, \emp
     \item Simulación: cada extensión se valora con \texttt{AIScoringUtils} para obtener \(\text{Atención}\), \(\text{ProgresoHistoria}\) y \(\text{Ciclo}\); \(\text{Longitud}\) se deriva de la propia secuencia.
     \item Selección: se conserva la mejor secuencia según \eqref{eq:utility}.
   \end{itemize}
-  \item \textbf{Ejecución}: \texttt{AIRival\_Pawn\_BP} reproduce la secuencia en orden llamando a \texttt{AddCardToPlay()}, coordinada con los \emph{delegates} visuales de las cartas.
-  \item \textbf{Objetivos de atención}: Cuando un efecto requiere escoger espectador, el agente simula cada posible selección y elige la que maximiza la ganancia de atención total, considerando bonificaciones emocionales y equilibrio entre bandos (cruce de bando $\rightarrow$ ganancia neta $\rightarrow$ cercanía a $+3$).
+  \item \textbf{Ejecución}: \texttt{AIRival\_Pawn\_BP} reproduce la secuencia en orden llamando a  \path|AddCardToPlay()|, coordinada con los \emph{delegates} visuales de las cartas.
+  \item \textbf{Objetivos de atención}: Cuando un efecto requiere escoger a un miembro de la audiencia, el agente simula cada posible selección y elige la que maximiza la ganancia de atención total, considerando bonificaciones emocionales y equilibrio entre bandos (cruce de bando $\rightarrow$ ganancia neta $\rightarrow$ cercanía a $+3$).
   \item \textbf{Acciones auxiliares}: en robos/descartes, cada carta se puntúa individualmente (prioridad a completar historia $\rightarrow$ atención estimada $\rightarrow$ ciclado).
   \item \textbf{Fin de turno} (\texttt{EndTurn()}).
 \end{enumerate}
@@ -240,7 +242,7 @@ El sistema se organiza en torno a dos elementos principales:
 
 \begin{itemize}
     \item Un \textbf{\textit{Pawn}} específico del nivel de eventos (\texttt{\textit{EventPJ\_BP}}), que posee una cámara fija y se encarga de inicializar el evento activo.
-    \item Un \textbf{Widget} asociado, responsable de mostrar las opciones disponibles al jugador y de trasladar sus decisiones a la lógica del evento.
+    \item Un \textbf{Widget} asociado, responsable de mostrar las opciones disponibles a la persona que juega y de trasladar sus decisiones a la lógica del evento.
 \end{itemize}
 
 \texttt{EventPJ\_BP} crea dinámicamente una instancia de evento al comienzo del nivel y establece la referencia correspondiente dentro del widget. Esta separación asegura que la interfaz nunca conozca directamente la lógica del mazo ni del enfrentamiento, manteniendo así un bajo acoplamiento entre subsistemas.
