@@ -52,6 +52,83 @@ Se realizaron pruebas informales con usuarios (principalmente compañeros) con e
 
 Se hizo un uso intensivo de \textbf{logs} y \textbf{prints} para seguir el flujo de turnos, la validación de rimas y la ejecución secuencial de efectos. Además, se emplearon marcadores visuales (\textit{debug draws} o \textit{widgets} temporales) para confirmar los cambios de atención y de emociones durante la ejecución.
 
+\subsubsection{Enfrentamientos automatizados entre agentes}
+\label{subsec:tests-ia-vs-ia}
+
+Además de las pruebas manuales y del \textit{playtesting} supervisado, se han realizado
+experimentos automatizados de auto--juego entre diferentes agentes, utilizando el
+entorno descrito en la sección~\ref{subsec:ai-baseline}. El objetivo es doble:
+
+\begin{itemize}
+	\item medir cuantitativamente la ventaja del agente deliberativo frente a una línea
+	base sencilla;
+	\item detectar posibles sesgos estructurales del sistema, como una ventaja
+	asociada al orden de turno.
+\end{itemize}
+
+Cada experimento consiste en ejecutar un número fijo de partidas consecutivas entre dos
+agentes configurables, manteniendo constantes las siguientes condiciones:
+
+\begin{itemize}
+	\item ambos agentes emplean el mismo mazo inicial de 22 cartas;
+	\item se utiliza siempre el mismo escenario y las mismas reglas de atención
+	y fin de ronda;
+	\item la aleatoriedad del barajado y del orden de turno queda delegada en el motor;
+	\item \texttt{AGestorTurnosTests} reinicia automáticamente el nivel tras cada ronda
+	y registra el ganador según las reglas oficiales del prototipo.
+\end{itemize}
+
+Dado que las series de 10 partidas presentan una variabilidad elevada, esta sección
+se centra en las pruebas más estables, aquellas realizadas con \textbf{100 iteraciones}.
+Los resultados se resumen en la Tabla~\ref{tab:ia-vs-ia-100}.
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados de enfrentamientos automatizados (100 partidas por serie)}
+	\label{tab:ia-vs-ia-100}
+	\begin{tabular}{lccc}
+		\toprule
+		Configuración & Victorias agente A & Victorias agente B & Winrate B \\
+		\midrule
+		Random/Greedy vs.\ Rival deliberativo & 6  & 94 & 0.94 \\
+		Rival deliberativo vs.\ Rival deliberativo & 46 & 54 & 0.54 \\
+		Random/Greedy vs.\ Random/Greedy & 51 & 50 & 0.50 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Los resultados muestran, en primer lugar, que el agente deliberativo basado en
+exploración y función de utilidad supera con claridad al agente aleatorio:
+en una serie de 100 partidas obtiene un \textbf{94\,\%} de victorias.  
+Esto confirma que la heurística implementada aporta una ventaja significativa incluso
+en un entorno con aleatoriedad en el robo de cartas y en el orden del mazo.
+
+Las pruebas de \textbf{auto--juego} permiten estudiar el equilibrio estructural del sistema:
+
+\begin{itemize}
+	\item cuando dos instancias del agente deliberativo se enfrentan entre sí,
+	los resultados se estabilizan en torno al \(50\%\) (46--54), lo que indica
+	que no existen sesgos fuertes más allá de la variabilidad natural del mazo;
+	\item cuando dos agentes aleatorios se enfrentan, el resultado también oscila
+	alrededor del \(50\%\) (51--50), como cabe esperar en ausencia de estrategia.
+\end{itemize}
+
+En conjunto, estos experimentos sugieren que:
+
+\begin{itemize}
+	\item el agente deliberativo aporta una mejora real de rendimiento respecto a la línea
+	base aleatoria;
+	\item el sistema de reglas parece globalmente equilibrado, ya que el
+	auto--juego entre agentes idénticos no produce ventajas sistemáticas;
+	\item la ligera desviación del \(50\%\) observada en algunas series largas
+	(46--54) podría deberse tanto a la ventaja del segundo turno como a fluctuaciones
+	de la aleatoriedad del barajado.
+\end{itemize}
+
+Estos resultados complementan el \textit{playtesting} humano y refuerzan la validez
+del diseño del agente deliberativo, así como la robustez del flujo de combate del prototipo.
+
+
 
 \section{Cobertura funcional alcanzada}
 A nivel práctico se han verificado los siguientes bloques:

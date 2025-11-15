@@ -214,6 +214,60 @@ La mano está acotada a 5 cartas, lo que permite una DFS exhaustiva práctica. E
 En la práctica, la exploración completa del árbol de jugadas tiene una complejidad controlada gracias a las restricciones narrativas del juego y al tamaño acotado de la mano, lo que permite mantener una respuesta inmediata sin comprometer la calidad de la decisión.
 
 
+\subsection{Estrategias de referencia y entorno de auto--juego}
+\label{subsec:ai-baseline}
+
+Además del agente deliberativo descrito en la sección~\ref{agente_rival}, se ha desarrollado
+un agente de referencia cuya finalidad es proporcionar una línea base con la que
+comparar el rendimiento de las distintas estrategias en las pruebas automáticas.
+
+En primer lugar, se implementó una clase hija de \texttt{URivalAIBase}, denominada
+\texttt{URandomRivalAI}, que define un comportamiento estrictamente aleatorio. Esta clase
+sobrescribe los métodos de decisión del agente para producir elecciones uniformes entre
+todas las alternativas legalmente válidas. Posteriormente, a partir del \texttt{AI\_Rival\_BP} 
+ (que encapsula la interfaz común de cualquier agente rival en el prototipo)
+se creó una variante análoga a \path|AIRivalPawn\_BP|, pero cuya lógica interna delega en 
+\texttt{URandomRivalAI}. De este modo se obtiene un agente completamente funcional pero
+desprovisto de planificación.
+
+En cada turno, este agente aleatorio:
+
+\begin{itemize}
+	\item construye una secuencia de cartas escogiendo, de entre todas las que cumplen las
+	reglas de rima y tipo, una opción seleccionada uniformemente al azar;
+	\item asigna la atención pulsando sobre un miembro igualmente elegido al azar entre los disponibles;
+	\item resuelve efectos de robo y descarte aplicando el mismo criterio uniforme.
+\end{itemize}
+
+Este comportamiento no utiliza exploración de árboles, ni evaluación de utilidad, ni ningún
+tipo de heurística más allá de la legalidad de las jugadas. Por ello constituye una
+referencia adecuada para estimar cuánto valor añadido proporciona el agente
+deliberativo respecto a una estrategia mínima.
+
+\medskip
+
+Con el fin de automatizar la comparación entre agentes, se ha introducido además un actor
+específico para experimentación, \texttt{AGestorTurnosTests}, que hereda de
+\texttt{AGestorTurnos} y extiende su comportamiento de la siguiente manera:
+
+\begin{itemize}
+	\item registra el número total de partidas (\textit{matches}) disputadas entre dos agentes configurables;
+	\item acumula estadísticas de victorias, derrotas y empates;
+	\item reinicia automáticamente el nivel tras cada ronda, permitiendo ejecutar
+	series largas de partidas sin intervención humana;
+	\item genera un fichero de resultados en el directorio \texttt{Saved/}, donde vuelca
+	un resumen de la serie de pruebas para su análisis posterior.
+\end{itemize}
+
+Este entorno de auto--juego permite enfrentar cualquier combinación de agentes (por ejemplo,
+el agente deliberativo frente al agente aleatorio, o auto--juego entre dos instancias del
+mismo agente) bajo condiciones controladas y totalmente reproducibles. Asimismo, utiliza el
+mismo flujo de turnos y las mismas reglas que una partida normal de \textit{Bardtastic}.
+Los resultados obtenidos con este sistema se presentan en detalle en el 
+capítulo~\ref{chap:evaluacion-pruebas}.
+
+
+
 \subsection{Puntos de extensión}
 \begin{itemize}
   \item \textbf{Heurística}: ajuste de $w_i$ y rasgos situacionales (último turno, taberna con reglas globales, etc.).
