@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.14)  15 NOV 2025 20:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.14)  17 NOV 2025 13:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1456,28 +1456,45 @@ LaTeX Info: Redefining \% on input line 39.
 
 
 ]) (preliminares/introduccion.tex
-chapter without number
-[13
-
-]
-LaTeX Info: Redefining \. on input line 69.
-LaTeX Info: Redefining \% on input line 69.
- [14])
-LaTeX Info: Redefining \. on input line 125.
-LaTeX Info: Redefining \% on input line 125.
- [15] [16
-
-
-] (capitulos/capitulo-definiciones.tex
 chapter 1.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
+l.39 
+      [1
+
+
+
+]
+LaTeX Info: Redefining \. on input line 70.
+LaTeX Info: Redefining \% on input line 70.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.70 
+      [2]) (capitulos/capitulo-definiciones.tex
+LaTeX Info: Redefining \. on input line 3.
+LaTeX Info: Redefining \% on input line 3.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3 \chapter
+            {¿Qué es un juego?} \label{cap1} [3]
+chapter 2.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
 l.41     \item \textbf
                       {Pagos}: Ganancias o pérdidas que recibe cada jugador...
-[1
+[4
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 63--65
@@ -1486,14 +1503,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--65
 
 LaTeX Info: Redefining \. on input line 78.
 LaTeX Info: Redefining \% on input line 78.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.78     \item \textbf
-                      {Los conjuntos de acciones}. Cada jugador $i\in J$ tie...
-[2]
+[5]
 Underfull \hbox (badness 10000) in paragraph at lines 90--91
 
  []
@@ -1505,52 +1515,40 @@ Overfull \hbox (3.05356pt too wide) detected at line 109
 
 LaTeX Info: Redefining \. on input line 126.
 LaTeX Info: Redefining \% on input line 126.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.126 \end{itemize}
-                    [3]
+[6]
 LaTeX Info: Redefining \. on input line 179.
 LaTeX Info: Redefining \% on input line 179.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.179 \end{itemize}
-                    [4]
+ [7]
 LaTeX Info: Redefining \. on input line 221.
 LaTeX Info: Redefining \% on input line 221.
- [5]
+ [8]
 Underfull \hbox (badness 10000) in paragraph at lines 251--252
 
  []
 
 LaTeX Info: Redefining \. on input line 259.
 LaTeX Info: Redefining \% on input line 259.
-[6]) (capitulos/capitulo-equilibrio.tex
+[9]) (capitulos/capitulo-equilibrio.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
- [7]
-chapter 2.
-[8
+ [10]
+chapter 3.
+[11
 
 ]
 LaTeX Info: Redefining \. on input line 74.
 LaTeX Info: Redefining \% on input line 74.
- [9]
+ [12]
 Underfull \hbox (badness 10000) in paragraph at lines 104--105
 
  []
 
 LaTeX Info: Redefining \. on input line 115.
 LaTeX Info: Redefining \% on input line 115.
-[10]
+[13]
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
- [11]
+ [14]
 Underfull \hbox (badness 10000) in paragraph at lines 188--189
 
  []
@@ -1568,40 +1566,40 @@ p[]\OT1/pplx/m/n/10 , [] , \OML/zplm/m/it/10 p[]\OT1/zplm/m/n/10 )$
 
 LaTeX Info: Redefining \. on input line 225.
 LaTeX Info: Redefining \% on input line 225.
-[12]
+[15]
 LaTeX Info: Redefining \. on input line 271.
 LaTeX Info: Redefining \% on input line 271.
- [13]
+ [16]
 LaTeX Info: Redefining \. on input line 331.
 LaTeX Info: Redefining \% on input line 331.
- [14]
+ [17]
 LaTeX Info: Redefining \. on input line 373.
 LaTeX Info: Redefining \% on input line 373.
- [15]) (capitulos/capitulo-ejemplos.tex
+ [18]) (capitulos/capitulo-ejemplos.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
- [16]
-chapter 3.
-[17
+ [19]
+chapter 4.
+[20
 
 ]
 LaTeX Info: Redefining \. on input line 78.
 LaTeX Info: Redefining \% on input line 78.
- [18]
+ [21]
 Underfull \hbox (badness 10000) in paragraph at lines 126--127
 
  []
 
 LaTeX Info: Redefining \. on input line 130.
 LaTeX Info: Redefining \% on input line 130.
-[19]
+[22]
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
- [20]
+ [23]
 LaTeX Info: Redefining \. on input line 196.
 LaTeX Info: Redefining \% on input line 196.
- [21]
-<img/tres_en_ralla_arbol.PNG, id=601, 615.4995pt x 320.397pt>
+ [24]
+<img/tres_en_ralla_arbol.PNG, id=609, 615.4995pt x 320.397pt>
 File: img/tres_en_ralla_arbol.PNG Graphic file (type png)
 <use img/tres_en_ralla_arbol.PNG>
 Package pdftex.def Info: img/tres_en_ralla_arbol.PNG  used on input line 233.
@@ -1612,11 +1610,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Info: Redefining \. on input line 247.
 LaTeX Info: Redefining \% on input line 247.
-[22]
+[25]
 LaTeX Info: Redefining \. on input line 274.
 LaTeX Info: Redefining \% on input line 274.
- [23
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
+ [26
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1625,133 +1623,133 @@ l.274 E
  <./img/tres_en_ralla_arbol.PNG>]
 LaTeX Info: Redefining \. on input line 304.
 LaTeX Info: Redefining \% on input line 304.
- [24]
+ [27]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 343.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 8.33606pt on input line 343.
 LaTeX Info: Redefining \. on input line 344.
 LaTeX Info: Redefining \% on input line 344.
- [25]) (capitulos/capitulo-algoritmos.tex
+ [28]) (capitulos/capitulo-algoritmos.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
-[26]
-chapter 4.
-[27
+[29]
+chapter 5.
+[30
 
 ]
-<img/Minimax_tres_en_raya.png, id=669, 670.00313pt x 376.40625pt>
+<img/Minimax_tres_en_raya.png, id=677, 670.00313pt x 376.40625pt>
 File: img/Minimax_tres_en_raya.png Graphic file (type png)
 <use img/Minimax_tres_en_raya.png>
-Package pdftex.def Info: img/Minimax_tres_en_raya.png  used on input line 65.
+Package pdftex.def Info: img/Minimax_tres_en_raya.png  used on input line 66.
 (pdftex.def)             Requested size: 408.2971pt x 229.37773pt.
 
-Underfull \vbox (badness 6220) has occurred while \output is active []
+Underfull \vbox (badness 2608) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 69.
-LaTeX Info: Redefining \% on input line 69.
- [28]
+LaTeX Info: Redefining \. on input line 70.
+LaTeX Info: Redefining \% on input line 70.
+ [31]
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 74.
+(Font)              scaled to size 12.50409pt on input line 75.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 74.
+(Font)              scaled to size 9.37807pt on input line 75.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 74.
+(Font)              scaled to size 7.29405pt on input line 75.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 74.
+(Font)              scaled to size 12.50409pt on input line 75.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 74.
+(Font)              scaled to size 9.37807pt on input line 75.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 74.
+(Font)              scaled to size 7.29405pt on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 74.
+(hyperref)                removing `math shift' on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 74.
+(hyperref)                removing `\alpha' on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 74.
+(hyperref)                removing `math shift' on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\beta' on input line 74.
+(hyperref)                removing `\beta' on input line 75.
 
-LaTeX Info: Redefining \. on input line 99.
-LaTeX Info: Redefining \% on input line 99.
-[29
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) 
+LaTeX Info: Redefining \. on input line 100.
+LaTeX Info: Redefining \% on input line 100.
+[32
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.99 \needspace{8\baselineskip}
-                                % reserva sitio para que no se parta <./img/Min
-imax_tres_en_raya.png>]
-Overfull \hbox (23.9512pt too wide) in paragraph at lines 101--104
+l.100 \needspace{8\baselineskip}
+                                 % reserva sitio para que no se parta <./img/Mi
+nimax_tres_en_raya.png>]
+Overfull \hbox (23.9512pt too wide) in paragraph at lines 102--105
 []\T1/pplj/m/n/10 En el ca-so MAX: cuan-do cal-cu-la-mos un su-ce-sor $\OML/zpl
 m/m/it/10 s$ \T1/pplj/m/n/10 y ob-te-ne-mos un va-lor $\OML/zplm/m/it/10 v \OT1
 /zplm/m/n/10 = [](\OML/zplm/m/it/10 s\OT1/pplx/m/n/10 , \OML/zplm/m/it/10 \OT1
 /pplx/m/n/10 , \OML/zplm/m/it/10 ^^L\OT1/zplm/m/n/10 )$\T1/pplj/m/n/10 ,
  []
 
-LaTeX Info: Redefining \. on input line 116.
-LaTeX Info: Redefining \% on input line 116.
-[30]
+LaTeX Info: Redefining \. on input line 117.
+LaTeX Info: Redefining \% on input line 117.
+[33]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 122.
-LaTeX Info: Redefining \. on input line 167.
-LaTeX Info: Redefining \% on input line 167.
- [31]
-<img/Alfa-Beta_tres_en_ralla.PNG, id=701, 576.35326pt x 322.806pt>
+put line 123.
+LaTeX Info: Redefining \. on input line 168.
+LaTeX Info: Redefining \% on input line 168.
+ [34]
+<img/Alfa-Beta_tres_en_ralla.PNG, id=709, 576.35326pt x 322.806pt>
 File: img/Alfa-Beta_tres_en_ralla.PNG Graphic file (type png)
 <use img/Alfa-Beta_tres_en_ralla.PNG>
 Package pdftex.def Info: img/Alfa-Beta_tres_en_ralla.PNG  used on input line 17
-0.
+1.
 (pdftex.def)             Requested size: 408.2971pt x 228.6816pt.
-LaTeX Info: Redefining \. on input line 201.
-LaTeX Info: Redefining \% on input line 201.
- [32
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) 
+LaTeX Info: Redefining \. on input line 193.
+LaTeX Info: Redefining \% on input line 193.
+ [35
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.201   \item \textbf
-                     {Búsqueda $A^*$}: combina el costo hasta el nodo \(g(n...
+l.193   \item \textbf
+                     {Consistencia} (o monótona): para cada transición de ...
  <./img/Alfa-Beta_tres_en_ralla.PNG>]
-LaTeX Info: Redefining \. on input line 227.
-LaTeX Info: Redefining \% on input line 227.
- [33]
-Underfull \hbox (badness 10000) in paragraph at lines 239--241
+LaTeX Info: Redefining \. on input line 229.
+LaTeX Info: Redefining \% on input line 229.
+ [36]
+Underfull \hbox (badness 10000) in paragraph at lines 241--243
 
  []
 
-LaTeX Info: Redefining \. on input line 243.
-LaTeX Info: Redefining \% on input line 243.
-[34]
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
+LaTeX Info: Redefining \. on input line 245.
+LaTeX Info: Redefining \% on input line 245.
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 
  []
 
 ) (capitulos/capitulo-nuestro_caso.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
- [35]
-chapter 5.
-[36
+ [38]
+chapter 6.
+[39
 
 ]
-<img/Bardtastic_intro.png, id=745, 1441.63594pt x 775.39688pt>
+<img/Bardtastic_intro.png, id=754, 1441.63594pt x 775.39688pt>
 File: img/Bardtastic_intro.png Graphic file (type png)
 <use img/Bardtastic_intro.png>
 Package pdftex.def Info: img/Bardtastic_intro.png  used on input line 46.
 (pdftex.def)             Requested size: 408.2971pt x 219.60611pt.
 LaTeX Info: Redefining \. on input line 54.
 LaTeX Info: Redefining \% on input line 54.
- [37
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1}) 
+ [40
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1759,30 +1757,30 @@ l.54
       <./img/Bardtastic_intro.png>]
 LaTeX Info: Redefining \. on input line 100.
 LaTeX Info: Redefining \% on input line 100.
- [38]
-<img/Ejemplo carta.png, id=763, 433.62pt x 433.62pt>
+ [41]
+<img/Ejemplo carta.png, id=772, 433.62pt x 433.62pt>
 File: img/Ejemplo carta.png Graphic file (type png)
 <use img/Ejemplo carta.png>
 Package pdftex.def Info: img/Ejemplo carta.png  used on input line 109.
 (pdftex.def)             Requested size: 244.98074pt x 244.98251pt.
 LaTeX Info: Redefining \. on input line 122.
 LaTeX Info: Redefining \% on input line 122.
- [39
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5.2}) 
+ [42
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.122 
        <./img/Ejemplo carta.png>]
-<img/Ejemplo_audiencia.png, id=778, 1927.2pt x 1032.85875pt>
+<img/Ejemplo_audiencia.png, id=787, 1927.2pt x 1032.85875pt>
 File: img/Ejemplo_audiencia.png Graphic file (type png)
 <use img/Ejemplo_audiencia.png>
 Package pdftex.def Info: img/Ejemplo_audiencia.png  used on input line 134.
 (pdftex.def)             Requested size: 408.2971pt x 218.8137pt.
 LaTeX Info: Redefining \. on input line 152.
 LaTeX Info: Redefining \% on input line 152.
- [40
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5.3}) 
+ [43
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1791,49 +1789,49 @@ l.152     \item E
  <./img/Ejemplo_audiencia.png>]
 LaTeX Info: Redefining \. on input line 186.
 LaTeX Info: Redefining \% on input line 186.
- [41]
+ [44]
 LaTeX Info: Redefining \. on input line 219.
 LaTeX Info: Redefining \% on input line 219.
- [42]
+ [45]
 LaTeX Info: Redefining \. on input line 256.
 LaTeX Info: Redefining \% on input line 256.
- [43])
+ [46])
 (capitulos/capitulo-estado_del_arte.tex
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
- [44]
-chapter 6.
-[45
+ [47]
+chapter 7.
+[48
 
 ]
-<img/slay_the_spire.jpg, id=850, 1927.2pt x 1084.05pt>
+<img/slay_the_spire.jpg, id=859, 1927.2pt x 1084.05pt>
 File: img/slay_the_spire.jpg Graphic file (type jpg)
 <use img/slay_the_spire.jpg>
 Package pdftex.def Info: img/slay_the_spire.jpg  used on input line 33.
 (pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
 LaTeX Info: Redefining \. on input line 49.
 LaTeX Info: Redefining \% on input line 49.
- [46
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1}) 
+ [49
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.49 \end{itemize}
                    <./img/slay_the_spire.jpg>]
-<img/balatro.jpg, id=859, 1954.34366pt x 1099.31831pt>
+<img/balatro.jpg, id=868, 1954.34366pt x 1099.31831pt>
 File: img/balatro.jpg Graphic file (type jpg)
 <use img/balatro.jpg>
 Package pdftex.def Info: img/balatro.jpg  used on input line 55.
 (pdftex.def)             Requested size: 408.2971pt x 229.65591pt.
-<img/Storyteller.jpg, id=863, 1954.34366pt x 1099.31831pt>
+<img/Storyteller.jpg, id=872, 1954.34366pt x 1099.31831pt>
 File: img/Storyteller.jpg Graphic file (type jpg)
 <use img/Storyteller.jpg>
 Package pdftex.def Info: img/Storyteller.jpg  used on input line 77.
 (pdftex.def)             Requested size: 408.2971pt x 229.65591pt.
 LaTeX Info: Redefining \. on input line 81.
 LaTeX Info: Redefining \% on input line 81.
- [47
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6.2}) 
+ [50
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1841,8 +1839,8 @@ l.81
       <./img/balatro.jpg>]
 LaTeX Info: Redefining \. on input line 116.
 LaTeX Info: Redefining \% on input line 116.
- [48
-pdfTeX warning (ext4): destination with the same identifier (name{figure.6.3}) 
+ [51
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1850,8 +1848,8 @@ l.116
        <./img/Storyteller.jpg>]
 LaTeX Info: Redefining \. on input line 136.
 LaTeX Info: Redefining \% on input line 136.
- [49
-pdfTeX warning (ext4): destination with the same identifier (name{table.6.1}) h
+ [52
+pdfTeX warning (ext4): destination with the same identifier (name{table.7.1}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1859,9 +1857,9 @@ l.136
       ]) (capitulos/capitulo-planificacion.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
- [50]
-chapter 7.
-<img/gantt.PNG, id=897, 754.61925pt x 309.5565pt>
+ [53]
+chapter 8.
+<img/gantt.PNG, id=906, 754.61925pt x 309.5565pt>
 File: img/gantt.PNG Graphic file (type png)
 <use img/gantt.PNG>
 Package pdftex.def Info: img/gantt.PNG  used on input line 31.
@@ -1869,21 +1867,21 @@ Package pdftex.def Info: img/gantt.PNG  used on input line 31.
 
 Underfull \vbox (badness 7273) has occurred while \output is active []
 
- [51
+ [54
 
 ]
 (C:\Users\Arturo\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1pplj.fd)
 LaTeX Info: Redefining \. on input line 68.
 LaTeX Info: Redefining \% on input line 68.
 
-[52
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7.1}) 
+[55
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.68 
      
-pdfTeX warning (ext4): destination with the same identifier (name{table.7.1}) h
+pdfTeX warning (ext4): destination with the same identifier (name{table.8.1}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1891,7 +1889,7 @@ l.68
       <./img/gantt.PNG>]
 LaTeX Info: Redefining \. on input line 98.
 LaTeX Info: Redefining \% on input line 98.
- [53]
+ [56]
 Overfull \hbox (2.04146pt too wide) in alignment at lines 120--135
  [] [] 
  []
@@ -1928,7 +1926,7 @@ Overfull \hbox (2.04146pt too wide) in alignment at lines 138--157
 
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
-[54]
+[57]
 Overfull \hbox (2.04146pt too wide) in alignment at lines 160--176
  [] [] 
  []
@@ -1940,7 +1938,7 @@ Overfull \hbox (2.04146pt too wide) in alignment at lines 179--192
 
 LaTeX Info: Redefining \. on input line 192.
 LaTeX Info: Redefining \% on input line 192.
-[55]
+[58]
 Overfull \hbox (2.04146pt too wide) in alignment at lines 195--208
  [] [] 
  []
@@ -1962,7 +1960,7 @@ Overfull \hbox (2.04146pt too wide) in alignment at lines 243--257
 
 LaTeX Info: Redefining \. on input line 257.
 LaTeX Info: Redefining \% on input line 257.
-[56]
+[59]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 259.
@@ -1982,19 +1980,19 @@ Underfull \hbox (badness 10000) in alignment at lines 276--276
 
 LaTeX Info: Redefining \. on input line 293.
 LaTeX Info: Redefining \% on input line 293.
-[57]
+[60]
 LaTeX Info: Redefining \. on input line 319.
 LaTeX Info: Redefining \% on input line 319.
- [58]
-<img/proto2.jpeg, id=1056, 1301.86375pt x 1148.29pt>
+ [61]
+<img/proto2.jpeg, id=1065, 1301.86375pt x 1148.29pt>
 File: img/proto2.jpeg Graphic file (type jpg)
 <use img/proto2.jpeg>
 Package pdftex.def Info: img/proto2.jpeg  used on input line 322.
 (pdftex.def)             Requested size: 408.2971pt x 360.13632pt.
 LaTeX Info: Redefining \. on input line 334.
 LaTeX Info: Redefining \% on input line 334.
- [59
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7.2}) 
+ [62
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8.2}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -2003,22 +2001,22 @@ l.334     \item \textbf
  <./img/proto2.jpeg>]
 LaTeX Info: Redefining \. on input line 371.
 LaTeX Info: Redefining \% on input line 371.
- [60]
-<img/proto1.jpeg, id=1081, 1606.0pt x 698.61pt>
+ [63]
+<img/proto1.jpeg, id=1090, 1606.0pt x 698.61pt>
 File: img/proto1.jpeg Graphic file (type jpg)
 <use img/proto1.jpeg>
 Package pdftex.def Info: img/proto1.jpeg  used on input line 382.
 (pdftex.def)             Requested size: 408.2971pt x 177.60486pt.
 LaTeX Info: Redefining \. on input line 405.
 LaTeX Info: Redefining \% on input line 405.
- [61
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7.3}) 
+ [64
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.405     \item e
                  l flujo de robo, mano, mesa y descarte, <./img/proto1.jpeg>]
-<img/ClassDiagram mitad 1.png, id=1090, 972.0315pt x 1129.821pt>
+<img/ClassDiagram mitad 1.png, id=1099, 972.0315pt x 1129.821pt>
 File: img/ClassDiagram mitad 1.png Graphic file (type png)
 <use img/ClassDiagram mitad 1.png>
 Package pdftex.def Info: img/ClassDiagram mitad 1.png  used on input line 429.
@@ -2028,8 +2026,8 @@ Underfull \vbox (badness 4341) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 433.
 LaTeX Info: Redefining \% on input line 433.
- [62]
-<img/ClassDiagram mitad 2.png, id=1096, 1224.9765pt x 670.9065pt>
+ [65]
+<img/ClassDiagram mitad 2.png, id=1105, 1224.9765pt x 670.9065pt>
 File: img/ClassDiagram mitad 2.png Graphic file (type png)
 <use img/ClassDiagram mitad 2.png>
 Package pdftex.def Info: img/ClassDiagram mitad 2.png  used on input line 436.
@@ -2039,106 +2037,109 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 440.
 LaTeX Info: Redefining \% on input line 440.
- [63
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7.4}) 
+ [66
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8.4}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.440 
-       <./img/ClassDiagram mitad 1.png>]) (capitulos/capitulo-herramientas.tex
+       <./img/ClassDiagram mitad 1.png (PNG copy)>])
+(capitulos/capitulo-herramientas.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
-
-[64
-pdfTeX warning (ext4): destination with the same identifier (name{figure.7.5}) 
+ [67
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8.5}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.4 \chapter
-            {Herramientas} <./img/ClassDiagram mitad 2.png>]
-chapter 8.
-[65
-
-]
-LaTeX Info: Redefining \. on input line 71.
-LaTeX Info: Redefining \% on input line 71.
- [66]) (capitulos/capitulo-software.tex
-LaTeX Info: Redefining \. on input line 5.
-LaTeX Info: Redefining \% on input line 5.
- [67]
+            {Herramientas} <./img/ClassDiagram mitad 2.png (PNG copy)>]
 chapter 9.
 [68
 
 ]
-<img/UI general.jpg, id=1143, 1927.2pt x 1084.05pt>
+LaTeX Info: Redefining \. on input line 71.
+LaTeX Info: Redefining \% on input line 71.
+ [69]) (capitulos/capitulo-software.tex
+LaTeX Info: Redefining \. on input line 5.
+LaTeX Info: Redefining \% on input line 5.
+ [70]
+chapter 10.
+[71
+
+]
+<img/UI general.jpg, id=1150, 1926.19624pt x 1032.85875pt>
 File: img/UI general.jpg Graphic file (type jpg)
 <use img/UI general.jpg>
 Package pdftex.def Info: img/UI general.jpg  used on input line 37.
-(pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
-<img/has ganado.jpg, id=1145, 1927.2pt x 1084.05pt>
+(pdftex.def)             Requested size: 408.2971pt x 218.92403pt.
+<img/has ganado.jpg, id=1152, 1926.19624pt x 1032.85875pt>
 File: img/has ganado.jpg Graphic file (type jpg)
 <use img/has ganado.jpg>
 Package pdftex.def Info: img/has ganado.jpg  used on input line 54.
-(pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
+(pdftex.def)             Requested size: 408.2971pt x 218.92403pt.
 
-Underfull \vbox (badness 3942) has occurred while \output is active []
+Underfull \vbox (badness 5622) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 58.
 LaTeX Info: Redefining \% on input line 58.
- [69
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.1}) 
-has been already used, duplicate ignored
+ [72
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.1})
+ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.58 
       <./img/UI general.jpg>]
-<img/descartes.jpg, id=1151, 1927.2pt x 1084.05pt>
+<img/descartes.jpg, id=1158, 1926.19624pt x 1032.85875pt>
 File: img/descartes.jpg Graphic file (type jpg)
 <use img/descartes.jpg>
 Package pdftex.def Info: img/descartes.jpg  used on input line 63.
-(pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
-<img/mazo.jpg, id=1152, 1927.2pt x 1084.05pt>
+(pdftex.def)             Requested size: 408.2971pt x 218.92403pt.
+<img/mazo.jpg, id=1159, 1926.19624pt x 1032.85875pt>
 File: img/mazo.jpg Graphic file (type jpg)
 <use img/mazo.jpg>
 Package pdftex.def Info: img/mazo.jpg  used on input line 70.
-(pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
+(pdftex.def)             Requested size: 408.2971pt x 218.92403pt.
+
+Underfull \vbox (badness 7168) has occurred while \output is active []
+
 LaTeX Info: Redefining \. on input line 74.
 LaTeX Info: Redefining \% on input line 74.
- [70
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.2}) 
-has been already used, duplicate ignored
+ [73
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.2})
+ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.74 
      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.3}) 
-has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.3})
+ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.74 
       <./img/has ganado.jpg> <./img/descartes.jpg>]
 LaTeX Info: Redefining \. on input line 90.
 LaTeX Info: Redefining \% on input line 90.
- [71
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.4}) 
-has been already used, duplicate ignored
+ [74
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.4})
+ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.90 
       <./img/mazo.jpg>]
 LaTeX Info: Redefining \. on input line 128.
 LaTeX Info: Redefining \% on input line 128.
- [72]
-<img/jugadores_clases.PNG, id=1174, 681.747pt x 290.88675pt>
+ [75]
+<img/jugadores_clases.PNG, id=1181, 681.747pt x 290.88675pt>
 File: img/jugadores_clases.PNG Graphic file (type png)
 <use img/jugadores_clases.PNG>
 Package pdftex.def Info: img/jugadores_clases.PNG  used on input line 133.
 (pdftex.def)             Requested size: 347.05502pt x 148.08395pt.
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
- [73
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.5}) 
-has been already used, duplicate ignored
+ [76
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.5})
+ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.157 \subsubsection
@@ -2152,7 +2153,7 @@ Overfull \hbox (3.17638pt too wide) in paragraph at lines 185--186
 
 LaTeX Info: Redefining \. on input line 197.
 LaTeX Info: Redefining \% on input line 197.
-[74]
+[77]
 Overfull \hbox (12.28421pt too wide) in paragraph at lines 224--232
 []\T1/pplj/m/n/10 En pri-mer lu-gar, se im-ple-men-t� una cla-se hi-ja de \T1/z
 i4/m/n/10 URivalAIBase\T1/pplj/m/n/10 , de-no-mi-na-da \T1/zi4/m/n/10 URandomRi
@@ -2161,33 +2162,31 @@ valAI\T1/pplj/m/n/10 ,
 
 LaTeX Info: Redefining \. on input line 238.
 LaTeX Info: Redefining \% on input line 238.
-[75]
+[78]
 LaTeX Info: Redefining \. on input line 285.
 LaTeX Info: Redefining \% on input line 285.
- [76]
-<img/evento.jpg, id=1211, 1927.2pt x 1084.05pt>
+ [79]
+<img/evento.jpg, id=1218, 1440.13031pt x 773.13844pt>
 File: img/evento.jpg Graphic file (type jpg)
 <use img/evento.jpg>
 Package pdftex.def Info: img/evento.jpg  used on input line 288.
-(pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
+(pdftex.def)             Requested size: 408.2971pt x 219.19063pt.
 
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 298.
 
-LaTeX Info: Redefining \. on input line 310.
-LaTeX Info: Redefining \% on input line 310.
-[77
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.6}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.310     \item \textbf
-                       {\texttt{GetEventCards()}}: función que devuelve un ...
- <./img/evento.jpg>]
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 (Font)              scaled to size 10.0pt on input line 310.
-
+LaTeX Info: Redefining \. on input line 311.
+LaTeX Info: Redefining \% on input line 311.
+[80
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.6})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.311 \end{itemize}
+                    <./img/evento.jpg>]
 Overfull \hbox (0.66344pt too wide) in paragraph at lines 350--351
 []\T1/pplj/m/n/10 Una vez to-ma-da una de-ci-si�n, el wid-get in-vo-ca la fun-c
 i�n co-rres-pon-dien-te en \T1/zi4/m/n/10 UEvent_Base\T1/pplj/m/n/10 ,
@@ -2195,7 +2194,7 @@ i�n co-rres-pon-dien-te en \T1/zi4/m/n/10 UEvent_Base\T1/pplj/m/n/10 ,
 
 LaTeX Info: Redefining \. on input line 358.
 LaTeX Info: Redefining \% on input line 358.
-[78]
+[81]
 Overfull \hbox (6.88275pt too wide) in paragraph at lines 360--362
 \T1/pplj/m/n/10 En Un-real, un guar-da-do se re-pre-sen-ta co-mo una cla-se de 
 da-tos (\T1/zi4/m/n/10 UCLASS \T1/pplj/m/n/10 de-ri-va-da de \T1/zi4/m/n/10 USa
@@ -2206,27 +2205,27 @@ LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 (Font)              scaled to size 12.0pt on input line 368.
 LaTeX Info: Redefining \. on input line 383.
 LaTeX Info: Redefining \% on input line 383.
-[79]
+[82]
 LaTeX Info: Redefining \. on input line 422.
 LaTeX Info: Redefining \% on input line 422.
- [80]
-<img/menu.jpg, id=1234, 1927.2pt x 1084.05pt>
+ [83]
+<img/menu.jpg, id=1241, 1443.14156pt x 774.64406pt>
 File: img/menu.jpg Graphic file (type jpg)
 <use img/menu.jpg>
 Package pdftex.def Info: img/menu.jpg  used on input line 425.
-(pdftex.def)             Requested size: 408.2971pt x 229.6587pt.
+(pdftex.def)             Requested size: 408.2971pt x 219.1565pt.
 ) (capitulos/capitulo-evaluacion.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
- [81
-pdfTeX warning (ext4): destination with the same identifier (name{figure.9.7}) 
-has been already used, duplicate ignored
+ [84
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10.7})
+ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.4 \chapter
             {Evaluación y pruebas} <./img/menu.jpg>]
-chapter 10.
-[82
+chapter 11.
+[85
 
 ]
 Overfull \hbox (20.98276pt too wide) in paragraph at lines 89--98
@@ -2235,11 +2234,11 @@ Overfull \hbox (20.98276pt too wide) in paragraph at lines 89--98
 
 LaTeX Info: Redefining \. on input line 98.
 LaTeX Info: Redefining \% on input line 98.
-[83]
+[86]
 LaTeX Info: Redefining \. on input line 140.
 LaTeX Info: Redefining \% on input line 140.
- [84
-pdfTeX warning (ext4): destination with the same identifier (name{table.10.1}) 
+ [87
+pdfTeX warning (ext4): destination with the same identifier (name{table.11.1}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -2257,7 +2256,7 @@ Overfull \hbox (40.26782pt too wide) in alignment at lines 147--160
 
 LaTeX Info: Redefining \. on input line 173.
 LaTeX Info: Redefining \% on input line 173.
-[85]
+[88]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 189.
@@ -2272,17 +2271,17 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 LaTeX Info: Redefining \. on input line 217.
 LaTeX Info: Redefining \% on input line 217.
-[86]) (capitulos/capitulo-conclusiones.tex
+[89]) (capitulos/capitulo-conclusiones.tex
 LaTeX Info: Redefining \. on input line 4.
 LaTeX Info: Redefining \% on input line 4.
- [87]
-chapter 11.
-[88
+ [90]
+chapter 12.
+[91
 
 ])
-LaTeX Info: Redefining \. on input line 162.
-LaTeX Info: Redefining \% on input line 162.
- [89] (tfg.bbl
+LaTeX Info: Redefining \. on input line 163.
+LaTeX Info: Redefining \% on input line 163.
+ [92] (tfg.bbl
 chapter without number
 LaTeX Font Info:    Font shape `T1/Cabin-TLF/m/n' aliased to
 (Font)              `T1/Cabin-TLF/regular/n' on input line 1.
@@ -2294,16 +2293,16 @@ LaTeX Font Info:    Font shape `T1/Cabin-TLF/bold/n' will be
 (Font)              scaled to size 8.54997pt on input line 1.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 9.0pt on input line 5.
-[90
+[93
 
 
 ]
 LaTeX Info: Redefining \. on input line 299.
 LaTeX Info: Redefining \% on input line 299.
- [91])
-LaTeX Info: Redefining \. on input line 174.
-LaTeX Info: Redefining \% on input line 174.
- [92] (tfg.aux
+ [94])
+LaTeX Info: Redefining \. on input line 175.
+LaTeX Info: Redefining \% on input line 175.
+ [95] (tfg.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 LaTeX Info: Redefining \. on input line 23.
@@ -2327,10 +2326,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 ### simple group (level 1) entered at line 94 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 32047 strings out of 474486
- 610361 string characters out of 5743282
- 1951542 words of memory out of 5000000
- 53109 multiletter control sequences out of 15000+600000
+ 32043 strings out of 474486
+ 610329 string characters out of 5743282
+ 1950542 words of memory out of 5000000
+ 53106 multiletter control sequences out of 15000+600000
  757893 words of font info for 261 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  122i,12n,121p,11231b,1010s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2360,9 +2359,9 @@ grams/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/Arturo/AppData/Local
 Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/Arturo/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb><C:/Users/Arturo
 /AppData/Local/Programs/MiKTeX/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on tfg.pdf (112 pages, 11905383 bytes).
+Output written on tfg.pdf (111 pages, 8182506 bytes).
 PDF statistics:
- 1944 PDF objects out of 2073 (max. 8388607)
- 490 named destinations out of 1000 (max. 500000)
+ 1951 PDF objects out of 2073 (max. 8388607)
+ 489 named destinations out of 1000 (max. 500000)
  1227 words of extra memory for PDF output out of 10000 (max. 10000000)
 

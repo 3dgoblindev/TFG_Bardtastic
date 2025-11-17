@@ -6,7 +6,8 @@ Una vez expuestos los distintos tipos de juegos y sus características fundament
 El estudio de estos agentes permite aproximarse a la resolución de juegos complejos, incluso cuando no es posible obtener una solución exacta. En tales situaciones, el objetivo pasa a ser el diseño de agentes que actúen de forma racional dentro del entorno del juego, optimizando su comportamiento.
 
 \section{Agentes}
-En inteligencia artificial, un \textbf{agente} es una entidad que percibe su entorno mediante sensores y actúa sobre él a través de actuadores \cite{RussellNorvig2021}. El comportamiento del agente está determinado por una función agente que asigna una acción a cada secuencia posible de percepciones.
+En inteligencia artificial, un agente es una entidad que percibe su entorno mediante sensores y actúa sobre él a través de actuadores \cite{RussellNorvig2021}. El comportamiento del agente puede describirse mediante una regla de decisión (a veces llamada función ''agente``), que indica qué acción debe realizar el agente en cada situación posible que pueda percibir.
+
 Un \textbf{agente racional} elige las acciones que maximicen su medida de rendimiento esperada, en función de las percepciones y el conocimiento disponible.
 
 
@@ -172,6 +173,7 @@ Este ejemplo ilustra cómo la poda evita explorar ramas innecesarias, reduciendo
 \label{fig:tres_en_raya_alphabeta}
 \end{figure}
 
+Las flechas mostradas en la Figura \ref{fig:tres_en_raya_alphabeta} representan el recorrido de la búsqueda durante la evaluación $\alpha$–$\beta$. Indican cómo el algoritmo avanza y retrocede entre nodos, propagando valores hacia arriba y permitiendo identificar cuándo una rama deja de ser relevante para la decisión final. Esta visualización ayuda a comprender cómo se van actualizando $\alpha$ y $\beta$ y por qué ciertas ramas pueden podarse sin necesidad de explorarlas por completo.
 
 \subsection{Heurísticas}
 

@@ -5,7 +5,7 @@
 % Introducción
 %*******************************************************
 
-\chapter{Introducción}
+\chapter{Introducción}\label{cap:introduccion}
 
 Los videojuegos constituyen hoy un espacio privilegiado para la experimentación en diseño interactivo y en la aplicación práctica de algoritmos de decisión. Como medios computacionales complejos, permiten estudiar cómo reglas formales, recursos limitados y elecciones encadenadas dan lugar a comportamientos estratégicos. Dentro de este amplio panorama, los juegos basados en cartas y en estructuras combinatorias ofrecen un entorno especialmente adecuado para analizar procesos de razonamiento y para introducir agentes capaces de actuar bajo incertidumbre.
 
@@ -39,7 +39,7 @@ Desarrollar un prototipo funcional del videojuego \textit{Bardtastic}, integrand
 
 \textbf{Subobjetivos asociados:}
 \begin{itemize}
-  \item Diseñar las reglas del juego, los tipos de carta y las mecánicas centrales (rimas, atención, emociones, historia).
+  \item Diseñar las reglas del juego, los tipos de cartas y las mecánicas centrales (rimas, atención, emociones, historia).
   \item Construir una arquitectura modular en Unreal Engine que separe lógica de juego, interfaz y comportamiento del agente.
   \item Implementar un agente deliberativo basado en \emph{Depth-First Search} y en una función de utilidad que evalúa atención, progreso narrativo y ciclo.
   \item Realizar pruebas funcionales y sesiones de \textit{playtesting} que permitan ajustar tanto el juego como el comportamiento del agente.
@@ -53,28 +53,31 @@ En conjunto, estos objetivos combinan la modelización matemática de la decisi�
 
 El documento se organiza de forma progresiva, comenzando por los fundamentos teóricos y avanzando hacia el diseño, la implementación y la validación del prototipo. 
 
-El \textbf{Capítulo~1} introduce las nociones básicas de la Teoría de Juegos necesarias para el desarrollo del trabajo. En él se presentan las definiciones formales de juego, estrategias, utilidades y resultados preliminares que permiten describir interacciones estratégicas de manera rigurosa.
-
-El \textbf{Capítulo~2} profundiza en los conceptos de equilibrio, especialmente el equilibrio de Nash, así como en criterios de optimalidad como las estrategias dominadas y el teorema del minimax. Este marco sirve de base matemática para el análisis del agente rival utilizado en el videojuego.
-
-El \textbf{Capítulo~3} recopila distintos ejemplos de juegos estáticos y dinámicos que ilustran la teoría expuesta. Su propósito es mostrar cómo los conceptos anteriores se aplican en situaciones concretas y cómo pueden modelarse problemas reales de decisión.
-
-El \textbf{Capítulo~4} presenta varios algoritmos clásicos empleados en la resolución de juegos y en la toma de decisiones computacional, incluyendo métodos basados en exploración de árboles y heurísticas. Estas técnicas inspiran directamente el diseño del agente implementado posteriormente.
-
-El \textbf{Capítulo~5} introduce en detalle el proyecto \textit{Bardtastic}. Se describen sus reglas, el funcionamiento de sus mecánicas principales y su clasificación formal desde la Teoría de Juegos, estableciendo el puente entre los conceptos teóricos y el caso de estudio.
-
-El \textbf{Capítulo~6} presenta el estado del arte tanto en diseño de videojuegos como en enfoques de inteligencia artificial aplicados a juegos. Se revisan los géneros que inspiran el proyecto, los referentes mecánicos y narrativos, así como los principales modelos de agentes deliberativos empleados en entornos interactivos.
-
-El \textbf{Capítulo~7} describe la planificación del desarrollo y la metodología empleada. Se detallan las fases de trabajo, la organización del proyecto, las herramientas utilizadas y el uso de enfoques ágiles adaptados a un proceso de producción individual.
-
-El \textbf{Capítulo~8} expone las decisiones de diseño que dan forma al prototipo: los pilares conceptuales, las mecánicas centrales, la identidad narrativa y la transición desde el prototipo en papel hasta su implementación digital. Este capítulo establece el marco conceptual que guía las elecciones técnicas posteriores.
+El \textbf{Capítulo~\ref{cap:introduccion}} presenta el contexto general del trabajo, sus motivaciones y los objetivos que guían el desarrollo del proyecto. También se introduce el problema que se pretende abordar y la metodología seguida.
 
 
-El \textbf{Capítulo~9} describe la implementación técnica del prototipo en Unreal Engine, con especial atención a la arquitectura del software, el sistema de cartas y el comportamiento del agente rival. 
+El \textbf{Capítulo~\ref{cap1}} introduce las nociones básicas de la Teoría de Juegos necesarias para el desarrollo del trabajo. En él se presentan las definiciones formales de juego, estrategias, utilidades y resultados preliminares que permiten describir interacciones estratégicas de manera rigurosa.
 
-El \textbf{Capítulo~10} presenta la evaluación del prototipo mediante pruebas funcionales y sesiones de \textit{playtesting}, analizando tanto el rendimiento del agente como la adecuación de las mecánicas.
+El \textbf{Capítulo~\ref{cap2}} profundiza en los conceptos de equilibrio, especialmente el equilibrio de Nash, así como en criterios de optimalidad como las estrategias dominadas y el teorema del minimax. Este marco sirve de base matemática para el análisis del agente rival utilizado en el videojuego.
 
-Finalmente, el \textbf{Capítulo~11} recoge las conclusiones generales del trabajo y propone varias líneas de continuación, incluyendo la extensión del prototipo hacia una \textit{Vertical Slice}, la ampliación del contenido jugable y el diseño de agentes más sofisticados.
+El \textbf{Capítulo~\ref{cap3}} recopila distintos ejemplos de juegos estáticos y dinámicos que ilustran la teoría expuesta. Su propósito es mostrar cómo los conceptos anteriores se aplican en situaciones concretas y cómo pueden modelarse problemas reales de decisión.
+
+El \textbf{Capítulo~\ref{algoritmos}} presenta varios algoritmos clásicos empleados en la resolución de juegos y en la toma de decisiones computacional, incluyendo métodos basados en exploración de árboles y heurísticas. Estas técnicas inspiran directamente el diseño del agente implementado posteriormente.
+
+El \textbf{Capítulo~\ref{cap_bardtastic}} introduce en detalle el proyecto \textit{Bardtastic}. Se describen sus reglas, el funcionamiento de sus mecánicas principales y su clasificación formal desde la Teoría de Juegos, estableciendo el puente entre los conceptos teóricos y el caso de estudio.
+
+El \textbf{Capítulo~\ref{estado_del_arte}} presenta el estado del arte tanto en diseño de videojuegos como en enfoques de inteligencia artificial aplicados a juegos. Se revisan los géneros que inspiran el proyecto, los referentes mecánicos y narrativos, así como los principales modelos de agentes deliberativos empleados en entornos interactivos.
+
+El \textbf{Capítulo~\ref{cap_diseño}} describe la planificación del desarrollo, la metodología empleada y las decisiones de diseño que dan forma al prototipo. Se detallan las fases de trabajo, los pilares conceptuales, las mecánicas centrales, la identidad narrativa y la transición desde el prototipo en papel hasta su implementación digital.
+
+El \textbf{Capítulo~\ref{chap:herramientas}} presenta las herramientas técnicas empleadas durante el desarrollo del prototipo. Se describen el motor de juego seleccionado, el ecosistema de programación y los recursos de apoyo utilizados en la producción, justificando cómo cada elección tecnológica contribuye a la construcción y viabilidad del proyecto.
+
+
+El \textbf{Capítulo~\ref{cap_software}} describe la implementación técnica del prototipo en Unreal Engine, con especial atención a la arquitectura del software, el sistema de cartas y el comportamiento del agente rival. 
+
+El \textbf{Capítulo~\ref{chap:evaluacion-pruebas}} presenta la evaluación del prototipo mediante pruebas funcionales y sesiones de \textit{playtesting}, analizando tanto el rendimiento del agente como la adecuación de las mecánicas.
+
+Finalmente, el \textbf{Capítulo~\ref{conclusiones}} recoge las conclusiones generales del trabajo y propone varias líneas de continuación, incluyendo la extensión del prototipo hacia una \textit{Vertical Slice}, la ampliación del contenido jugable y el diseño de agentes más sofisticados.
 
 
 \endinput
