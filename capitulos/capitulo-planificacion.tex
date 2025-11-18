@@ -7,12 +7,12 @@
 ``To remember to only work on what is important, ask yourself this question: \\
 Is making this game worth my time?''\\[1ex]
 \hrulefill\\[-0.5ex]
-\small Jesse Schell, \textit{The Art of Game Design: A Book of Lenses} (Lens \#99 -- The Lens of the Raven)
+\small Jesse Schell, \textit{The Art of Game Design: A Book of Lenses} (Lens \#99 -- The Lens of the Raven) \cite{schell2014}
 \end{flushright}
 
 \vspace{2em}
 
-El desarrollo de \textit{Bardtastic} se ha planificado siguiendo un enfoque estructurado de ingeniería del software, con el objetivo de garantizar una organización eficiente del trabajo, una adecuada gestión del tiempo y una distribución coherente de los recursos. A lo largo del proceso se ha definido un calendario de producción y un presupuesto estimado que reflejan tanto la carga de trabajo del estudiante como las necesidades de desarrollo del proyecto.
+El desarrollo de \textit{Bardtastic} se ha planificado siguiendo un enfoque estructurado de ingeniería del \textit{software}, con el objetivo de garantizar una organización eficiente del trabajo, una adecuada gestión del tiempo y una distribución coherente de los recursos. A lo largo del proceso se ha definido un calendario de producción y un presupuesto estimado que reflejan tanto la carga de trabajo del estudiante como las necesidades de desarrollo del proyecto.
 
 Antes de poder empezar a desarrollar, en la fase de pre-producción, se han definido el género, la temática y las principales referencias artísticas y mecánicas del proyecto, así como su identidad visual y tono narrativo. También se ha desarrollado y \textit{testeado} un prototipo en papel que permitió explorar las dinámicas de juego y validar las ideas iniciales, aunque este prototipo se abordará con mayor detalle en apartados posteriores.
 
@@ -75,7 +75,7 @@ En conjunto, esta combinación ligera de enfoques ágiles ha permitido un proces
 
 \section{Análisis de requisitos}
 
-El presente apartado identifica y define los requisitos del sistema asociados a \textit{Bardtastic}, considerando tanto su naturaleza como producto software jugable como el componente de inteligencia artificial encargado de controlar a los oponentes. El objetivo es especificar de forma clara las funcionalidades necesarias para garantizar una experiencia de juego coherente con la propuesta conceptual y plenamente operativa para la evaluación del agente inteligente.
+El presente apartado identifica y define los requisitos del sistema asociados a \textit{Bardtastic}, considerando tanto su naturaleza como producto \textit{software} jugable como el componente de inteligencia artificial encargado de controlar a los oponentes. El objetivo es especificar de forma clara las funcionalidades necesarias para garantizar una experiencia de juego coherente con la propuesta conceptual y plenamente operativa para la evaluación del agente inteligente.
 
 Los requisitos se han clasificado en dos categorías principales:
 \begin{itemize}
@@ -98,7 +98,7 @@ Los requisitos se han clasificado en dos categorías principales:
   \item \label{rf:emociones} El sistema debe \textbf{gestionar emociones} por espectador y aplicar las \textbf{transiciones} indicadas por las cartas.
   \item \label{rf:ia} El sistema debe permitir que la \textbf{IA} seleccione y juegue \textbf{secuencias válidas} de cartas siguiendo su estrategia.
   \item \label{rf:fin} El sistema debe \textbf{detectar el fin de partida} al completar 7 turnos por jugador o al cumplirse reglas globales de taberna.
-  \item \label{rf:ganador} El sistema debe \textbf{calcular el ganador} por mayoría de audiencia; en caso de empate, prevalece quien tenga \textbf{historia completa} (inicio, nudo, desenlace + $ge$ 1 personaje + $ge$ 1 pensamiento).
+  \item \label{rf:ganador} El sistema debe \textbf{calcular el ganador} por mayoría de audiencia; en caso de empate, prevalece quien tenga \textbf{historia completa} (inicio, nudo, desenlace + $\ge$ 1 personaje + $\ge$ 1 pensamiento).
 \end{enumerate}
 
 \subsection{Requisitos no funcionales (RNF)}
@@ -150,8 +150,8 @@ E1) Mazo agotado: no se alcanza 5; el sistema continúa con la mano disponible.\
 & 4) Actualiza atención y emociones por espectador (\ref{rf:atencion}, \ref{rf:emociones}).\\
 & 5) Actualiza tipos permanentes en mesa e instantáneas al descarte (\ref{rf:tipos}).\\
 \textbf{Cursos alternativos} &
-A1) Validación de rima falla: se informa y se impide la jugada (\ref{rf:rimas}, \ref{rnf:usabilidad}).\\
-A2) Efecto apunta a espectador inexistente: se cancela ese sub-efecto.\\
+A1) Validación de rima falla: se informa y se impide la jugada (\ref{rf:rimas}, \ref{rnf:usabilidad}). \\
+& A2) Efecto apunta a espectador inexistente: se cancela ese sub-efecto.\\
 \textbf{Requisitos} & \ref{rf:rimas}, \ref{rf:efectos}, \ref{rf:tipos}, \ref{rf:atencion}, \ref{rf:emociones}, \ref{rnf:usabilidad}, \ref{rnf:rendimiento}.\\
 \bottomrule
 \end{longtable}
@@ -291,6 +291,7 @@ Los tres pilares de diseño definidos para \textit{Bardtastic} se inspiran en el
 
 En este sentido, se ha considerado también la clasificación de las catorce formas de diversión propuesta por Garneau \cite{Garnaeu2001FourteenFormsOfFun}, que facilita un análisis más granular del tipo de satisfacción que el juego puede ofrecer. Ambas referencias han servido de guía para identificar los elementos que resultan más relevantes en la experiencia que \textit{Bardtastic} busca construir: creatividad en la construcción del mazo, toma de decisiones con impacto estratégico y un tono humorístico que acompañe a la fantasía de actuar como un bardo en un entorno teatral.
 
+Estos tres pilares actúan como referencia constante: cualquier mecánica o decisión visual debe servir al menos a uno de ellos para ser considerada coherente con el diseño global del juego.
 
 
 \subsubsection{Creación}
@@ -302,13 +303,13 @@ Los enfrentamientos plantean un reto táctico constante: la gestión de recursos
 \subsubsection{Comedia}
 La ambientación ligera y humorística, la exageración teatral y la interacción con una audiencia caricaturesca buscan generar una experiencia divertida, accesible y expresiva. La comedia actúa como estabilizador del tono, incluso en situaciones competitivas, alineándose con la naturaleza desenfadada del proyecto y su aspiración a poder ser disfrutado por un público amplio.
 
-Estos tres pilares actúan como referencia constante: cualquier mecánica o decisión visual debe servir al menos a uno de ellos para ser considerada coherente con el diseño global del juego.
+
 
 \subsection{Referencias de diseño}
 
-El diseño de \textit{Bardtastic} se apoya en una combinación de referentes mecánicos, estilísticos y estructurales dentro del ámbito de los juegos de cartas y de los \textit{roguelites}. A nivel mecánico, se toma como base la construcción de mazos inspirada en \textit{Slay the Spire} \cite{SlayTheSpire2019}, especialmente en lo relativo a la toma de decisiones tácticas y al acceso progresivo a cartas que modifican el estilo de juego. La creatividad sobre la composición de la historia en cada partida bebe de propuestas como \textit{Storyteller} \cite{Storyteller2023}, que explora la recombinación narrativa a través de piezas modulares.
+El diseño de \textit{Bardtastic} se apoya en una combinación de referentes mecánicos, estilísticos y estructurales dentro del ámbito de los juegos de cartas y de los \textit{roguelikes}. A nivel mecánico, se toma como base la construcción de mazos inspirada en \textit{Slay the Spire} \cite{SlayTheSpire2019}, especialmente en lo relativo a la toma de decisiones tácticas y al acceso progresivo a cartas que modifican el estilo de juego. La creatividad sobre la composición de la historia en cada partida bebe de propuestas como \textit{Storyteller} \cite{Storyteller2023}, que explora la recombinación narrativa a través de piezas modulares.
 
-Asimismo, el juego incorpora elementos clásicos del género \textit{deckbuilder} consolidados en \textit{Ascension} \cite{Ascension2010} y \textit{Magic: The Gathering} \cite{mtg}, aunque adaptándolos a un contexto competitivo asimétrico basado en la atención del público en lugar del daño directo. La progresión entre partidas se inspira en la estructura de \textit{Slay the Spire} y en la tradición \textit{roguelite} representada por \textit{The Binding of Isaac} \cite{BindingOfIsaac2011}, particularmente en cómo la narrativa avanza mediante la aparición de nuevos jefes y contenidos desbloqueables.
+Asimismo, el juego incorpora elementos clásicos del género \textit{deckbuilder} consolidados en \textit{Ascension} \cite{Ascension2010} y \textit{Magic: The Gathering} \cite{mtg}, aunque adaptándolos a un contexto competitivo asimétrico basado en la atención del público en lugar del daño directo. La progresión entre partidas se inspira en la estructura de \textit{Slay the Spire} y en la tradición \textit{roguelike} representada por \textit{The Binding of Isaac} \cite{BindingOfIsaac2011}, particularmente en cómo la narrativa avanza mediante la aparición de nuevos jefes y contenidos desbloqueables.
 
 Finalmente, se reconoce también la influencia de juegos humorísticos como \textit{Munchkin} \cite{Munchkin2001}, que combina interacción directa con un tono desenfadado y paródico, reforzando así uno de los pilares del diseño de \textit{Bardtastic}: la comedia.
 
@@ -333,7 +334,7 @@ El primer reto consistió en definir qué significa ``contar una historia'' a tr
     \item \textbf{Christopher Vogler — \textit{The Writer’s Journey}} \cite{Vogler2020WritersJourney}: refuerza la dimensión arquetípica del relato y la universalidad de ciertas estructuras que pueden activarse mediante mecánicas emergentes del mazo.
     \item \textbf{John Yorke — \textit{Into the Woods}} \cite{Yorke2013IntoTheWoods}: ofrece una lectura moderna de la estructura clásica en tres actos, muy útil para organizar la secuencia narrativa de las cartas de Historia (inicio, nudo y desenlace).
     \item \textbf{Julian Woolford — \textit{How Musicals Work and How to Write One}} \cite{Woolford2012HowMusicalsWork}: proporciona un puente entre la teoría clásica y la puesta en escena contemporánea, reforzando la importancia del espectáculo en la recepción del público.
-    \item \textbf{Monomito aplicado al viaje del héroe} \cite{OdysseusMonomyth}: ofrece una referencia estructural para la \textbf{narrativa macro} del juego (progresión entre tabernas, ascenso hacia un gran reto final), que se explora en la planificación futura del \textit{roguelike}.
+    \item \textbf{Monomito aplicado al viaje del héroe} \cite{OdysseusMonomyth}: ofrece una referencia estructural para la narrativa general del juego (progresión entre tabernas, ascenso hacia un gran reto final), que se explora en la planificación futura del \textit{roguelike}.
 \end{itemize}
 
 Esta revisión permitió trasladar principios narrativos clásicos al dominio mecánico de las cartas, manteniendo una coherencia temática entre la forma de jugar y la fantasía que se propone.
@@ -413,13 +414,13 @@ se establecieron las bases suficientes para iniciar la implementación digital d
 \section{Diagrama de clases}
 \label{sec:uml}
 
-El diagrama de clases recoge únicamente los componentes \textbf{C++} del proyecto, es decir, la lógica central del juego y de la IA. La capa de presentación y flujo visual (animaciones, UI y orquestación de acciones) se aborda principalmente con \textit{Blueprints} y, por tanto, no se incluye aquí. Este enfoque permite analizar la \emph{estructura de datos y responsabilidades} que sostienen el prototipo, manteniendo la separación de intereses entre reglas, decisión e interfaz (véase la relación con los RNF en la Sección~\ref{sec:rnf}). % 
+El diagrama de clases recoge únicamente los componentes \textbf{C++} del proyecto, es decir, la lógica central del juego y de la IA. La capa de presentación y flujo visual (animaciones, UI y orquestación de acciones) se aborda principalmente con \textit{Blueprints} y, por tanto, no se incluye aquí. Este enfoque permite analizar la estructura de datos y responsabilidades que sostienen el prototipo, manteniendo la separación de intereses entre reglas, decisión e interfaz (véase la relación con los RNF en la Sección~\ref{sec:rnf}). % 
 
 \subsection{Alcance y criterios de modelado}
 El modelo UML se ha construido con los siguientes criterios:
 \begin{itemize}
   \item \textbf{Foco en el dominio}: clases que representan cartas, mazo/descartes, audiencia y jugador controlado por lógica.
-  \item \textbf{Decisión desacoplada}: la IA rival se modela como una \emph{estrategia} independiente del agente jugador, con utilidades auxiliares para evaluar jugadas.
+  \item \textbf{Decisión desacoplada}: la IA rival se modela como una estrategia independiente del agente jugador, con utilidades auxiliares para evaluar jugadas.
   \item \textbf{Mutaciones controladas}: las simulaciones para puntuar secuencias no alteran el estado real del juego; se emplean estructuras ligeras o copias de trabajo.
 \end{itemize}
 

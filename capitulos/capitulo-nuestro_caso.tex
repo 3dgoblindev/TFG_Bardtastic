@@ -12,7 +12,7 @@
 
 \vspace{2em}
 
-Con el marco teórico establecido, este capítulo presenta el caso práctico de \textit{Bardtastic}, analizando su naturaleza como juego y su clasificación dentro de los modelos formales expuestos en capítulos anteriores. Este análisis permite situar el proyecto tanto desde una perspectiva de producto de software como desde la teoría de juegos, facilitando la justificación del algoritmo implementado para el agente inteligente desarrollado.
+Con el marco teórico establecido, este capítulo presenta el caso práctico de \textit{Bardtastic}, analizando su naturaleza como juego y su clasificación dentro de los modelos formales expuestos en capítulos anteriores. Este análisis permite situar el proyecto tanto desde una perspectiva de producto de \textit{software} como desde la Teoría de Juegos, facilitando la justificación del algoritmo implementado para el agente inteligente desarrollado.
 
 El objetivo es doble: en primer lugar, describir \textit{Bardtastic} como producto y como sistema de reglas; en segundo lugar, identificar su tipología de juego para determinar las condiciones teóricas bajo las cuales opera el agente. Una vez caracterizado el entorno, se podrá discutir con precisión la estrategia de resolución y el comportamiento racional del agente dentro de él.
 
@@ -48,7 +48,7 @@ El objetivo es captar y mantener la atención del público mejor que el rival. L
     \label{fig:Bardtastic_intro}
 \end{figure}
 
-Como se muestra en la Figura~\ref{fig:Bardtastic_intro}, la interfaz principal de los enfrentamientos presenta a los dos bardos: el jugador, situado a la izquierda, y su rival, a la derecha. En la parte inferior aparece la mano del jugador, desde la cual se seleccionan las cartas que compondrán la jugada. 
+Como se muestra en la Figura~\ref{fig:Bardtastic_intro}, la interfaz principal de los enfrentamientos presenta a los dos bardos: el personaje del jugador o jugadora, situado a la izquierda, y su rival, a la derecha. En la parte inferior aparece la mano de cartas actual, desde la cual se seleccionan las cartas que compondrán la jugada. 
 
 Sobre cada personaje se encuentran las mesas de juego, representadas mediante bocadillos, que contienen las cartas permanentes que conforman la historia en construcción. En el centro de la pantalla se sitúa la audiencia, cuyos miembros muestran tanto su nivel de atención como su emoción actual. 
 
@@ -127,7 +127,6 @@ Cada miembro muestra además una emoción, que puede cambiar durante la partida.
 
 De esta forma, por ejemplo, si los miembros de la audiencia tienen unas puntuaciones de atención de $1$,$0$,$3$,$-1$ y $-2$, tendremos a dos miembros de nuestra parte, el rival tendrá otros dos, y habría un miembro que no está de parte de ninguno.
 
-Cada miembro muestra además una emoción, que puede cambiar durante la partida.
 
 \begin{figure}[H]
     \centering
@@ -189,7 +188,7 @@ donde:
 Los pesos $w_i$ pueden interpretarse como la importancia relativa de cada criterio en la toma de decisiones del agente. Estos se fijan en el prototipo para favorecer secuencias estructuralmente valiosas sin descuidar la eficacia inmediata.
 
 \subsection{Ámbitos de decisión}
-El comportamiento se articula en tres ámbitos: (i) \textbf{selección de jugada} (secuencia de cartas), (ii) \textbf{asignación de atención} a miembros de la audiencia cuando procede, y (iii) \textbf{decisiones auxiliares} (robo y descarte) basadas en utilidad esperada por carta. Los algoritmos concretos y su materialización software se describen en la sección~\ref{sec:agente-rival}.
+El comportamiento se articula en tres ámbitos: (i) \textbf{selección de jugada} (secuencia de cartas), (ii) \textbf{asignación de atención} a miembros de la audiencia cuando procede, y (iii) \textbf{decisiones auxiliares} (robo y descarte) basadas en utilidad esperada por carta. Los algoritmos concretos y su materialización \textit{software} se describen en la sección~\ref{sec:agente-rival}.
 
 \subsubsection{Selección de jugada}
 
@@ -247,7 +246,7 @@ En conjunto, estas decisiones auxiliares refuerzan la coherencia interna del com
 su política de robo maximiza el potencial de progreso a medio plazo, mientras que su política de descarte minimiza redundancias y mantiene una mano eficiente.  
 El resultado es un oponente que, aunque no persigue la optimización perfecta, exhibe una racionalidad perceptible y mantiene el flujo del juego, ajustándose al objetivo de ofrecer un desafío creíble y consistente con la ambientación de \textit{Bardtastic}.
 
-En los siguientes capítulos se detalla cómo este modelo deliberativo se implementa en el sistema software del juego, traduciendo los conceptos teóricos de utilidad y racionalidad limitada en un flujo de decisión ejecutable en tiempo real (véase la sección~\ref{sec:agente-rival}).
+En los siguientes capítulos se detalla cómo este modelo deliberativo se implementa en el sistema \textit{software} del juego, traduciendo los conceptos teóricos de utilidad y racionalidad limitada en un flujo de decisión ejecutable en tiempo real (véase la sección~\ref{sec:agente-rival}).
 
 
 \subsection{Complejidad computacional del agente}

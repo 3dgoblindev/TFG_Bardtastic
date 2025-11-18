@@ -13,7 +13,7 @@ Para complementar, se muestran también algunos juegos reales, más sencillos y 
 
 El dilema del prisionero es un ejemplo clásico y sencillo de juego de información completa.
 
-El siguiente ejemplo está tomado textualmente de \cite{TeoriaDeJuegosCJP}, (ejemplo 2.1).
+El siguiente ejemplo está tomado textualmente de \cite[ejemplo 2.2]{TeoriaDeJuegosCJP}.
 
 \begin{quote}
 ``
@@ -140,7 +140,7 @@ El mercado del limón es un ejemplo clásico de juego de información incompleta
 Supongamos un mercado de automóviles usados en el que hay dos tipos de coches: malos y buenos (llamados ``limones`` y ``melocotones`` respectivamente). Los vendedores conocen la calidad real de su coche, pero los compradores no pueden distinguir entre un coche bueno y uno malo antes de la compra. Ambos saben, sin embargo, la proporción de coches buenos y malos en el mercado, así como los valores medios esperados.
 \end{quote}
 
-En este contexto, la información sobre la calidad del coche no es completa: los vendedores conocen más que los compradores. Por tanto, el juego presenta información incompleta.
+En este contexto, la información sobre la calidad del coche no es completa ni simétrica: los vendedores conocen más que los compradores. Por tanto, el juego presenta información incompleta.
 
 Podemos representarlo de manera simplificada como un juego estático de tipo bayesiano con dos jugadores:
 \[
@@ -342,7 +342,7 @@ El \textit{Texas Hold’em} combina información privada, azar y señales públi
 
 \textit{Magic: The Gathering} (MTG) \footnote{A partir de ahora usaremos MTG para referirnos a \textit{Magic: The Gathering}} \cite{mtg} es un \textit{trading card game} (TCG)\footnote{A partir de ahora usaremos TCG para referirnos a los \textit{trading card games}} o juego de cartas coleccionables de temática fantástica cuyo objetivo consiste en derrotar al oponente reduciendo sus puntos de vida a cero mediante el uso de criaturas, conjuros y encantamientos. Diseñado en 1993 por Richard Garfield \cite{bbg_richard}, MTG fue el título que popularizó el género y estableció muchas de las bases mecánicas que aún hoy definen los TCG. Su influencia en el diseño moderno de juegos de mesa y cartas es incuestionable: resulta difícil encontrar un diseñador que no cite \textit{Magic: The Gathering} como una de sus principales referencias, o un jugador que no haya oído hablar de él. \cite{garfield_tlagd}
 
-Los trading card games (TCCG o TCG) son juegos de cartas en los que los participantes construyen sus propios mazos a partir de una amplia colección de cartas con diferentes habilidades, valores y funciones. Estas cartas suelen obtenerse mediante sobres aleatorios o intercambios entre jugadores, lo que introduce un componente económico y de coleccionismo además del estratégico. El diseño de un TCG combina gestión de recursos, construcción de mazos y toma de decisiones tácticas, generando una profundidad de juego que equilibra azar y habilidad.
+Los TCG son juegos de cartas en los que los participantes construyen sus propios mazos a partir de una amplia colección de cartas con diferentes habilidades, valores y funciones. Estas cartas suelen obtenerse mediante sobres aleatorios o intercambios entre jugadores, lo que introduce un componente económico y de coleccionismo además del estratégico. El diseño de un TCG combina gestión de recursos, construcción de mazos y toma de decisiones tácticas, generando una profundidad de juego que equilibra azar y habilidad.
 
 En el caso de MTG, en su modalidad \textit{standard}, dos jugadores se enfrentan con mazos de al menos 60 cartas y una reserva inicial de 20 puntos de vida. El desarrollo de la partida se organiza en turnos compuestos por varias fases (mantenimiento, principal y combate) en las que los jugadores pueden desplegar criaturas, lanzar conjuros o activar habilidades. Uno de los elementos más característicos del sistema de reglas es la gestión del maná, recurso con el que se pagan los costes de las cartas. Este se obtiene de las cartas de \textit{Tierra}, que se pueden jugar una por turno y deben “girarse” para generar maná de distintos colores. La correcta administración de este recurso determina las acciones disponibles en cada turno y condiciona la estrategia general, ya que las cartas más poderosas exigen mayores cantidades o combinaciones específicas de maná \cite{ganivet2024}.
 

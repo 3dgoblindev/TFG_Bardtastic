@@ -3,7 +3,7 @@
 
 % https://github.com/3dgoblindev/SDBardos
  \chapter{\textit{Software} desarrollado} \label{cap_software}
-En este capítulo se describe el \textit{software} desarrollado como resultado del proyecto, detallando las características del prototipo implementado, su arquitectura interna y los componentes fundamentales que permiten el funcionamiento del juego. El objetivo es exponer una visión estructurada del sistema: cómo se organizan las mecánicas, cómo interactúan sus módulos y qué decisiones técnicas han permitido transformar el diseño conceptual en un producto jugable. No se incluye código fuente completo, salvo fragmentos o referencias cuando es necesario aclarar aspectos concretos del desarrollo.
+En este capítulo se describe el \textit{software} desarrollado como resultado del proyecto, detallando las características del prototipo implementado, su arquitectura interna y los componentes fundamentales que permiten el funcionamiento del juego. El objetivo es exponer una visión estructurada del sistema: cómo se organizan las mecánicas, cómo interactúan sus módulos y qué decisiones técnicas han permitido transformar el diseño conceptual en un producto jugable.
 
 \section{Descripción general}
 
@@ -27,7 +27,7 @@ Los enfrentamientos se ejecutan dentro de un nivel de Unreal Engine que agrupa l
     \item \textbf{Audiencia}: mantiene las puntuaciones de atención y emociones.
 \end{itemize}
 
-El \texttt{GameMode} crea e inicializa el \texttt{GameContext} que actúa como fuente accesible y centralizada de información global. Este patrón se justifica porque el \textit{Game Mode} es un \textit{Singleton} natural del motor y su acceso está garantizado durante toda la partida.
+El \texttt{GameMode} crea e inicializa el \texttt{GameContext} que actúa como fuente accesible y centralizada de información global. Este patrón se justifica porque el \texttt{GameMode} es un \textit{Singleton} natural del motor y su acceso está garantizado durante toda la partida.
 
 \subsection{Interfaz de usuario}
 La interfaz en \textit{Bardtastic} se compone de varios \textit{Widgets} de Unreal (UMG) que presentan, de forma clara, el estado de la partida: la mano del jugador, las cartas permanentes en mesa de ambos bandos y la información de turnos.
@@ -52,7 +52,7 @@ Al concluir el combate, la interfaz despliega un \textit{Widget} de fin de parti
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/has ganado.jpg}
-    \caption{Interfaz al finalizar el enfrentamiento (pantalla de resultado).}
+    \caption{Interfaz al finalizar el enfrentamiento (pantalla de resultado). Creación propia.}
     \label{fig:UI_fin}
 \end{figure}
 
@@ -74,7 +74,7 @@ Durante la partida, el jugador puede consultar en cualquier momento la pila de d
 
 \subsection{Cartas}
 
-Las cartas constituyen el núcleo del diseño del software de \textit{Bardtastic}. Cada carta es una instancia de la clase \texttt{UCard}, derivada de \texttt{UObject}, lo que permite gestionar su ciclo de vida en el motor de forma flexible e independiente de los \textit{Actors} del nivel. La clase encapsula tanto los atributos estáticos de la carta (nombre, tipo, rimas, emociones, texto, imagen) como los elementos de lógica necesarios para su funcionamiento en partida.
+Las cartas constituyen el núcleo del diseño del \textit{software} de \textit{Bardtastic}. Cada carta es una instancia de la clase \texttt{UCard}, derivada de \texttt{UObject}, lo que permite gestionar su ciclo de vida en el motor de forma flexible e independiente de los \textit{Actors} del nivel. La clase encapsula tanto los atributos estáticos de la carta (nombre, tipo, rimas, emociones, texto, imagen) como los elementos de lógica necesarios para su funcionamiento en partida.
 
 \subsubsection{Representación de los datos y propiedades}
 Cada carta almacena sus datos básicos como propiedades editables en Unreal, lo que facilita su configuración desde el editor y su exposición a \textit{Blueprints}. Estos atributos describen su funcionalidad y su papel en el enfrentamiento: tipo de carta, atención que aporta, rimas que condicionan la jugada, emociones que pueden provocar en la audiencia y recursos visuales asociados. Gracias a esta estructura, el diseño narrativo y visual puede evolucionar sin necesidad de modificar código nativo.
@@ -124,22 +124,22 @@ En conjunto, la arquitectura de las cartas maximiza la modularidad del sistema y
 
 \subsection{Jugadores}
 
-En el prototipo ambos participantes del enfrentamiento (el jugador controlado por el usuario y el rival controlado por la inteligencia artificial) comparten una arquitectura común. El comportamiento base se implementa en C++ en la clase \texttt{AA\_Rival}, que actúa como controlador lógico de un jugador dentro del nivel y gestiona su mazo, mano, mesa de cartas permanentes, descartar, robar y finalizar turno.
+En el prototipo ambos participantes del enfrentamiento (el personaje controlado por el usuario y el rival controlado por la inteligencia artificial) comparten una arquitectura común. El comportamiento base se implementa en C++ en la clase \texttt{AA\_Rival}, que actúa como controlador lógico de un jugador dentro del nivel y gestiona su mazo, mano, mesa de cartas permanentes, descartar, robar y finalizar turno.
 
-A partir de esta clase se ha construido una jerarquía en Blueprint que permite separar la lógica del juego de la presentación visual y de la interacción específica de cada tipo de jugador:
+A partir de esta clase se ha construido una jerarquía en \textit{Blueprint} que permite separar la lógica del juego de la presentación visual y de la interacción específica de cada tipo de jugador:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{img/jugadores_clases.PNG}
-    \caption{Arquitectura general de los jugadores en \textit{Bardtastic}.}
+    \caption{Arquitectura general de los jugadores en \textit{Bardtastic}. Creación propia.}
     \label{fig:arquitectura_jugadores}
 \end{figure}
 
-Este enfoque híbrido sigue un patrón común en Unreal Engine: la lógica del sistema permanece en C++ para garantizar robustez y rendimiento, mientras que la capa visual y de interacción se desarrolla en Blueprints, facilitando la edición en el editor sin necesidad de recompilar.
+Este enfoque híbrido sigue un patrón común en Unreal Engine: la lógica del sistema permanece en C++ para garantizar robustez y rendimiento, mientras que la capa visual y de interacción se desarrolla en \textit{Blueprints}, facilitando la edición en el editor sin necesidad de recompilar.
 
-\subsubsection{Jugador}
+\subsubsection{Personaje del usuario}
 
-El jugador controlado por el usuario se representa mediante \texttt{ThePJ\_BP}. Esta clase hereda todas las funciones jugables desde C++, pero redirige las decisiones al usuario a través de la interfaz (\textit{Widgets}) y gestiona las animaciones asociadas al avatar en el escenario. De esta forma, el usuario puede realizar acciones como seleccionar cartas o confirmar la finalización del turno sin modificar la arquitectura interna.
+El personaje controlado por el usuario se representa mediante \texttt{ThePJ\_BP}. Esta clase hereda todas las funciones jugables desde C++, pero redirige las decisiones al usuario a través de la interfaz (\textit{Widgets}) y gestiona las animaciones asociadas al avatar en el escenario. De esta forma, el usuario puede realizar acciones como seleccionar cartas o confirmar la finalización del turno sin modificar la arquitectura interna.
 
 \subsubsection{Rival e Inteligencia Artificial}
 
@@ -167,7 +167,7 @@ Esta arquitectura por capas proporciona varios beneficios:
 
 En conjunto, este diseño permite mantener la integridad del sistema de juego mientras se ofrece flexibilidad para continuar expandiendo contenido y mejorar el comportamiento de la IA durante futuros desarrollos del proyecto.
 
-\section{Agente Rival}
+\section{Algoritmo del agente rival}
 \label{sec:agente-rival}
 
 El diseño conceptual del agente se ha introducido en la sección~\ref{agente_rival}. 
@@ -264,7 +264,7 @@ el agente deliberativo frente al agente aleatorio, o auto--juego entre dos insta
 mismo agente) bajo condiciones controladas y totalmente reproducibles. Asimismo, utiliza el
 mismo flujo de turnos y las mismas reglas que una partida normal de \textit{Bardtastic}.
 Los resultados obtenidos con este sistema se presentan en detalle en el 
-capítulo~\ref{chap:evaluacion-pruebas}.
+Capítulo~\ref{chap:evaluacion-pruebas}.
 
 
 
@@ -286,7 +286,7 @@ Además de los enfrentamientos, el prototipo incluye un sistema de eventos que p
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{img/evento.jpg}
-    \caption{Evento donde se nos pide elegir una de entre tres cartas.}
+    \caption{Evento donde se nos pide elegir una de entre tres cartas. Creación propia.}
     \label{fig:evetno}
 \end{figure}
 
@@ -328,7 +328,7 @@ Un aspecto clave del diseño es que \textbf{los eventos son completamente modula
     \item efectos sobre el mazo o sobre elementos persistentes del juego.
 \end{itemize}
 
-Desde la perspectiva de ingeniería del software, esta solución facilita:
+Desde la perspectiva de ingeniería del \textit{software}, esta solución facilita:
 
 \begin{itemize}
     \item la creación rápida de contenido nuevo mediante diseño visual,
@@ -347,7 +347,7 @@ Tras finalizar un combate, se carga este nivel de evento que permite:
     \item tomar decisiones estratégicas antes del siguiente enfrentamiento.
 \end{itemize}
 
-Una vez tomada una decisión, el widget invoca la función correspondiente en \texttt{UEvent\_Base}, se modifica el mazo del jugador a través del sistema de guardado y se regresa al nivel de combate para continuar la progresión.
+Una vez tomada una decisión, el \textit{widget} invoca la función correspondiente en \texttt{UEvent\_Base}, se modifica el mazo del jugador a través del sistema de guardado y se regresa al nivel de combate para continuar la progresión.
 
 En resumen, el sistema de eventos introduce variabilidad entre partidas y refuerza la dimensión estratégica del juego, permitiendo que el jugador adapte su mazo y desarrolle una estrategia progresiva a lo largo de la aventura.
 
@@ -423,7 +423,7 @@ El acceso al juego se realiza a través del nivel \texttt{MainMenu}, que actúa 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{img/menu.jpg}
-    \caption{Menú principal.}
+    \caption{Menú principal. Creación propia.}
     \label{fig:menu}
 \end{figure}
 

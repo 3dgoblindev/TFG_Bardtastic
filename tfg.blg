@@ -5,51 +5,59 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: abbrv.bst
 Reallocating 'name_of_file' (item size: 1) to 12 items.
 Database file #1: library.bib
+I was expecting a `,' or a `}'---line 139 of file library.bib
+ :  
+ :  title = {Games: Agency As Art (Thinking Art)}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in mtg
 Warning--to sort, need author or key in bbg_richard
 Warning--to sort, need author or key in mtg_legal_cards
 Warning--to sort, need author or key in notion
 Warning--to sort, need author or key in git
 Warning--empty journal in costikyan2002
-You've used 60 entries,
+Warning--empty title in thinking_art
+Warning--empty publisher in thinking_art
+Warning--empty year in thinking_art
+You've used 61 entries,
             2118 wiz_defined-function locations,
-            829 strings with 12154 characters,
-and the built_in function-call counts, 13689 in all, are:
-= -- 1318
-> -- 483
+            831 strings with 12179 characters,
+and the built_in function-call counts, 13895 in all, are:
+= -- 1332
+> -- 490
 < -- 1
-+ -- 210
-- -- 142
-* -- 544
-:= -- 2319
-add.period$ -- 207
-call.type$ -- 60
-change.case$ -- 232
++ -- 213
+- -- 144
+* -- 558
+:= -- 2352
+add.period$ -- 208
+call.type$ -- 61
+change.case$ -- 235
 chr.to.int$ -- 0
-cite$ -- 66
-duplicate$ -- 566
-empty$ -- 1342
-format.name$ -- 142
-if$ -- 2973
+cite$ -- 70
+duplicate$ -- 578
+empty$ -- 1364
+format.name$ -- 144
+if$ -- 3014
 int.to.chr$ -- 0
-int.to.str$ -- 60
-missing$ -- 49
-newline$ -- 329
-num.names$ -- 110
-pop$ -- 458
+int.to.str$ -- 61
+missing$ -- 51
+newline$ -- 332
+num.names$ -- 112
+pop$ -- 472
 preamble$ -- 1
-purify$ -- 191
+purify$ -- 194
 quote$ -- 0
-skip$ -- 388
+skip$ -- 392
 stack$ -- 0
-substring$ -- 374
+substring$ -- 379
 swap$ -- 66
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 198
-warning$ -- 6
-while$ -- 117
-width$ -- 62
-write$ -- 674
-(There were 6 warnings)
+type$ -- 200
+warning$ -- 9
+while$ -- 119
+width$ -- 63
+write$ -- 679
+(There was 1 error message)

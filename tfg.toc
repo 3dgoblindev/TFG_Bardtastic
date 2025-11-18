@@ -121,9 +121,8 @@
 \contentsline {section}{\numberline {9.2}Prototipado y velocidad de iteración}{68}{section.9.2}%
 \contentsline {section}{\numberline {9.3}\textit {Pipeline} de arte y contenido}{69}{section.9.3}%
 \contentsline {section}{\numberline {9.4}Diseño 2D y UI}{69}{section.9.4}%
-\contentsline {section}{\numberline {9.5}Audio}{70}{section.9.5}%
-\contentsline {section}{\numberline {9.6}Herramientas de producción}{70}{section.9.6}%
-\contentsline {section}{\numberline {9.7}Conclusiones}{70}{section.9.7}%
+\contentsline {section}{\numberline {9.5}Herramientas de producción}{70}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Conclusiones}{70}{section.9.6}%
 \contentsline {chapter}{\numberline {10}\textit {Software} desarrollado}{71}{chapter.10}%
 \contentsline {section}{\numberline {10.1}Descripción general}{71}{section.10.1}%
 \contentsline {section}{\numberline {10.2}Enfrentamientos}{71}{section.10.2}%
@@ -135,10 +134,10 @@
 \contentsline {subsubsection}{\numberline {10.2.2.4}Interacción con la interfaz y el flujo de partida}{75}{subsubsection.10.2.2.4}%
 \contentsline {subsubsection}{\numberline {10.2.2.5}Desacoplamiento y escalabilidad del sistema}{75}{subsubsection.10.2.2.5}%
 \contentsline {subsection}{\numberline {10.2.3}Jugadores}{76}{subsection.10.2.3}%
-\contentsline {subsubsection}{\numberline {10.2.3.1}Jugador}{76}{subsubsection.10.2.3.1}%
+\contentsline {subsubsection}{\numberline {10.2.3.1}Personaje del usuario}{76}{subsubsection.10.2.3.1}%
 \contentsline {subsubsection}{\numberline {10.2.3.2}Rival e Inteligencia Artificial}{76}{subsubsection.10.2.3.2}%
 \contentsline {subsubsection}{\numberline {10.2.3.3}Ventajas de esta organización}{77}{subsubsection.10.2.3.3}%
-\contentsline {section}{\numberline {10.3}Agente Rival}{77}{section.10.3}%
+\contentsline {section}{\numberline {10.3}Algoritmo del agente rival}{77}{section.10.3}%
 \contentsline {subsection}{\numberline {10.3.1}Arquitectura y desacoplamiento}{77}{subsection.10.3.1}%
 \contentsline {subsection}{\numberline {10.3.2}Flujo de decisión en turno}{78}{subsection.10.3.2}%
 \contentsline {subsection}{\numberline {10.3.3}Notas de complejidad y rendimiento}{78}{subsection.10.3.3}%
@@ -163,7 +162,7 @@
 \contentsline {subsection}{\numberline {11.2.1}Pruebas exploratorias}{85}{subsection.11.2.1}%
 \contentsline {subsection}{\numberline {11.2.2}\textit {Playtesting} supervisado}{86}{subsection.11.2.2}%
 \contentsline {subsection}{\numberline {11.2.3}Trazas y depuración}{86}{subsection.11.2.3}%
-\contentsline {subsubsection}{\numberline {11.2.3.1}Enfrentamientos automatizados entre agentes}{86}{subsubsection.11.2.3.1}%
+\contentsline {subsection}{\numberline {11.2.4}Enfrentamientos automatizados entre agentes}{86}{subsection.11.2.4}%
 \contentsline {section}{\numberline {11.3}Cobertura funcional alcanzada}{87}{section.11.3}%
 \contentsline {section}{\numberline {11.4}Casos de prueba manuales (muestra)}{88}{section.11.4}%
 \contentsline {section}{\numberline {11.5}Limitaciones del enfoque actual}{88}{section.11.5}%

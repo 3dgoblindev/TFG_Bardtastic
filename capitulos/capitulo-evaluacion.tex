@@ -4,7 +4,7 @@
 \chapter{Evaluación y pruebas}
 \label{chap:evaluacion-pruebas}
 
-Este capítulo describe el enfoque de verificación seguido durante el desarrollo del prototipo de \textit{Bardtastic}, los resultados obtenidos y un plan estructurado para formalizar las pruebas de cara a la futura \textit{Vertical Slice}. Dado el carácter prototípico del software, la validación se ha centrado en \textbf{pruebas exploratorias y sesiones de juego supervisadas}, apoyadas por un uso intensivo de \textit{logging} y trazas en tiempo real. A continuación se sistematiza lo realizado y se proponen medidas concretas para elevar el nivel de aseguramiento de calidad.
+Este capítulo describe el enfoque de verificación seguido durante el desarrollo del prototipo de \textit{Bardtastic}, los resultados obtenidos y un plan estructurado para formalizar las pruebas de cara a la futura \textit{Vertical Slice}. Dado el carácter prototípico del \textit{software}, la validación se ha centrado en \textbf{pruebas exploratorias y sesiones de juego supervisadas}, apoyadas por un uso intensivo de \textit{logging} y trazas en tiempo real. A continuación se sistematiza lo realizado y se proponen medidas concretas para elevar el nivel de aseguramiento de calidad.
 
 \section{Objetivos de la evaluación}
 \begin{itemize}
@@ -19,7 +19,7 @@ Durante esta fase no se han implementado tests unitarios automatizados. La valid
 
 \subsection{Pruebas exploratorias}
 
-La validación se ha centrado en un enfoque de pruebas exploratorias, en el que la propia desarrolladora interactúa con el sistema sin un guion rígido, observando el comportamiento del juego y buscando posibles fallos en sus mecánicas principales. Dentro de este enfoque se han aplicado tres técnicas complementarias:
+La validación se ha centrado en un enfoque de pruebas exploratorias, en el que el propio desarrollador interactúa con el sistema sin un guion rígido, observando el comportamiento del juego y buscando posibles fallos en sus mecánicas principales. Dentro de este enfoque se han aplicado tres técnicas complementarias:
 
 \begin{itemize}
   \item \textbf{Pruebas sistemáticas de juego}: sesiones completas y repetidas de enfrentamientos cubriendo tanto flujos habituales como situaciones límite (mazo agotado, rima inválida, empate en audiencia, etc.).
@@ -33,7 +33,7 @@ La validación se ha centrado en un enfoque de pruebas exploratorias, en el que 
   \end{itemize}
   El objetivo es detectar fallos críticos de manera temprana y garantizar que el juego sigue siendo ejecutable en todo momento.
   
-  \item \textbf{\textit{Error guessing}}: técnica basada en la experiencia de la desarrolladora para anticipar dónde es más probable que aparezcan errores. Se busca “romper” el sistema forzando situaciones anómalas, como:
+  \item \textbf{\textit{Error guessing}}: técnica basada en la experiencia del desarrollador para anticipar dónde es más probable que aparezcan errores. Se busca “romper” el sistema forzando situaciones anómalas, como:
   \begin{itemize}
       \item descartar todas las cartas de la mano en un punto no previsto,
       \item generar cadenas largas de efectos consecutivos,
@@ -46,13 +46,13 @@ La validación se ha centrado en un enfoque de pruebas exploratorias, en el que 
 
 \subsection{\textit{Playtesting} supervisado}
 
-Se realizaron pruebas informales con usuarios (principalmente compañeros) con el objetivo de observar la comprensibilidad de la interfaz, la claridad del \textit{feedback} y el ritmo de juego. Durante estas sesiones se registraron observaciones cualitativas relacionadas con posibles confusiones, tiempos de decisión, errores de lectura de rimas y la claridad del resultado final.
+Se realizaron pruebas informales con usuarios con el objetivo de observar la comprensibilidad de la interfaz, la claridad del \textit{feedback} y el ritmo de juego. Durante estas sesiones se registraron observaciones cualitativas relacionadas con posibles confusiones, tiempos de decisión, errores de lectura de rimas y la claridad del resultado final.
 
 \subsection{Trazas y depuración}
 
 Se hizo un uso intensivo de \textbf{logs} y \textbf{prints} para seguir el flujo de turnos, la validación de rimas y la ejecución secuencial de efectos. Además, se emplearon marcadores visuales (\textit{debug draws} o \textit{widgets} temporales) para confirmar los cambios de atención y de emociones durante la ejecución.
 
-\subsubsection{Enfrentamientos automatizados entre agentes}
+\subsection{Enfrentamientos automatizados entre agentes}
 \label{subsec:tests-ia-vs-ia}
 
 Además de las pruebas manuales y del \textit{playtesting} supervisado, se han realizado
@@ -90,9 +90,9 @@ Los resultados se resumen en la Tabla~\ref{tab:ia-vs-ia-100}.
 		\toprule
 		Configuración & Victorias agente A & Victorias agente B & Winrate B \\
 		\midrule
-		Random/Greedy vs.\ Rival deliberativo & 6  & 94 & 0.94 \\
+		\textit{Random} vs.\ Rival deliberativo & 6  & 94 & 0.94 \\
 		Rival deliberativo vs.\ Rival deliberativo & 46 & 54 & 0.54 \\
-		Random/Greedy vs.\ Random/Greedy & 51 & 50 & 0.50 \\
+		\textit{Random} vs.\ \textit{Random} & 51 & 49 & 0.49 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
